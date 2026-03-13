@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://checkmarx.com/schemas/checkmarx/scan-result.json",
+  "title": "Checkmarx Scan Result",
+  "description": "A security scan result representing a vulnerability or finding detected by Checkmarx scanning engines (SAST, SCA, KICS) across static code analysis, open source dependency analysis, and infrastructure-as-code scanning.",
+  "type": "object",
+  "required": ["id", "severity", "type", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the scan result"
+    },
+    "similarityId": {
+      "type": "string",
+      "description": "Stable identifier for tracking the same finding across multiple scans"
+    },
+    "scanId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the scan that produced this result"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identifier of the project being scanned"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["sast", "sca", "kics", "apisec"],
+      "description": "The scanning engine that detected this finding"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"],
+      "description": "Severity level of the finding"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["NEW", "RECURRENT"],
+      "description": "Whether the finding is newly detected or recurring from previous scans"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["TO_VERIFY", "NOT_EXPLOITABLE", "PROPOSED_NOT_EXPLOITABLE", "CONFIRMED", "URGENT"],
+      "description": "Triage state indicating how the finding has been evaluated"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the vulnerability or finding"
+    },
+    "queryName": {
+      "type": "string",
+      "description": "Name of the SAST query or rule that detected the finding"
+    },
+    "queryGroup": {
+      "type": "string",
+      "description": "Category or group the detecting query belongs to"
+    },
+    "languageName": {
+      "type": "string",
+      "description": "Programming language of the scanned source code"
+    },
+    "vulnerabilityDetails": {
+      "$ref": "#/$defs/VulnerabilityDetails"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "codeFlow": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CodeFlowNode"
+      },
+      "description": "Ordered list of code flow nodes showing the data flow path from source to sink (SAST findings)"
+    },
+    "packageData": {
+      "$ref": "#/$defs/PackageData"
+    },
+    "firstFoundAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this finding was first detected"
+    },
+    "foundAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this finding was detected in the current scan"
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Comment"
+      },
+      "description": "Triage comments added by security reviewers"
+    }
+  },
+  "$defs": {
+    "VulnerabilityDetails": {
+      "type": "object",
+      "description": "Detailed vulnerability classification and scoring information",
+      "properties": {
+        "cweId": {
+          "type": "integer",
+          "description": "Common Weakness Enumeration identifier"
+        },
+        "cvss": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Common Vulnerability Scoring System score"
+        },
+        "cveName": {
+          "type": "string",
+          "pattern": "^CVE-\\d{4}-\\d{4,}$",
+          "description": "CVE identifier if applicable"
+        },
+        "compliances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Compliance standards this finding relates to (e.g., OWASP Top 10, PCI DSS)"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vulnerability categories"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "description": "Source code location where the finding was detected",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Source file path"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Line number in the source file"
+        },
+        "column": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Column number in the source line"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Fully qualified name of the element containing the finding"
+        }
+      }
+    },
+    "CodeFlowNode": {
+      "type": "object",
+      "description": "A node in the data flow path showing how tainted data travels through the code",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Source file name"
+        },
+        "line": {
+          "type": "integer",
+          "description": "Line number"
+        },
+        "column": {
+          "type": "integer",
+          "description": "Column number"
+        },
+        "length": {
+          "type": "integer",
+          "description": "Length of the code element"
+        },
+        "name": {
+          "type": "string",
+          "description": "Node name or code element"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Fully qualified name"
+        },
+        "methodLine": {
+          "type": "integer",
+          "description": "Starting line of the containing method"
+        }
+      }
+    },
+    "PackageData": {
+      "type": "object",
+      "description": "Open source package information for SCA findings",
+      "properties": {
+        "packageIdentifier": {
+          "type": "string",
+          "description": "Package ecosystem and name identifier"
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Package name"
+        },
+        "packageVersion": {
+          "type": "string",
+          "description": "Detected package version"
+        },
+        "packageRepository": {
+          "type": "string",
+          "description": "Package ecosystem (npm, maven, nuget, pypi, etc.)"
+        },
+        "recommendedVersion": {
+          "type": "string",
+          "description": "Recommended version that fixes the vulnerability"
+        },
+        "isDirectDependency": {
+          "type": "boolean",
+          "description": "Whether the package is a direct dependency or transitive"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "description": "A triage comment added to a finding",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "User who created the comment"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Comment creation timestamp"
+        }
+      }
+    }
+  }
+}

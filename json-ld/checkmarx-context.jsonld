@@ -1,0 +1,208 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "checkmarx": "https://checkmarx.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Project": {
+      "@id": "checkmarx:Project",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "teamId": "checkmarx:teamId",
+        "isPublic": {
+          "@id": "checkmarx:isPublic",
+          "@type": "xsd:boolean"
+        },
+        "repoUrl": {
+          "@id": "schema:codeRepository",
+          "@type": "@id"
+        },
+        "mainBranch": "checkmarx:mainBranch",
+        "criticality": {
+          "@id": "checkmarx:criticality",
+          "@type": "xsd:integer"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Scan": {
+      "@id": "checkmarx:Scan",
+      "@context": {
+        "status": "checkmarx:scanStatus",
+        "scanType": "checkmarx:scanType",
+        "branch": "checkmarx:branch",
+        "engines": "checkmarx:engines",
+        "initiator": "checkmarx:initiator",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ScanResult": {
+      "@id": "checkmarx:ScanResult",
+      "@context": {
+        "severity": "checkmarx:severity",
+        "status": "checkmarx:resultStatus",
+        "state": "checkmarx:triageState",
+        "type": "checkmarx:engineType",
+        "description": "schema:description",
+        "queryName": "checkmarx:queryName",
+        "languageName": "checkmarx:languageName",
+        "firstFoundAt": {
+          "@id": "checkmarx:firstFoundAt",
+          "@type": "xsd:dateTime"
+        },
+        "foundAt": {
+          "@id": "checkmarx:foundAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Vulnerability": {
+      "@id": "checkmarx:Vulnerability",
+      "@context": {
+        "cveName": "checkmarx:cveName",
+        "cweId": {
+          "@id": "checkmarx:cweId",
+          "@type": "xsd:integer"
+        },
+        "description": "schema:description",
+        "severity": "checkmarx:severity",
+        "cvssScore": {
+          "@id": "checkmarx:cvssScore",
+          "@type": "xsd:float"
+        },
+        "publishDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "hasExploit": {
+          "@id": "checkmarx:hasExploit",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Package": {
+      "@id": "checkmarx:Package",
+      "@context": {
+        "name": "schema:name",
+        "version": "schema:version",
+        "packageRepository": "checkmarx:packageRepository",
+        "isDirectDependency": {
+          "@id": "checkmarx:isDirectDependency",
+          "@type": "xsd:boolean"
+        },
+        "riskScore": {
+          "@id": "checkmarx:riskScore",
+          "@type": "xsd:float"
+        },
+        "outdated": {
+          "@id": "checkmarx:outdated",
+          "@type": "xsd:boolean"
+        },
+        "licenses": "checkmarx:licenses"
+      }
+    },
+
+    "Application": {
+      "@id": "checkmarx:Application",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "criticality": {
+          "@id": "checkmarx:criticality",
+          "@type": "xsd:integer"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Preset": {
+      "@id": "checkmarx:Preset",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "custom": {
+          "@id": "checkmarx:custom",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Team": {
+      "@id": "checkmarx:Team",
+      "@context": {
+        "name": "schema:name",
+        "fullName": "checkmarx:fullName",
+        "parentId": "checkmarx:parentId"
+      }
+    },
+
+    "EngineServer": {
+      "@id": "checkmarx:EngineServer",
+      "@context": {
+        "name": "schema:name",
+        "uri": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "isAlive": {
+          "@id": "checkmarx:isAlive",
+          "@type": "xsd:boolean"
+        },
+        "maxScans": {
+          "@id": "checkmarx:maxScans",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "RiskReport": {
+      "@id": "checkmarx:RiskReport",
+      "@context": {
+        "riskScore": {
+          "@id": "checkmarx:riskScore",
+          "@type": "xsd:float"
+        },
+        "totalPackages": {
+          "@id": "checkmarx:totalPackages",
+          "@type": "xsd:integer"
+        },
+        "directPackages": {
+          "@id": "checkmarx:directPackages",
+          "@type": "xsd:integer"
+        },
+        "totalOutdatedPackages": {
+          "@id": "checkmarx:totalOutdatedPackages",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1439 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One API
+  description: >-
+    Unified REST API for the Checkmarx One cloud-native application security
+    platform, providing consolidated access to SAST, SCA, KICS, and other
+    security scanning capabilities through a single API with project
+    management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+servers:
+  - url: https://ast.checkmarx.net/api
+    description: Checkmarx One (US)
+  - url: https://eu.ast.checkmarx.net/api
+    description: Checkmarx One (EU)
+tags:
+  - name: Authentication
+    description: Obtain and manage authentication tokens via OAuth 2.0
+  - name: Applications
+    description: Manage applications that group related projects
+  - name: Projects
+    description: Manage scanning projects and their configuration
+  - name: Scans
+    description: Trigger, monitor, and manage security scans
+  - name: Results
+    description: Retrieve and manage scan results and findings
+  - name: Queries
+    description: Manage custom SAST queries and presets
+  - name: Groups
+    description: Manage access control groups
+  - name: Presets
+    description: Manage scan configuration presets
+  - name: Configuration
+    description: Manage project and tenant-level scan configuration
+security:
+  - bearerAuth: []
+paths:
+  /auth/realms/{realm}/protocol/openid-connect/token:
+    post:
+      operationId: authenticate
+      summary: Obtain access token
+      description: >-
+        Authenticate using OAuth 2.0 client credentials via the Checkmarx
+        One IAM service to obtain a bearer token for API access.
+      tags:
+        - Authentication
+      parameters:
+        - name: realm
+          in: path
+          required: true
+          description: Authentication realm name
+          schema:
+            type: string
+            example: your-tenant
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - client_id
+                - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - client_credentials
+                    - refresh_token
+                  description: OAuth 2.0 grant type
+                client_id:
+                  type: string
+                  description: API key client ID
+                client_secret:
+                  type: string
+                  description: API key client secret
+                refresh_token:
+                  type: string
+                  description: Refresh token (when using refresh_token grant)
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid credentials
+      security: []
+  /applications:
+    get:
+      operationId: listApplications
+      summary: List applications
+      description: >-
+        Retrieve all applications. Applications are logical groupings
+        of related projects for organizational purposes.
+      tags:
+        - Applications
+      parameters:
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 20
+        - name: name
+          in: query
+          description: Filter by application name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createApplication
+      summary: Create an application
+      description: Create a new application to group related projects.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+      responses:
+        '201':
+          description: Application created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Get application details
+      description: Retrieve details of a specific application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+    put:
+      operationId: updateApplication
+      summary: Update an application
+      description: Update an existing application's properties.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationRequest'
+      responses:
+        '204':
+          description: Application updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+    delete:
+      operationId: deleteApplication
+      summary: Delete an application
+      description: Delete an application. Projects within will be unassigned.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      responses:
+        '204':
+          description: Application deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: >-
+        Retrieve all projects with optional filtering by name, group,
+        or tag.
+      tags:
+        - Projects
+      parameters:
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 20
+        - name: name
+          in: query
+          description: Filter by project name
+          schema:
+            type: string
+        - name: groups
+          in: query
+          description: Filter by group IDs (comma-separated)
+          schema:
+            type: string
+        - name: tags-keys
+          in: query
+          description: Filter by tag keys
+          schema:
+            type: string
+        - name: tags-values
+          in: query
+          description: Filter by tag values
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createProject
+      summary: Create a project
+      description: >-
+        Create a new project for security scanning. A project represents
+        a code repository or application component to be scanned.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get project details
+      description: Retrieve details of a specific project by ID.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: Update a project
+      description: Update an existing project's configuration.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '204':
+          description: Project updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Delete a project
+      description: Delete a project and all its associated scans and results.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '204':
+          description: Project deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /scans:
+    get:
+      operationId: listScans
+      summary: List scans
+      description: >-
+        Retrieve scans with optional filtering by project, status,
+        and scan type.
+      tags:
+        - Scans
+      parameters:
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 20
+        - name: project-id
+          in: query
+          description: Filter by project ID
+          schema:
+            type: string
+            format: uuid
+        - name: statuses
+          in: query
+          description: Filter by scan statuses (comma-separated)
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: Sort field and direction
+          schema:
+            type: string
+            example: -created_at
+      responses:
+        '200':
+          description: List of scans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createScan
+      summary: Create a new scan
+      description: >-
+        Initiate a new security scan for a project. The scan can include
+        SAST, SCA, KICS, and other scan types based on project configuration.
+      tags:
+        - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanRequest'
+      responses:
+        '201':
+          description: Scan created and queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /scans/{scanId}:
+    get:
+      operationId: getScan
+      summary: Get scan details
+      description: Retrieve details and status of a specific scan.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/scanId'
+      responses:
+        '200':
+          description: Scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+    delete:
+      operationId: cancelScan
+      summary: Cancel a scan
+      description: Cancel a running or queued scan.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/scanId'
+      responses:
+        '204':
+          description: Scan canceled
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+  /results:
+    get:
+      operationId: listResults
+      summary: List scan results
+      description: >-
+        Retrieve vulnerability results for a scan, with optional
+        filtering by severity, state, and scan type.
+      tags:
+        - Results
+      parameters:
+        - name: scan-id
+          in: query
+          required: true
+          description: Scan ID to retrieve results for
+          schema:
+            type: string
+            format: uuid
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 20
+        - name: severity
+          in: query
+          description: Filter by severity (comma-separated)
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: Filter by result state (comma-separated)
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by result status
+          schema:
+            type: string
+            enum:
+              - NEW
+              - RECURRENT
+      responses:
+        '200':
+          description: List of results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultListResponse'
+        '401':
+          description: Unauthorized
+  /results/{resultId}:
+    get:
+      operationId: getResult
+      summary: Get result details
+      description: Retrieve detailed information about a specific finding.
+      tags:
+        - Results
+      parameters:
+        - name: resultId
+          in: path
+          required: true
+          description: Result unique identifier
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Result details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Result not found
+    patch:
+      operationId: updateResult
+      summary: Update result state
+      description: >-
+        Update the triage state of a result, such as confirming,
+        marking as not exploitable, or setting to proposed not exploitable.
+      tags:
+        - Results
+      parameters:
+        - name: resultId
+          in: path
+          required: true
+          description: Result unique identifier
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResultRequest'
+      responses:
+        '200':
+          description: Result updated
+        '401':
+          description: Unauthorized
+        '404':
+          description: Result not found
+  /results/summary:
+    get:
+      operationId: getResultsSummary
+      summary: Get results summary
+      description: >-
+        Retrieve an aggregated summary of scan results grouped by
+        severity and status.
+      tags:
+        - Results
+      parameters:
+        - name: scan-id
+          in: query
+          required: true
+          description: Scan ID to summarize
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Results summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultsSummary'
+        '401':
+          description: Unauthorized
+  /queries:
+    get:
+      operationId: listQueries
+      summary: List SAST queries
+      description: Retrieve a list of available SAST queries and presets.
+      tags:
+        - Queries
+      parameters:
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+        '401':
+          description: Unauthorized
+  /presets:
+    get:
+      operationId: listPresets
+      summary: List scan presets
+      description: >-
+        Retrieve all available scan presets that define which queries
+        and rules to apply during scans.
+      tags:
+        - Presets
+      responses:
+        '200':
+          description: List of presets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preset'
+        '401':
+          description: Unauthorized
+  /presets/{presetId}:
+    get:
+      operationId: getPreset
+      summary: Get preset details
+      description: Retrieve details of a specific scan preset.
+      tags:
+        - Presets
+      parameters:
+        - name: presetId
+          in: path
+          required: true
+          description: Preset unique identifier
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Preset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Preset not found
+  /groups:
+    get:
+      operationId: listGroups
+      summary: List groups
+      description: Retrieve all access control groups for the tenant.
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '401':
+          description: Unauthorized
+  /configuration/project:
+    get:
+      operationId: getProjectConfiguration
+      summary: Get project scan configuration
+      description: >-
+        Retrieve the scan configuration for a project, including
+        engine-specific settings for SAST, SCA, and KICS.
+      tags:
+        - Configuration
+      parameters:
+        - name: project-id
+          in: query
+          required: true
+          description: Project ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Project configuration
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectConfiguration'
+        '401':
+          description: Unauthorized
+    patch:
+      operationId: updateProjectConfiguration
+      summary: Update project scan configuration
+      description: >-
+        Update the scan configuration for a project, including
+        SAST preset, exclusion filters, and engine settings.
+      tags:
+        - Configuration
+      parameters:
+        - name: project-id
+          in: query
+          required: true
+          description: Project ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectConfiguration'
+      responses:
+        '204':
+          description: Configuration updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 bearer token obtained via client credentials from
+        the Checkmarx One IAM service
+  parameters:
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application unique identifier
+      schema:
+        type: string
+        format: uuid
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
+    scanId:
+      name: scanId
+      in: path
+      required: true
+      description: Scan unique identifier
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth 2.0 access token
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+        refresh_token:
+          type: string
+          description: Refresh token
+    ApplicationListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of applications
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Application unique identifier
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality level (1-5)
+          minimum: 1
+          maximum: 5
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+          description: Rules for auto-assigning projects
+        projectIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: IDs of projects in this application
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value tags
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    ApplicationRule:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type
+        value:
+          type: string
+          description: Rule value pattern
+    CreateApplicationRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+          default: 3
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ProjectListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of projects
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Project unique identifier
+        name:
+          type: string
+          description: Project name
+        groups:
+          type: array
+          items:
+            type: string
+          description: Group IDs the project belongs to
+        repoUrl:
+          type: string
+          description: Repository URL
+        mainBranch:
+          type: string
+          description: Main branch name
+        origin:
+          type: string
+          description: Project creation origin
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value tags
+        criticality:
+          type: integer
+          description: Project criticality level (1-5)
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    CreateProjectRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        groups:
+          type: array
+          items:
+            type: string
+          description: Group IDs to assign
+        repoUrl:
+          type: string
+          description: Source repository URL
+        mainBranch:
+          type: string
+          description: Main branch name
+          default: main
+        origin:
+          type: string
+          description: Project origin
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        criticality:
+          type: integer
+          description: Project criticality (1-5)
+          default: 3
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Project name
+        groups:
+          type: array
+          items:
+            type: string
+        repoUrl:
+          type: string
+        mainBranch:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        criticality:
+          type: integer
+    ScanListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of scans
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        scans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+    Scan:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Scan unique identifier
+        status:
+          type: string
+          enum:
+            - Queued
+            - Running
+            - Completed
+            - Partial
+            - Failed
+            - Canceled
+          description: Overall scan status
+        statusDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScanStatusDetail'
+          description: Per-engine scan status
+        projectId:
+          type: string
+          format: uuid
+          description: Associated project ID
+        projectName:
+          type: string
+          description: Associated project name
+        branch:
+          type: string
+          description: Source branch scanned
+        engines:
+          type: array
+          items:
+            type: string
+            enum:
+              - sast
+              - sca
+              - kics
+              - apisec
+          description: Scan engines used
+        sourceType:
+          type: string
+          description: Source origin type
+        sourceOrigin:
+          type: string
+          description: Source origin detail
+        initiator:
+          type: string
+          description: User or system that initiated the scan
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: Scan creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    ScanStatusDetail:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Engine name
+        status:
+          type: string
+          description: Engine-specific scan status
+        details:
+          type: string
+          description: Status details message
+    CreateScanRequest:
+      type: object
+      required:
+        - project
+        - type
+        - handler
+      properties:
+        project:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: Project ID to scan
+        type:
+          type: string
+          enum:
+            - git
+            - upload
+          description: Source type
+        handler:
+          type: object
+          properties:
+            repoUrl:
+              type: string
+              description: Git repository URL (for git type)
+            branch:
+              type: string
+              description: Branch to scan (for git type)
+            uploadUrl:
+              type: string
+              description: Pre-signed upload URL (for upload type)
+        config:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - sast
+                  - sca
+                  - kics
+                  - apisec
+              value:
+                type: object
+                additionalProperties: true
+          description: Per-engine scan configuration
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ResultListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of results
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+    Result:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Result unique identifier
+        similarityId:
+          type: string
+          description: Similarity ID for tracking across scans
+        status:
+          type: string
+          enum:
+            - NEW
+            - RECURRENT
+          description: Result status
+        state:
+          type: string
+          enum:
+            - TO_VERIFY
+            - NOT_EXPLOITABLE
+            - PROPOSED_NOT_EXPLOITABLE
+            - CONFIRMED
+            - URGENT
+          description: Triage state
+        severity:
+          type: string
+          enum:
+            - CRITICAL
+            - HIGH
+            - MEDIUM
+            - LOW
+            - INFO
+          description: Severity level
+        type:
+          type: string
+          enum:
+            - sast
+            - sca
+            - kics
+            - apisec
+          description: Engine type that found this result
+        data:
+          type: object
+          description: Engine-specific result data
+          properties:
+            queryId:
+              type: string
+              description: SAST query identifier
+            queryName:
+              type: string
+              description: SAST query name
+            group:
+              type: string
+              description: Query group name
+            languageName:
+              type: string
+              description: Programming language
+            nodes:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResultNode'
+              description: Code flow nodes (SAST)
+            packageIdentifier:
+              type: string
+              description: Package identifier (SCA)
+            recommendedVersion:
+              type: string
+              description: Recommended package version (SCA)
+        description:
+          type: string
+          description: Finding description
+        vulnerabilityDetails:
+          type: object
+          properties:
+            cweId:
+              type: integer
+              description: CWE identifier
+            cvss:
+              type: number
+              format: float
+              description: CVSS score
+            cveName:
+              type: string
+              description: CVE identifier
+            compliances:
+              type: array
+              items:
+                type: string
+              description: Compliance standards references
+        firstFoundAt:
+          type: string
+          format: date-time
+          description: When the result was first found
+        foundAt:
+          type: string
+          format: date-time
+          description: When the result was found in this scan
+    ResultNode:
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: Source file name
+        line:
+          type: integer
+          description: Line number
+        column:
+          type: integer
+          description: Column number
+        length:
+          type: integer
+          description: Code length
+        methodLine:
+          type: integer
+          description: Method start line
+        name:
+          type: string
+          description: Node name
+        fullName:
+          type: string
+          description: Fully qualified name
+    UpdateResultRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+            - TO_VERIFY
+            - NOT_EXPLOITABLE
+            - PROPOSED_NOT_EXPLOITABLE
+            - CONFIRMED
+            - URGENT
+          description: New triage state
+        comment:
+          type: string
+          description: Triage comment
+    ResultsSummary:
+      type: object
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Scan identifier
+        sastCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        scaCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        kicsCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        totalCounter:
+          type: integer
+          description: Total result count
+    EngineCounters:
+      type: object
+      properties:
+        severityCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                  - CRITICAL
+                  - HIGH
+                  - MEDIUM
+                  - LOW
+                  - INFO
+              counter:
+                type: integer
+        statusCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              counter:
+                type: integer
+        stateCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              state:
+                type: string
+              counter:
+                type: integer
+        totalCounter:
+          type: integer
+          description: Total count for this engine
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Query unique identifier
+        name:
+          type: string
+          description: Query name
+        group:
+          type: string
+          description: Query group
+        language:
+          type: string
+          description: Target programming language
+        severity:
+          type: string
+          enum:
+            - High
+            - Medium
+            - Low
+            - Info
+          description: Default severity
+        cweId:
+          type: integer
+          description: Associated CWE identifier
+        isCustom:
+          type: boolean
+          description: Whether this is a custom query
+    Preset:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Preset unique identifier
+        name:
+          type: string
+          description: Preset name
+        description:
+          type: string
+          description: Preset description
+        custom:
+          type: boolean
+          description: Whether this is a custom preset
+        queryIds:
+          type: array
+          items:
+            type: string
+          description: Query IDs included in this preset
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Group unique identifier
+        name:
+          type: string
+          description: Group name
+        parentId:
+          type: string
+          description: Parent group ID
+        subGroups:
+          type: array
+          items:
+            type: string
+          description: Sub-group IDs
+    ProjectConfiguration:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Configuration key
+        name:
+          type: string
+          description: Configuration display name
+        category:
+          type: string
+          description: Configuration category
+        originLevel:
+          type: string
+          description: Level at which the configuration is set
+        value:
+          type: string
+          description: Configuration value
+        valuetype:
+          type: string
+          description: Configuration value type
+        allowOverride:
+          type: boolean
+          description: Whether the value can be overridden

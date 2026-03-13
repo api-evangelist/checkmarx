@@ -1,0 +1,880 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx SAST API
+  description: >-
+    REST API for Checkmarx Static Application Security Testing (SAST),
+    enabling programmatic management of projects, scans, and results
+    for identifying security vulnerabilities in source code through
+    static analysis.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+externalDocs:
+  description: Checkmarx SAST REST API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+servers:
+  - url: https://{checkmarx-server}/cxrestapi
+    description: Checkmarx SAST Server
+    variables:
+      checkmarx-server:
+        default: your-checkmarx-instance.com
+        description: Hostname of the Checkmarx SAST server
+tags:
+  - name: Authentication
+    description: Obtain and manage authentication tokens
+  - name: Projects
+    description: Manage SAST projects and their configuration
+  - name: Scans
+    description: Create, manage, and monitor code scans
+  - name: Results
+    description: Retrieve scan results and vulnerability findings
+  - name: Reports
+    description: Generate and download scan reports
+  - name: Engines
+    description: Manage scan engines and engine servers
+  - name: Teams
+    description: Manage teams and access control
+  - name: Presets
+    description: Manage scan presets and query configurations
+security:
+  - bearerAuth: []
+paths:
+  /auth/identity/connect/token:
+    post:
+      operationId: authenticate
+      summary: Obtain access token
+      description: >-
+        Authenticate using OAuth 2.0 to obtain a bearer token for
+        accessing the Checkmarx SAST REST API. Supports both password
+        and refresh token grant types.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - grant_type
+                - scope
+                - client_id
+                - client_secret
+              properties:
+                username:
+                  type: string
+                  description: Checkmarx username
+                grant_type:
+                  type: string
+                  enum:
+                    - password
+                    - refresh_token
+                  description: OAuth 2.0 grant type
+                scope:
+                  type: string
+                  description: OAuth scope
+                  example: sast_rest_api
+                client_id:
+                  type: string
+                  description: OAuth client identifier
+                  example: resource_owner_client
+                client_secret:
+                  type: string
+                  description: OAuth client secret
+                password:
+                  type: string
+                  description: Checkmarx password
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid credentials or request
+      security: []
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List all projects
+      description: Retrieve a list of all SAST projects accessible to the authenticated user.
+      tags:
+        - Projects
+      parameters:
+        - name: projectName
+          in: query
+          description: Filter by project name
+          schema:
+            type: string
+        - name: teamId
+          in: query
+          description: Filter by team ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createProject
+      summary: Create a new project
+      description: Create a new SAST project with the specified configuration.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get project details
+      description: Retrieve details of a specific SAST project by ID.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: Update a project
+      description: Update the configuration of an existing SAST project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '204':
+          description: Project updated successfully
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Delete a project
+      description: Delete a SAST project and all associated scan data.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '202':
+          description: Project deletion accepted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectId}/sourceCode/remoteSettings/git:
+    get:
+      operationId: getProjectGitSettings
+      summary: Get Git remote source settings
+      description: Retrieve the Git repository settings for a project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Git remote settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitSettings'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    post:
+      operationId: setProjectGitSettings
+      summary: Set Git remote source settings
+      description: Configure the Git repository source settings for a project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GitSettings'
+      responses:
+        '204':
+          description: Git settings updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /sast/scans:
+    get:
+      operationId: listScans
+      summary: List all scans
+      description: >-
+        Retrieve a list of all SAST scans, with optional filtering by
+        project, scan status, and date range.
+      tags:
+        - Scans
+      parameters:
+        - name: projectId
+          in: query
+          description: Filter scans by project ID
+          schema:
+            type: integer
+        - name: scanStatus
+          in: query
+          description: Filter by scan status
+          schema:
+            type: string
+            enum:
+              - New
+              - PreScan
+              - Queued
+              - Scanning
+              - PostScan
+              - Finished
+              - Canceled
+              - Failed
+              - SourcePullingAndDeployment
+              - None
+        - name: last
+          in: query
+          description: Number of most recent scans to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of scans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Scan'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createScan
+      summary: Create a new scan
+      description: >-
+        Initiate a new SAST scan for a project. The scan will be queued
+        and executed based on engine availability.
+      tags:
+        - Scans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScanRequest'
+      responses:
+        '201':
+          description: Scan created and queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /sast/scans/{scanId}:
+    get:
+      operationId: getScan
+      summary: Get scan details
+      description: Retrieve details of a specific scan by ID.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/scanId'
+      responses:
+        '200':
+          description: Scan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+    patch:
+      operationId: updateScanStatus
+      summary: Update scan status
+      description: Update the status of a scan, such as canceling a running scan.
+      tags:
+        - Scans
+      parameters:
+        - $ref: '#/components/parameters/scanId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - Canceled
+      responses:
+        '200':
+          description: Scan status updated
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+  /sast/scans/{scanId}/resultsStatistics:
+    get:
+      operationId: getScanResultsStatistics
+      summary: Get scan results statistics
+      description: >-
+        Retrieve summary statistics for a completed scan, including
+        vulnerability counts by severity.
+      tags:
+        - Results
+      parameters:
+        - $ref: '#/components/parameters/scanId'
+      responses:
+        '200':
+          description: Scan results statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanResultsStatistics'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+  /reports/sastScan:
+    post:
+      operationId: createReport
+      summary: Register a new scan report
+      description: >-
+        Request generation of a scan report in the specified format
+        (PDF, XML, CSV, RTF).
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+      responses:
+        '202':
+          description: Report generation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportStatus'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /reports/sastScan/{reportId}:
+    get:
+      operationId: getReportById
+      summary: Get report by ID
+      description: Download a generated scan report by its ID.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Report content
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/xml:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Report not found
+  /reports/sastScan/{reportId}/status:
+    get:
+      operationId: getReportStatus
+      summary: Get report generation status
+      description: Check the status of a report generation request.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Report status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportStatus'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Report not found
+  /sast/engineServers:
+    get:
+      operationId: listEngineServers
+      summary: List engine servers
+      description: Retrieve a list of all configured SAST engine servers.
+      tags:
+        - Engines
+      responses:
+        '200':
+          description: List of engine servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EngineServer'
+        '401':
+          description: Unauthorized
+  /auth/teams:
+    get:
+      operationId: listTeams
+      summary: List all teams
+      description: Retrieve a list of all teams in the system.
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+        '401':
+          description: Unauthorized
+  /sast/presets:
+    get:
+      operationId: listPresets
+      summary: List all scan presets
+      description: Retrieve a list of all available scan presets.
+      tags:
+        - Presets
+      responses:
+        '200':
+          description: List of presets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preset'
+        '401':
+          description: Unauthorized
+  /sast/presets/{presetId}:
+    get:
+      operationId: getPreset
+      summary: Get preset details
+      description: Retrieve details of a specific scan preset.
+      tags:
+        - Presets
+      parameters:
+        - name: presetId
+          in: path
+          required: true
+          description: Preset unique identifier
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Preset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Preset not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 bearer token obtained from the authentication endpoint
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: integer
+    scanId:
+      name: scanId
+      in: path
+      required: true
+      description: Scan unique identifier
+      schema:
+        type: integer
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: Report unique identifier
+      schema:
+        type: integer
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth 2.0 access token
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+        refresh_token:
+          type: string
+          description: Refresh token for obtaining new access tokens
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Project unique identifier
+        teamId:
+          type: string
+          description: Team ID the project belongs to
+        name:
+          type: string
+          description: Project name
+        isPublic:
+          type: boolean
+          description: Whether the project is public
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+          description: Custom fields attached to the project
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+          description: HATEOAS links
+    CreateProjectRequest:
+      type: object
+      required:
+        - name
+        - owningTeam
+      properties:
+        name:
+          type: string
+          description: Project name
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        isPublic:
+          type: boolean
+          description: Whether the project is publicly accessible
+          default: true
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Project name
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+    GitSettings:
+      type: object
+      required:
+        - url
+        - branch
+      properties:
+        url:
+          type: string
+          description: Git repository URL
+        branch:
+          type: string
+          description: Branch to scan
+        privateKey:
+          type: string
+          description: SSH private key for authentication
+    Scan:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Scan unique identifier
+        project:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Project ID
+            name:
+              type: string
+              description: Project name
+        status:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Status ID
+            name:
+              type: string
+              description: Status name
+              enum:
+                - New
+                - PreScan
+                - Queued
+                - Scanning
+                - PostScan
+                - Finished
+                - Canceled
+                - Failed
+                - SourcePullingAndDeployment
+                - None
+        scanType:
+          type: string
+          description: Type of scan
+          enum:
+            - Incremental
+            - Full
+        comment:
+          type: string
+          description: Scan comment
+        dateAndTime:
+          type: object
+          properties:
+            startedOn:
+              type: string
+              format: date-time
+              description: Scan start time
+            finishedOn:
+              type: string
+              format: date-time
+              description: Scan finish time
+            engineStartedOn:
+              type: string
+              format: date-time
+              description: Engine processing start time
+            engineFinishedOn:
+              type: string
+              format: date-time
+              description: Engine processing finish time
+        resultsStatistics:
+          $ref: '#/components/schemas/ScanResultsStatistics'
+    CreateScanRequest:
+      type: object
+      required:
+        - projectId
+      properties:
+        projectId:
+          type: integer
+          description: Project to scan
+        isIncremental:
+          type: boolean
+          description: Whether to run an incremental scan
+          default: false
+        isPublic:
+          type: boolean
+          description: Whether the scan results are public
+          default: true
+        forceScan:
+          type: boolean
+          description: Force scan even if no code changes
+          default: false
+        comment:
+          type: string
+          description: Comment for the scan
+    ScanResultsStatistics:
+      type: object
+      properties:
+        highSeverity:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumSeverity:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowSeverity:
+          type: integer
+          description: Number of low severity vulnerabilities
+        infoSeverity:
+          type: integer
+          description: Number of informational findings
+        statisticsCalculationDate:
+          type: string
+          format: date-time
+          description: When the statistics were calculated
+    CreateReportRequest:
+      type: object
+      required:
+        - reportType
+        - scanId
+      properties:
+        reportType:
+          type: string
+          enum:
+            - PDF
+            - RTF
+            - CSV
+            - XML
+          description: Report output format
+        scanId:
+          type: integer
+          description: Scan ID to generate report for
+    ReportStatus:
+      type: object
+      properties:
+        reportId:
+          type: integer
+          description: Report unique identifier
+        status:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Status ID
+            value:
+              type: string
+              enum:
+                - InProcess
+                - Created
+                - Failed
+              description: Report generation status
+    EngineServer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Engine server unique identifier
+        name:
+          type: string
+          description: Engine server name
+        uri:
+          type: string
+          format: uri
+          description: Engine server URI
+        minLoc:
+          type: integer
+          description: Minimum lines of code for this engine
+        maxLoc:
+          type: integer
+          description: Maximum lines of code for this engine
+        isAlive:
+          type: boolean
+          description: Whether the engine is currently available
+        maxScans:
+          type: integer
+          description: Maximum concurrent scans
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Team unique identifier
+        name:
+          type: string
+          description: Team name
+        fullName:
+          type: string
+          description: Full team path name
+        parentId:
+          type: string
+          description: Parent team ID
+    Preset:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Preset unique identifier
+        name:
+          type: string
+          description: Preset name
+        ownerName:
+          type: string
+          description: Preset owner name
+        link:
+          $ref: '#/components/schemas/Link'
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Custom field ID
+        value:
+          type: string
+          description: Custom field value
+        name:
+          type: string
+          description: Custom field name
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
