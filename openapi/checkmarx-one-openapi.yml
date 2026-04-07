@@ -44,7 +44,7 @@ paths:
   /auth/realms/{realm}/protocol/openid-connect/token:
     post:
       operationId: authenticate
-      summary: Obtain access token
+      summary: Checkmarx Obtain access token
       description: >-
         Authenticate using OAuth 2.0 client credentials via the Checkmarx
         One IAM service to obtain a bearer token for API access.
@@ -97,7 +97,7 @@ paths:
   /applications:
     get:
       operationId: listApplications
-      summary: List applications
+      summary: Checkmarx List applications
       description: >-
         Retrieve all applications. Applications are logical groupings
         of related projects for organizational purposes.
@@ -132,7 +132,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createApplication
-      summary: Create an application
+      summary: Checkmarx Create an application
       description: Create a new application to group related projects.
       tags:
         - Applications
@@ -156,7 +156,7 @@ paths:
   /applications/{applicationId}:
     get:
       operationId: getApplication
-      summary: Get application details
+      summary: Checkmarx Get application details
       description: Retrieve details of a specific application.
       tags:
         - Applications
@@ -175,7 +175,7 @@ paths:
           description: Application not found
     put:
       operationId: updateApplication
-      summary: Update an application
+      summary: Checkmarx Update an application
       description: Update an existing application's properties.
       tags:
         - Applications
@@ -198,7 +198,7 @@ paths:
           description: Application not found
     delete:
       operationId: deleteApplication
-      summary: Delete an application
+      summary: Checkmarx Delete an application
       description: Delete an application. Projects within will be unassigned.
       tags:
         - Applications
@@ -214,7 +214,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List projects
+      summary: Checkmarx List projects
       description: >-
         Retrieve all projects with optional filtering by name, group,
         or tag.
@@ -264,7 +264,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createProject
-      summary: Create a project
+      summary: Checkmarx Create a project
       description: >-
         Create a new project for security scanning. A project represents
         a code repository or application component to be scanned.
@@ -290,7 +290,7 @@ paths:
   /projects/{projectId}:
     get:
       operationId: getProject
-      summary: Get project details
+      summary: Checkmarx Get project details
       description: Retrieve details of a specific project by ID.
       tags:
         - Projects
@@ -309,7 +309,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProject
-      summary: Update a project
+      summary: Checkmarx Update a project
       description: Update an existing project's configuration.
       tags:
         - Projects
@@ -332,7 +332,7 @@ paths:
           description: Project not found
     delete:
       operationId: deleteProject
-      summary: Delete a project
+      summary: Checkmarx Delete a project
       description: Delete a project and all its associated scans and results.
       tags:
         - Projects
@@ -348,7 +348,7 @@ paths:
   /scans:
     get:
       operationId: listScans
-      summary: List scans
+      summary: Checkmarx List scans
       description: >-
         Retrieve scans with optional filtering by project, status,
         and scan type.
@@ -395,7 +395,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createScan
-      summary: Create a new scan
+      summary: Checkmarx Create a new scan
       description: >-
         Initiate a new security scan for a project. The scan can include
         SAST, SCA, KICS, and other scan types based on project configuration.
@@ -421,7 +421,7 @@ paths:
   /scans/{scanId}:
     get:
       operationId: getScan
-      summary: Get scan details
+      summary: Checkmarx Get scan details
       description: Retrieve details and status of a specific scan.
       tags:
         - Scans
@@ -440,7 +440,7 @@ paths:
           description: Scan not found
     delete:
       operationId: cancelScan
-      summary: Cancel a scan
+      summary: Checkmarx Cancel a scan
       description: Cancel a running or queued scan.
       tags:
         - Scans
@@ -456,7 +456,7 @@ paths:
   /results:
     get:
       operationId: listResults
-      summary: List scan results
+      summary: Checkmarx List scan results
       description: >-
         Retrieve vulnerability results for a scan, with optional
         filtering by severity, state, and scan type.
@@ -512,7 +512,7 @@ paths:
   /results/{resultId}:
     get:
       operationId: getResult
-      summary: Get result details
+      summary: Checkmarx Get result details
       description: Retrieve detailed information about a specific finding.
       tags:
         - Results
@@ -537,7 +537,7 @@ paths:
           description: Result not found
     patch:
       operationId: updateResult
-      summary: Update result state
+      summary: Checkmarx Update result state
       description: >-
         Update the triage state of a result, such as confirming,
         marking as not exploitable, or setting to proposed not exploitable.
@@ -567,7 +567,7 @@ paths:
   /results/summary:
     get:
       operationId: getResultsSummary
-      summary: Get results summary
+      summary: Checkmarx Get results summary
       description: >-
         Retrieve an aggregated summary of scan results grouped by
         severity and status.
@@ -593,7 +593,7 @@ paths:
   /queries:
     get:
       operationId: listQueries
-      summary: List SAST queries
+      summary: Checkmarx List SAST queries
       description: Retrieve a list of available SAST queries and presets.
       tags:
         - Queries
@@ -622,7 +622,7 @@ paths:
   /presets:
     get:
       operationId: listPresets
-      summary: List scan presets
+      summary: Checkmarx List scan presets
       description: >-
         Retrieve all available scan presets that define which queries
         and rules to apply during scans.
@@ -642,7 +642,7 @@ paths:
   /presets/{presetId}:
     get:
       operationId: getPreset
-      summary: Get preset details
+      summary: Checkmarx Get preset details
       description: Retrieve details of a specific scan preset.
       tags:
         - Presets
@@ -667,7 +667,7 @@ paths:
   /groups:
     get:
       operationId: listGroups
-      summary: List groups
+      summary: Checkmarx List groups
       description: Retrieve all access control groups for the tenant.
       tags:
         - Groups
@@ -685,7 +685,7 @@ paths:
   /configuration/project:
     get:
       operationId: getProjectConfiguration
-      summary: Get project scan configuration
+      summary: Checkmarx Get project scan configuration
       description: >-
         Retrieve the scan configuration for a project, including
         engine-specific settings for SAST, SCA, and KICS.
@@ -712,7 +712,7 @@ paths:
           description: Unauthorized
     patch:
       operationId: updateProjectConfiguration
-      summary: Update project scan configuration
+      summary: Checkmarx Update project scan configuration
       description: >-
         Update the scan configuration for a project, including
         SAST preset, exclusion filters, and engine settings.

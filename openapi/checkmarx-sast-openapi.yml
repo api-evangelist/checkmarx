@@ -44,7 +44,7 @@ paths:
   /auth/identity/connect/token:
     post:
       operationId: authenticate
-      summary: Obtain access token
+      summary: Checkmarx Obtain access token
       description: >-
         Authenticate using OAuth 2.0 to obtain a bearer token for
         accessing the Checkmarx SAST REST API. Supports both password
@@ -101,7 +101,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List all projects
+      summary: Checkmarx List all projects
       description: Retrieve a list of all SAST projects accessible to the authenticated user.
       tags:
         - Projects
@@ -129,7 +129,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createProject
-      summary: Create a new project
+      summary: Checkmarx Create a new project
       description: Create a new SAST project with the specified configuration.
       tags:
         - Projects
@@ -153,7 +153,7 @@ paths:
   /projects/{projectId}:
     get:
       operationId: getProject
-      summary: Get project details
+      summary: Checkmarx Get project details
       description: Retrieve details of a specific SAST project by ID.
       tags:
         - Projects
@@ -172,7 +172,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProject
-      summary: Update a project
+      summary: Checkmarx Update a project
       description: Update the configuration of an existing SAST project.
       tags:
         - Projects
@@ -195,7 +195,7 @@ paths:
           description: Project not found
     delete:
       operationId: deleteProject
-      summary: Delete a project
+      summary: Checkmarx Delete a project
       description: Delete a SAST project and all associated scan data.
       tags:
         - Projects
@@ -211,7 +211,7 @@ paths:
   /projects/{projectId}/sourceCode/remoteSettings/git:
     get:
       operationId: getProjectGitSettings
-      summary: Get Git remote source settings
+      summary: Checkmarx Get Git remote source settings
       description: Retrieve the Git repository settings for a project.
       tags:
         - Projects
@@ -230,7 +230,7 @@ paths:
           description: Project not found
     post:
       operationId: setProjectGitSettings
-      summary: Set Git remote source settings
+      summary: Checkmarx Set Git remote source settings
       description: Configure the Git repository source settings for a project.
       tags:
         - Projects
@@ -252,7 +252,7 @@ paths:
   /sast/scans:
     get:
       operationId: listScans
-      summary: List all scans
+      summary: Checkmarx List all scans
       description: >-
         Retrieve a list of all SAST scans, with optional filtering by
         project, scan status, and date range.
@@ -298,7 +298,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createScan
-      summary: Create a new scan
+      summary: Checkmarx Create a new scan
       description: >-
         Initiate a new SAST scan for a project. The scan will be queued
         and executed based on engine availability.
@@ -324,7 +324,7 @@ paths:
   /sast/scans/{scanId}:
     get:
       operationId: getScan
-      summary: Get scan details
+      summary: Checkmarx Get scan details
       description: Retrieve details of a specific scan by ID.
       tags:
         - Scans
@@ -343,7 +343,7 @@ paths:
           description: Scan not found
     patch:
       operationId: updateScanStatus
-      summary: Update scan status
+      summary: Checkmarx Update scan status
       description: Update the status of a scan, such as canceling a running scan.
       tags:
         - Scans
@@ -370,7 +370,7 @@ paths:
   /sast/scans/{scanId}/resultsStatistics:
     get:
       operationId: getScanResultsStatistics
-      summary: Get scan results statistics
+      summary: Checkmarx Get scan results statistics
       description: >-
         Retrieve summary statistics for a completed scan, including
         vulnerability counts by severity.
@@ -392,7 +392,7 @@ paths:
   /reports/sastScan:
     post:
       operationId: createReport
-      summary: Register a new scan report
+      summary: Checkmarx Register a new scan report
       description: >-
         Request generation of a scan report in the specified format
         (PDF, XML, CSV, RTF).
@@ -418,7 +418,7 @@ paths:
   /reports/sastScan/{reportId}:
     get:
       operationId: getReportById
-      summary: Get report by ID
+      summary: Checkmarx Get report by ID
       description: Download a generated scan report by its ID.
       tags:
         - Reports
@@ -447,7 +447,7 @@ paths:
   /reports/sastScan/{reportId}/status:
     get:
       operationId: getReportStatus
-      summary: Get report generation status
+      summary: Checkmarx Get report generation status
       description: Check the status of a report generation request.
       tags:
         - Reports
@@ -467,7 +467,7 @@ paths:
   /sast/engineServers:
     get:
       operationId: listEngineServers
-      summary: List engine servers
+      summary: Checkmarx List engine servers
       description: Retrieve a list of all configured SAST engine servers.
       tags:
         - Engines
@@ -485,7 +485,7 @@ paths:
   /auth/teams:
     get:
       operationId: listTeams
-      summary: List all teams
+      summary: Checkmarx List all teams
       description: Retrieve a list of all teams in the system.
       tags:
         - Teams
@@ -503,7 +503,7 @@ paths:
   /sast/presets:
     get:
       operationId: listPresets
-      summary: List all scan presets
+      summary: Checkmarx List all scan presets
       description: Retrieve a list of all available scan presets.
       tags:
         - Presets
@@ -521,7 +521,7 @@ paths:
   /sast/presets/{presetId}:
     get:
       operationId: getPreset
-      summary: Get preset details
+      summary: Checkmarx Get preset details
       description: Retrieve details of a specific scan preset.
       tags:
         - Presets

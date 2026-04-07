@@ -36,7 +36,7 @@ paths:
   /identity/connect/token:
     post:
       operationId: authenticate
-      summary: Obtain access token
+      summary: Checkmarx Obtain access token
       description: >-
         Authenticate using OAuth 2.0 client credentials to obtain a
         bearer token for accessing the Checkmarx SCA API.
@@ -91,7 +91,7 @@ paths:
   /risk-management/projects:
     get:
       operationId: listProjects
-      summary: List all projects
+      summary: Checkmarx List all projects
       description: Retrieve a list of all SCA projects for the authenticated tenant.
       tags:
         - Projects
@@ -108,7 +108,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createProject
-      summary: Create a new project
+      summary: Checkmarx Create a new project
       description: Create a new SCA project for scanning open source dependencies.
       tags:
         - Projects
@@ -132,7 +132,7 @@ paths:
   /risk-management/projects/{projectId}:
     get:
       operationId: getProject
-      summary: Get project details
+      summary: Checkmarx Get project details
       description: Retrieve details of a specific SCA project.
       tags:
         - Projects
@@ -151,7 +151,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProject
-      summary: Update a project
+      summary: Checkmarx Update a project
       description: Update the configuration of an existing SCA project.
       tags:
         - Projects
@@ -174,7 +174,7 @@ paths:
           description: Project not found
     delete:
       operationId: deleteProject
-      summary: Delete a project
+      summary: Checkmarx Delete a project
       description: Delete an SCA project and all associated scan data.
       tags:
         - Projects
@@ -190,7 +190,7 @@ paths:
   /risk-management/scans:
     get:
       operationId: listScans
-      summary: List scans
+      summary: Checkmarx List scans
       description: >-
         Retrieve a list of SCA scans with optional filtering by
         project ID.
@@ -216,7 +216,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createScan
-      summary: Trigger a new scan
+      summary: Checkmarx Trigger a new scan
       description: >-
         Initiate a new SCA scan for a project by uploading a source
         archive or pointing to a repository.
@@ -242,7 +242,7 @@ paths:
   /risk-management/scans/{scanId}:
     get:
       operationId: getScan
-      summary: Get scan details
+      summary: Checkmarx Get scan details
       description: Retrieve details and status of a specific SCA scan.
       tags:
         - Scans
@@ -262,7 +262,7 @@ paths:
   /risk-management/risk-reports/{projectId}:
     get:
       operationId: getRiskReport
-      summary: Get project risk report
+      summary: Checkmarx Get project risk report
       description: >-
         Retrieve the risk report for a project, including vulnerability
         summary and risk score.
@@ -284,7 +284,7 @@ paths:
   /risk-management/risk-reports/{projectId}/vulnerabilities:
     get:
       operationId: listProjectVulnerabilities
-      summary: List project vulnerabilities
+      summary: Checkmarx List project vulnerabilities
       description: >-
         Retrieve all vulnerabilities found in a project from the most
         recent scan.
@@ -308,7 +308,7 @@ paths:
   /risk-management/risk-reports/{projectId}/packages:
     get:
       operationId: listProjectPackages
-      summary: List project packages
+      summary: Checkmarx List project packages
       description: >-
         Retrieve all open source packages detected in a project with
         their license and vulnerability information.
@@ -332,7 +332,7 @@ paths:
   /risk-management/risk-reports/{projectId}/licenses:
     get:
       operationId: listProjectLicenses
-      summary: List project licenses
+      summary: Checkmarx List project licenses
       description: >-
         Retrieve all licenses detected across open source packages in
         a project.
@@ -356,7 +356,7 @@ paths:
   /packages/{packageType}/{packageName}/{version}:
     get:
       operationId: getPackageDetails
-      summary: Get package details
+      summary: Checkmarx Get package details
       description: >-
         Retrieve detailed information about a specific open source
         package version, including known vulnerabilities.
@@ -404,7 +404,7 @@ paths:
   /settings/projects/{projectId}:
     get:
       operationId: getProjectSettings
-      summary: Get project settings
+      summary: Checkmarx Get project settings
       description: Retrieve scan and policy settings for a project.
       tags:
         - Settings
@@ -423,7 +423,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProjectSettings
-      summary: Update project settings
+      summary: Checkmarx Update project settings
       description: Update scan and policy settings for a project.
       tags:
         - Settings
