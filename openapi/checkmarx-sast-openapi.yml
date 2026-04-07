@@ -24,20 +24,20 @@ servers:
 tags:
   - name: Authentication
     description: Obtain and manage authentication tokens
-  - name: Projects
-    description: Manage SAST projects and their configuration
-  - name: Scans
-    description: Create, manage, and monitor code scans
-  - name: Results
-    description: Retrieve scan results and vulnerability findings
-  - name: Reports
-    description: Generate and download scan reports
   - name: Engines
     description: Manage scan engines and engine servers
-  - name: Teams
-    description: Manage teams and access control
   - name: Presets
     description: Manage scan presets and query configurations
+  - name: Projects
+    description: Manage SAST projects and their configuration
+  - name: Reports
+    description: Generate and download scan reports
+  - name: Results
+    description: Retrieve scan results and vulnerability findings
+  - name: Scans
+    description: Create, manage, and monitor code scans
+  - name: Teams
+    description: Manage teams and access control
 security:
   - bearerAuth: []
 paths:

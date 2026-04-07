@@ -20,24 +20,24 @@ servers:
   - url: https://eu.ast.checkmarx.net/api
     description: Checkmarx One (EU)
 tags:
-  - name: Authentication
-    description: Obtain and manage authentication tokens via OAuth 2.0
   - name: Applications
     description: Manage applications that group related projects
-  - name: Projects
-    description: Manage scanning projects and their configuration
-  - name: Scans
-    description: Trigger, monitor, and manage security scans
-  - name: Results
-    description: Retrieve and manage scan results and findings
-  - name: Queries
-    description: Manage custom SAST queries and presets
+  - name: Authentication
+    description: Obtain and manage authentication tokens via OAuth 2.0
+  - name: Configuration
+    description: Manage project and tenant-level scan configuration
   - name: Groups
     description: Manage access control groups
   - name: Presets
     description: Manage scan configuration presets
-  - name: Configuration
-    description: Manage project and tenant-level scan configuration
+  - name: Projects
+    description: Manage scanning projects and their configuration
+  - name: Queries
+    description: Manage custom SAST queries and presets
+  - name: Results
+    description: Retrieve and manage scan results and findings
+  - name: Scans
+    description: Trigger, monitor, and manage security scans
 security:
   - bearerAuth: []
 paths:

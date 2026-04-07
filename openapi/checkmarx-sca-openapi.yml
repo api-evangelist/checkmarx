@@ -20,14 +20,14 @@ servers:
 tags:
   - name: Authentication
     description: Obtain and manage authentication tokens
-  - name: Projects
-    description: Manage SCA projects
-  - name: Scans
-    description: Trigger and monitor dependency scans
-  - name: Risk Reports
-    description: Retrieve vulnerability and risk analysis results
   - name: Packages
     description: Query open source package information
+  - name: Projects
+    description: Manage SCA projects
+  - name: Risk Reports
+    description: Retrieve vulnerability and risk analysis results
+  - name: Scans
+    description: Trigger and monitor dependency scans
   - name: Settings
     description: Manage project and organization settings
 security:
