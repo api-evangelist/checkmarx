@@ -1,0 +1,124 @@
+name: checkmarx-capabilities
+description: >-
+  Naftiko sandbox capabilities for the Checkmarx application security
+  platform across SAST, SCA, and Checkmarx One. These capabilities let
+  agents run scans, retrieve vulnerability findings, manage projects, and
+  triage results.
+provider: checkmarx
+version: '1.0'
+capabilities:
+  - id: checkmarx.projects.list
+    name: List projects
+    description: List Checkmarx projects accessible to the authenticated user.
+    operationId: listProjects
+    inputs: []
+    outputs:
+      - name: projects
+        type: array
+    tags: [appsec, projects]
+  - id: checkmarx.projects.create
+    name: Create project
+    description: Create a new Checkmarx project.
+    operationId: createProject
+    inputs:
+      - name: name
+        type: string
+        required: true
+      - name: teamId
+        type: string
+        required: false
+    outputs:
+      - name: project
+        type: object
+    tags: [appsec, projects]
+  - id: checkmarx.scans.start
+    name: Start scan
+    description: Trigger a new SAST or Checkmarx One scan against a project.
+    operationId: startScan
+    inputs:
+      - name: projectId
+        type: string
+        required: true
+      - name: branch
+        type: string
+        required: false
+      - name: presetId
+        type: string
+        required: false
+    outputs:
+      - name: scan
+        type: object
+    tags: [appsec, scans]
+  - id: checkmarx.scans.get
+    name: Get scan status
+    description: Retrieve the current status of a scan.
+    operationId: getScan
+    inputs:
+      - name: scanId
+        type: string
+        required: true
+    outputs:
+      - name: scan
+        type: object
+    tags: [appsec, scans]
+  - id: checkmarx.results.list
+    name: List scan results
+    description: Retrieve vulnerability findings for a scan.
+    operationId: listScanResults
+    inputs:
+      - name: scanId
+        type: string
+        required: true
+      - name: severity
+        type: string
+        required: false
+      - name: state
+        type: string
+        required: false
+    outputs:
+      - name: results
+        type: array
+    tags: [appsec, results, vulnerabilities]
+  - id: checkmarx.sca.packages
+    name: List SCA packages
+    description: List open-source dependencies discovered by Software Composition Analysis.
+    operationId: listScaPackages
+    inputs:
+      - name: projectId
+        type: string
+        required: true
+    outputs:
+      - name: packages
+        type: array
+    tags: [sca, dependencies]
+  - id: checkmarx.sca.vulnerabilities
+    name: List SCA vulnerabilities
+    description: List open-source vulnerabilities and CVEs detected by SCA.
+    operationId: listScaVulnerabilities
+    inputs:
+      - name: projectId
+        type: string
+        required: true
+    outputs:
+      - name: vulnerabilities
+        type: array
+    tags: [sca, vulnerabilities, cve]
+  - id: checkmarx.results.triage
+    name: Triage finding
+    description: Update the triage state of a scan result.
+    operationId: triageResult
+    inputs:
+      - name: resultId
+        type: string
+        required: true
+      - name: state
+        type: string
+        required: true
+        description: Triage state, e.g. CONFIRMED, NOT_EXPLOITABLE, URGENT.
+      - name: comment
+        type: string
+        required: false
+    outputs:
+      - name: result
+        type: object
+    tags: [appsec, triage]

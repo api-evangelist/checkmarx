@@ -9,9 +9,9 @@ tags:
   - Security Testing
   - Vulnerability Scanning
 created: '2024'
-modified: '2026-03-04'
+modified: '2026-04-23'
 url: https://www.checkmarx.com
-specificationVersion: '0.18'
+specificationVersion: '0.20'
 apis:
   - name: Checkmarx SAST API
     description: >-
@@ -98,6 +98,10 @@ common:
     url: json-schema/checkmarx-scan-result-schema.json
   - type: JSONSchema
     url: json-schema/checkmarx-vulnerability-schema.json
+  - type: Spectral
+    url: spectral/checkmarx-spectral.yml
+  - type: NaftikoCapabilities
+    url: naftiko/checkmarx-capabilities.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

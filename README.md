@@ -1,64 +1,55 @@
 # Checkmarx (checkmarx)
-Checkmarx is a leading application security testing solution provider, offering static application security testing (SAST), software composition analysis (SCA), and other security tools to help organizations identify and remediate vulnerabilities in their code.
 
-**URL:** [Visit APIs.json URL](https://www.checkmarx.com)
+Checkmarx is a leading application security testing solution provider, offering static application security testing (SAST), software composition analysis (SCA), and other security tools to help organizations identify and remediate vulnerabilities in their code. The Checkmarx Developer APIs enable scan automation, vulnerability triage, and integration with CI/CD pipelines.
 
-## Tags:
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/checkmarx/refs/heads/main/apis.yml)
 
- - Application Security, SAST, Security Testing, Vulnerability Scanning, DevSecOps, Code Analysis
+## Tags
+
+- Application Security, SAST, SCA, Security Testing, Vulnerability Scanning, DevSecOps, Code Analysis
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024
+- **Modified:** 2026-04-23
 
 ## APIs
 
 ### Checkmarx SAST API
-API for Checkmarx Static Application Security Testing (SAST) to scan source code for security vulnerabilities
 
-**Human URL:** [https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
+REST API for Static Application Security Testing scanning of source code for vulnerabilities. Manages projects, scans, presets, queues, and results.
 
+- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
+- **Base URL:** `https://your-checkmarx-instance.com/cxrestapi`
+- **OpenAPI:** [openapi/checkmarx-sast-openapi.yml](openapi/checkmarx-sast-openapi.yml)
 
-#### Tags:
+#### Tags
 
- - SAST, Static Analysis, Security Scanning, Vulnerability Detection
-
-#### Properties
-
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
-- [OpenAPI](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
-- [Authentication](https://checkmarx.com/resource/documents/en/34965-8158-authentication.html)
+- SAST, Static Analysis, Security Scanning, Vulnerability Detection
 
 ### Checkmarx SCA API
-API for Software Composition Analysis to identify open source vulnerabilities and license compliance issues
 
-**Human URL:** [https://checkmarx.com/resource/documents/en/34965-68617-api.html](https://checkmarx.com/resource/documents/en/34965-68617-api.html)
+API for Software Composition Analysis to identify open-source vulnerabilities, license compliance issues, and risk scores across project dependencies.
 
+- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-68617-api.html](https://checkmarx.com/resource/documents/en/34965-68617-api.html)
+- **Base URL:** `https://api-sca.checkmarx.net`
+- **OpenAPI:** [openapi/checkmarx-sca-openapi.yml](openapi/checkmarx-sca-openapi.yml)
 
-#### Tags:
+#### Tags
 
- - SCA, Open Source Security, Dependency Scanning, License Compliance
-
-#### Properties
-
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-68617-api.html)
-- [Authentication](https://checkmarx.com/resource/documents/en/34965-68617-authentication.html)
+- SCA, Open Source Security, Dependency Scanning, License Compliance
 
 ### Checkmarx One API
-Unified API for Checkmarx One cloud-native application security platform
 
-**Human URL:** [https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html](https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html)
+Unified API for the Checkmarx One cloud-native application security platform that consolidates SAST, SCA, container security, IaC, and API security scans behind a single REST surface.
 
+- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html](https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html)
+- **Base URL:** `https://ast.checkmarx.net/api`
+- **OpenAPI:** [openapi/checkmarx-one-openapi.yml](openapi/checkmarx-one-openapi.yml)
 
-#### Tags:
+#### Tags
 
- - Cloud Security, Unified Platform, Application Security, DevSecOps
-
-#### Properties
-
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html)
-- [API Reference](https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html)
+- Application Security, Cloud Security, DevSecOps, Unified Platform
 
 ## Common Properties
 
@@ -72,9 +63,14 @@ Unified API for Checkmarx One cloud-native application security platform
 - [Status](https://status.checkmarx.com/)
 - [Privacy Policy](https://checkmarx.com/privacy-policy/)
 - [Terms of Service](https://checkmarx.com/terms-of-use/)
+- [JSON-LD Context](json-ld/checkmarx-context.jsonld)
+- [Scan Result JSON Schema](json-schema/checkmarx-scan-result-schema.json)
+- [Vulnerability JSON Schema](json-schema/checkmarx-vulnerability-schema.json)
+- [Spectral Rules](spectral/checkmarx-spectral.yml)
+- [Naftiko Capabilities](naftiko/checkmarx-capabilities.yml)
 
 ## Maintainers
 
-**FN:** APIs.json Maintainer
+**FN:** Kin Lane
 
-**Email:** info@checkmarx.com
+**Email:** kin@apievangelist.com

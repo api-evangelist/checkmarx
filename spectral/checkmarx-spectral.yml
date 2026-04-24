@@ -1,0 +1,44 @@
+extends:
+  - spectral:oas
+rules:
+  checkmarx-https-only:
+    description: Checkmarx APIs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  checkmarx-info-contact:
+    description: Definitions must declare contact information.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  checkmarx-bearer-auth:
+    description: Checkmarx APIs must declare bearer or OAuth2 security.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+  checkmarx-operation-tags:
+    description: Operations must declare at least one tag.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  checkmarx-operation-summary:
+    description: Operations must include a summary.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: truthy
+  checkmarx-pagination-on-results:
+    description: Endpoints returning result lists should support pagination via offset and limit.
+    severity: info
+    given: $.paths[?(@property.match(/results|scans|projects/))].get.parameters
+    then:
+      function: truthy
