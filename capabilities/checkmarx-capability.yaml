@@ -1,0 +1,1074 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access
+    to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration,
+    and results retrieval.
+  tags:
+  - Checkmarx
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: checkmarx
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{CHECKMARX_TOKEN}}'
+    resources:
+    - name: auth-realms-realm-protocol-openid-connect-token
+      path: /auth/realms/{realm}/protocol/openid-connect/token
+      operations:
+      - name: authenticate
+        method: POST
+        description: Checkmarx Obtain access token
+        inputParameters:
+        - name: realm
+          in: path
+          type: string
+          required: true
+          description: Authentication realm name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Checkmarx List applications
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: name
+          in: query
+          type: string
+          description: Filter by application name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplication
+        method: POST
+        description: Checkmarx Create an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationid
+      path: /applications/{applicationId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Checkmarx Get application details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplication
+        method: PUT
+        description: Checkmarx Update an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapplication
+        method: DELETE
+        description: Checkmarx Delete an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: Checkmarx List projects
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: name
+          in: query
+          type: string
+          description: Filter by project name
+        - name: groups
+          in: query
+          type: string
+          description: Filter by group IDs (comma-separated)
+        - name: tags-keys
+          in: query
+          type: string
+          description: Filter by tag keys
+        - name: tags-values
+          in: query
+          type: string
+          description: Filter by tag values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: Checkmarx Create a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectid
+      path: /projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Checkmarx Get project details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PUT
+        description: Checkmarx Update a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteproject
+        method: DELETE
+        description: Checkmarx Delete a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: scans
+      path: /scans
+      operations:
+      - name: listscans
+        method: GET
+        description: Checkmarx List scans
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: project-id
+          in: query
+          type: string
+          description: Filter by project ID
+        - name: statuses
+          in: query
+          type: string
+          description: Filter by scan statuses (comma-separated)
+        - name: sort
+          in: query
+          type: string
+          description: Sort field and direction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createscan
+        method: POST
+        description: Checkmarx Create a new scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: scans-scanid
+      path: /scans/{scanId}
+      operations:
+      - name: getscan
+        method: GET
+        description: Checkmarx Get scan details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancelscan
+        method: DELETE
+        description: Checkmarx Cancel a scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: results
+      path: /results
+      operations:
+      - name: listresults
+        method: GET
+        description: Checkmarx List scan results
+        inputParameters:
+        - name: scan-id
+          in: query
+          type: string
+          required: true
+          description: Scan ID to retrieve results for
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: severity
+          in: query
+          type: string
+          description: Filter by severity (comma-separated)
+        - name: state
+          in: query
+          type: string
+          description: Filter by result state (comma-separated)
+        - name: status
+          in: query
+          type: string
+          description: Filter by result status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: results-resultid
+      path: /results/{resultId}
+      operations:
+      - name: getresult
+        method: GET
+        description: Checkmarx Get result details
+        inputParameters:
+        - name: resultId
+          in: path
+          type: string
+          required: true
+          description: Result unique identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateresult
+        method: PATCH
+        description: Checkmarx Update result state
+        inputParameters:
+        - name: resultId
+          in: path
+          type: string
+          required: true
+          description: Result unique identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: results-summary
+      path: /results/summary
+      operations:
+      - name: getresultssummary
+        method: GET
+        description: Checkmarx Get results summary
+        inputParameters:
+        - name: scan-id
+          in: query
+          type: string
+          required: true
+          description: Scan ID to summarize
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: queries
+      path: /queries
+      operations:
+      - name: listqueries
+        method: GET
+        description: Checkmarx List SAST queries
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: presets
+      path: /presets
+      operations:
+      - name: listpresets
+        method: GET
+        description: Checkmarx List scan presets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: presets-presetid
+      path: /presets/{presetId}
+      operations:
+      - name: getpreset
+        method: GET
+        description: Checkmarx Get preset details
+        inputParameters:
+        - name: presetId
+          in: path
+          type: integer
+          required: true
+          description: Preset unique identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: groups
+      path: /groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Checkmarx List groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: configuration-project
+      path: /configuration/project
+      operations:
+      - name: getprojectconfiguration
+        method: GET
+        description: Checkmarx Get project scan configuration
+        inputParameters:
+        - name: project-id
+          in: query
+          type: string
+          required: true
+          description: Project ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateprojectconfiguration
+        method: PATCH
+        description: Checkmarx Update project scan configuration
+        inputParameters:
+        - name: project-id
+          in: query
+          type: string
+          required: true
+          description: Project ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: checkmarx-rest
+    description: REST adapter for Checkmarx One API.
+    resources:
+    - path: /auth/realms/{realm}/protocol/openid-connect/token
+      name: authenticate
+      operations:
+      - method: POST
+        name: authenticate
+        description: Checkmarx Obtain access token
+        call: checkmarx.authenticate
+        with:
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications
+      name: listapplications
+      operations:
+      - method: GET
+        name: listapplications
+        description: Checkmarx List applications
+        call: checkmarx.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications
+      name: createapplication
+      operations:
+      - method: POST
+        name: createapplication
+        description: Checkmarx Create an application
+        call: checkmarx.createapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationId}
+      name: getapplication
+      operations:
+      - method: GET
+        name: getapplication
+        description: Checkmarx Get application details
+        call: checkmarx.getapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationId}
+      name: updateapplication
+      operations:
+      - method: PUT
+        name: updateapplication
+        description: Checkmarx Update an application
+        call: checkmarx.updateapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationId}
+      name: deleteapplication
+      operations:
+      - method: DELETE
+        name: deleteapplication
+        description: Checkmarx Delete an application
+        call: checkmarx.deleteapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects
+      name: listprojects
+      operations:
+      - method: GET
+        name: listprojects
+        description: Checkmarx List projects
+        call: checkmarx.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects
+      name: createproject
+      operations:
+      - method: POST
+        name: createproject
+        description: Checkmarx Create a project
+        call: checkmarx.createproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}
+      name: getproject
+      operations:
+      - method: GET
+        name: getproject
+        description: Checkmarx Get project details
+        call: checkmarx.getproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}
+      name: updateproject
+      operations:
+      - method: PUT
+        name: updateproject
+        description: Checkmarx Update a project
+        call: checkmarx.updateproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}
+      name: deleteproject
+      operations:
+      - method: DELETE
+        name: deleteproject
+        description: Checkmarx Delete a project
+        call: checkmarx.deleteproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /scans
+      name: listscans
+      operations:
+      - method: GET
+        name: listscans
+        description: Checkmarx List scans
+        call: checkmarx.listscans
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /scans
+      name: createscan
+      operations:
+      - method: POST
+        name: createscan
+        description: Checkmarx Create a new scan
+        call: checkmarx.createscan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /scans/{scanId}
+      name: getscan
+      operations:
+      - method: GET
+        name: getscan
+        description: Checkmarx Get scan details
+        call: checkmarx.getscan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /scans/{scanId}
+      name: cancelscan
+      operations:
+      - method: DELETE
+        name: cancelscan
+        description: Checkmarx Cancel a scan
+        call: checkmarx.cancelscan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /results
+      name: listresults
+      operations:
+      - method: GET
+        name: listresults
+        description: Checkmarx List scan results
+        call: checkmarx.listresults
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /results/{resultId}
+      name: getresult
+      operations:
+      - method: GET
+        name: getresult
+        description: Checkmarx Get result details
+        call: checkmarx.getresult
+        with:
+          resultId: rest.resultId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /results/{resultId}
+      name: updateresult
+      operations:
+      - method: PATCH
+        name: updateresult
+        description: Checkmarx Update result state
+        call: checkmarx.updateresult
+        with:
+          resultId: rest.resultId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /results/summary
+      name: getresultssummary
+      operations:
+      - method: GET
+        name: getresultssummary
+        description: Checkmarx Get results summary
+        call: checkmarx.getresultssummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries
+      name: listqueries
+      operations:
+      - method: GET
+        name: listqueries
+        description: Checkmarx List SAST queries
+        call: checkmarx.listqueries
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /presets
+      name: listpresets
+      operations:
+      - method: GET
+        name: listpresets
+        description: Checkmarx List scan presets
+        call: checkmarx.listpresets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /presets/{presetId}
+      name: getpreset
+      operations:
+      - method: GET
+        name: getpreset
+        description: Checkmarx Get preset details
+        call: checkmarx.getpreset
+        with:
+          presetId: rest.presetId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups
+      name: listgroups
+      operations:
+      - method: GET
+        name: listgroups
+        description: Checkmarx List groups
+        call: checkmarx.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /configuration/project
+      name: getprojectconfiguration
+      operations:
+      - method: GET
+        name: getprojectconfiguration
+        description: Checkmarx Get project scan configuration
+        call: checkmarx.getprojectconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /configuration/project
+      name: updateprojectconfiguration
+      operations:
+      - method: PATCH
+        name: updateprojectconfiguration
+        description: Checkmarx Update project scan configuration
+        call: checkmarx.updateprojectconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: checkmarx-mcp
+    transport: http
+    description: MCP adapter for Checkmarx One API for AI agent use.
+    tools:
+    - name: authenticate
+      description: Checkmarx Obtain access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.authenticate
+      with:
+        realm: tools.realm
+      inputParameters:
+      - name: realm
+        type: string
+        description: Authentication realm name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplications
+      description: Checkmarx List applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listapplications
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        name: tools.name
+      inputParameters:
+      - name: offset
+        type: integer
+        description: Pagination offset
+      - name: limit
+        type: integer
+        description: Number of results to return
+      - name: name
+        type: string
+        description: Filter by application name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapplication
+      description: Checkmarx Create an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.createapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplication
+      description: Checkmarx Get application details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapplication
+      description: Checkmarx Update an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: checkmarx.updateapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapplication
+      description: Checkmarx Delete an application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: checkmarx.deleteapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listprojects
+      description: Checkmarx List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listprojects
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        name: tools.name
+        groups: tools.groups
+        tags-keys: tools.tags-keys
+        tags-values: tools.tags-values
+      inputParameters:
+      - name: offset
+        type: integer
+        description: Pagination offset
+      - name: limit
+        type: integer
+        description: Number of results to return
+      - name: name
+        type: string
+        description: Filter by project name
+      - name: groups
+        type: string
+        description: Filter by group IDs (comma-separated)
+      - name: tags-keys
+        type: string
+        description: Filter by tag keys
+      - name: tags-values
+        type: string
+        description: Filter by tag values
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createproject
+      description: Checkmarx Create a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.createproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getproject
+      description: Checkmarx Get project details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateproject
+      description: Checkmarx Update a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: checkmarx.updateproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteproject
+      description: Checkmarx Delete a project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: checkmarx.deleteproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listscans
+      description: Checkmarx List scans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listscans
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        project-id: tools.project-id
+        statuses: tools.statuses
+        sort: tools.sort
+      inputParameters:
+      - name: offset
+        type: integer
+        description: Pagination offset
+      - name: limit
+        type: integer
+        description: Number of results to return
+      - name: project-id
+        type: string
+        description: Filter by project ID
+      - name: statuses
+        type: string
+        description: Filter by scan statuses (comma-separated)
+      - name: sort
+        type: string
+        description: Sort field and direction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createscan
+      description: Checkmarx Create a new scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.createscan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getscan
+      description: Checkmarx Get scan details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getscan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancelscan
+      description: Checkmarx Cancel a scan
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: checkmarx.cancelscan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listresults
+      description: Checkmarx List scan results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listresults
+      with:
+        scan-id: tools.scan-id
+        offset: tools.offset
+        limit: tools.limit
+        severity: tools.severity
+        state: tools.state
+        status: tools.status
+      inputParameters:
+      - name: scan-id
+        type: string
+        description: Scan ID to retrieve results for
+        required: true
+      - name: offset
+        type: integer
+        description: Pagination offset
+      - name: limit
+        type: integer
+        description: Number of results to return
+      - name: severity
+        type: string
+        description: Filter by severity (comma-separated)
+      - name: state
+        type: string
+        description: Filter by result state (comma-separated)
+      - name: status
+        type: string
+        description: Filter by result status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getresult
+      description: Checkmarx Get result details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getresult
+      with:
+        resultId: tools.resultId
+      inputParameters:
+      - name: resultId
+        type: string
+        description: Result unique identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateresult
+      description: Checkmarx Update result state
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.updateresult
+      with:
+        resultId: tools.resultId
+      inputParameters:
+      - name: resultId
+        type: string
+        description: Result unique identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getresultssummary
+      description: Checkmarx Get results summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getresultssummary
+      with:
+        scan-id: tools.scan-id
+      inputParameters:
+      - name: scan-id
+        type: string
+        description: Scan ID to summarize
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listqueries
+      description: Checkmarx List SAST queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listqueries
+      with:
+        offset: tools.offset
+        limit: tools.limit
+      inputParameters:
+      - name: offset
+        type: integer
+        description: Pagination offset
+      - name: limit
+        type: integer
+        description: Number of results to return
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpresets
+      description: Checkmarx List scan presets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listpresets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpreset
+      description: Checkmarx Get preset details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getpreset
+      with:
+        presetId: tools.presetId
+      inputParameters:
+      - name: presetId
+        type: integer
+        description: Preset unique identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listgroups
+      description: Checkmarx List groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getprojectconfiguration
+      description: Checkmarx Get project scan configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkmarx.getprojectconfiguration
+      with:
+        project-id: tools.project-id
+      inputParameters:
+      - name: project-id
+        type: string
+        description: Project ID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateprojectconfiguration
+      description: Checkmarx Update project scan configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkmarx.updateprojectconfiguration
+      with:
+        project-id: tools.project-id
+      inputParameters:
+      - name: project-id
+        type: string
+        description: Project ID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_TOKEN: CHECKMARX_TOKEN
