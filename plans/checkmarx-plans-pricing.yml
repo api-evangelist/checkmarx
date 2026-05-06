@@ -4,166 +4,116 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Checkmarx
 providerId: checkmarx
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Application Security
-  - Code Analysis
   - DevSecOps
   - SAST
-  - Security Testing
-  - Vulnerability Scanning
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - SCA
+description: Checkmarx publishes named plan tiers for the Checkmarx One AppSec platform but does not
+  list public prices; every plan routes to a "Get Custom Quote" sales engagement. Plans differ in scanner
+  coverage (SAST, SCA, IaC, Container, API Security, Supply Chain) and program maturity rather than
+  per-call API rates.
+sources:
+  - https://checkmarx.com/pricing/
+  - https://checkmarx.com/product/checkmarx-one/
 plans:
-  - id: checkmarx-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Checkmarx API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: checkmarx-start-with-sast
+    name: Start with SAST
+    type: enterprise
+    description: Entry path for existing on-premises Checkmarx SAST customers migrating to Checkmarx
+      One. Custom-quoted.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Checkmarx SAST API
-      - name: Checkmarx SCA API
-      - name: Checkmarx One API
-  - id: checkmarx-pro
-    name: Professional
-    type: paid
-    description: Production tier for Checkmarx. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: SAST tier
+        name: start_with_sast
+        type: subscription
+        metric: contract
         limit: -1
-        timeFrame: month
+        timeFrame: year
         geo: global
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Checkmarx SAST API
-      - name: Checkmarx SCA API
-      - name: Checkmarx One API
+      - name: SAST scanning in Checkmarx One
+      - name: Migration tooling from on-prem CxSAST
+  - id: checkmarx-supply-chain
+    name: Supply Chain
+    type: enterprise
+    description: Supply chain security coverage including SCA and malicious-package detection. Custom-quoted.
+    entries:
+      - label: Supply chain tier
+        name: supply_chain
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Software Composition Analysis (SCA)
+      - name: Malicious package detection
+      - name: License compliance
+  - id: checkmarx-essentials
+    name: Essentials
+    type: enterprise
+    description: Foundational AppSec program tier covering core scanners. Custom-quoted.
+    entries:
+      - label: Essentials tier
+        name: essentials
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: SAST + SCA
+      - name: Foundational reporting
+  - id: checkmarx-professional
+    name: Professional
+    type: enterprise
+    description: Expanded AppSec coverage adding additional scanner families. Custom-quoted.
+    entries:
+      - label: Professional tier
+        name: professional
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: SAST, SCA, IaC, Container scanning
+      - name: API Security
+      - name: Standard support
   - id: checkmarx-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for Checkmarx. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+    description: Comprehensive Checkmarx One coverage with full scanner suite, AI-assisted remediation,
+      and enterprise support. Custom-quoted.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Enterprise tier
+        name: enterprise
+        type: subscription
+        metric: contract
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://your-checkmarx-instance.com/cxrestapi
-          - https://api-sca.checkmarx.net
-          - https://ast.checkmarx.net/api
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Checkmarx SAST API
-      - name: Checkmarx SCA API
-      - name: Checkmarx One API
+      - name: Full scanner suite (SAST, SCA, IaC, Container, API, DAST, SCS)
+      - name: AI-driven remediation guidance
+      - name: Enterprise support and SSO/RBAC
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

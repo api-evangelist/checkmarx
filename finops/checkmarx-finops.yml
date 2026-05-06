@@ -1,152 +1,83 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Checkmarx
+providerId: checkmarx
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Application Security
+  - DevSecOps
+description: 'FOCUS-aligned FinOps framing for Checkmarx One: tiered enterprise subscriptions priced
+  by tenant tier, scanner coverage, contributing developer counts, and scan volume; pricing is custom-quoted
+  and not publicly listed.'
+notes: Per-call API pricing is not separately metered; cost driven by subscription tier plus contributing-developer
+  / project counts.
+sources:
+  - https://checkmarx.com/pricing/
+  - https://checkmarx.com/product/checkmarx-one/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Checkmarx
-providerId: checkmarx
-publisherName: Checkmarx
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Application Security
-  - Code Analysis
-  - DevSecOps
-  - SAST
-  - Security Testing
-  - Vulnerability Scanning
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Checkmarx API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Checkmarx Ltd.
+serviceCategory: Application Security
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Tiered Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
-  ServiceName: Checkmarx
-  ServiceCategory: Developer Tools / API
+  ServiceName: Checkmarx One
+  ServiceCategory: Application Security
   ProviderName: Checkmarx
-  PublisherName: Checkmarx
-  InvoiceIssuerName: Checkmarx
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Checkmarx Ltd.
+  InvoiceIssuerName: Checkmarx Ltd.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: tenant_subscription
+    unit: tenant-year
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
       - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: contributing_developers
+    unit: developer
+    aggregation: max
+  - name: projects_scanned
+    unit: project
+    aggregation: max
+  - name: scans_executed
+    unit: scan
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - engine
+  - name: lines_of_code
+    unit: LOC
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Checkmarx SAST API
-    baseURL: https://your-checkmarx-instance.com/cxrestapi
-    tags:
-      - SAST
-      - Security Scanning
-      - Static Analysis
-      - Vulnerability Detection
-    serviceName: Checkmarx SAST API
-    serviceCategory: API
-  - name: Checkmarx SCA API
-    baseURL: https://api-sca.checkmarx.net
-    tags:
-      - Dependency Scanning
-      - License Compliance
-      - Open Source Security
-      - SCA
-    serviceName: Checkmarx SCA API
-    serviceCategory: API
-  - name: Checkmarx One API
-    baseURL: https://ast.checkmarx.net/api
-    tags:
-      - Application Security
-      - Cloud Security
-      - DevSecOps
-      - Unified Platform
-    serviceName: Checkmarx One API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - engine
+principles:
+  - name: Visibility
+    description: Use the Checkmarx One admin console and the REST analytics endpoints for scan volume,
+      contributing-developer counts, and engine breakdowns; reconcile against contract entitlements.
+  - name: Allocation
+    description: Tag projects and applications with team / business-unit metadata; allocate subscription
+      cost by contributing-developer attribution.
+  - name: Optimization
+    description: Tune scan triggers (incremental scans, PR-only) to reduce runaway scan volume; right-size
+      tier to actual scanner usage and prune unused engines.
+  - name: Accountability
+    description: AppSec / DevSecOps team owns the Checkmarx subscription; review developer attribution
+      and scan volume monthly to forecast renewal sizing.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
