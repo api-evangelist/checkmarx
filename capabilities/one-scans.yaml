@@ -1,0 +1,195 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Scans
+  description: 'Checkmarx One API — Scans. 4 operations. Lead operation: Checkmarx List scans. Self-contained Naftiko capability
+    covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Scans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-scans
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Scans business capability. Self-contained, no shared references.
+    resources:
+    - name: scans
+      path: /scans
+      operations:
+      - name: listscans
+        method: GET
+        description: Checkmarx List scans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: project-id
+          in: query
+          type: string
+          description: Filter by project ID
+        - name: statuses
+          in: query
+          type: string
+          description: Filter by scan statuses (comma-separated)
+        - name: sort
+          in: query
+          type: string
+          description: Sort field and direction
+      - name: createscan
+        method: POST
+        description: Checkmarx Create a new scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: scans-scanId
+      path: /scans/{scanId}
+      operations:
+      - name: getscan
+        method: GET
+        description: Checkmarx Get scan details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancelscan
+        method: DELETE
+        description: Checkmarx Cancel a scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-scans-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Scans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/scans
+      name: scans
+      description: REST surface for scans.
+      operations:
+      - method: GET
+        name: listscans
+        description: Checkmarx List scans
+        call: one-scans.listscans
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          project-id: rest.project-id
+          statuses: rest.statuses
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscan
+        description: Checkmarx Create a new scan
+        call: one-scans.createscan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scans/{scanid}
+      name: scans-scanid
+      description: REST surface for scans-scanId.
+      operations:
+      - method: GET
+        name: getscan
+        description: Checkmarx Get scan details
+        call: one-scans.getscan
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelscan
+        description: Checkmarx Cancel a scan
+        call: one-scans.cancelscan
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-scans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Scans. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: checkmarx-list-scans
+      description: Checkmarx List scans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-scans.listscans
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        project-id: tools.project-id
+        statuses: tools.statuses
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-create-new-scan
+      description: Checkmarx Create a new scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: one-scans.createscan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-scan-details
+      description: Checkmarx Get scan details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-scans.getscan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-cancel-scan
+      description: Checkmarx Cancel a scan
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: one-scans.cancelscan
+      outputParameters:
+      - type: object
+        mapping: $.

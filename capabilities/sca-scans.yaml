@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx SCA API — Scans
+  description: 'Checkmarx SCA API — Scans. 3 operations. Lead operation: Checkmarx List scans. Self-contained Naftiko capability
+    covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Scans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sca-scans
+    baseUri: https://api-sca.checkmarx.net
+    description: Checkmarx SCA API — Scans business capability. Self-contained, no shared references.
+    resources:
+    - name: risk-management-scans
+      path: /risk-management/scans
+      operations:
+      - name: listscans
+        method: GET
+        description: Checkmarx List scans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: query
+          type: string
+          description: Filter by project ID
+      - name: createscan
+        method: POST
+        description: Checkmarx Trigger a new scan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: risk-management-scans-scanId
+      path: /risk-management/scans/{scanId}
+      operations:
+      - name: getscan
+        method: GET
+        description: Checkmarx Get scan details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sca-scans-rest
+    port: 8080
+    description: REST adapter for Checkmarx SCA API — Scans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/risk-management/scans
+      name: risk-management-scans
+      description: REST surface for risk-management-scans.
+      operations:
+      - method: GET
+        name: listscans
+        description: Checkmarx List scans
+        call: sca-scans.listscans
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscan
+        description: Checkmarx Trigger a new scan
+        call: sca-scans.createscan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/risk-management/scans/{scanid}
+      name: risk-management-scans-scanid
+      description: REST surface for risk-management-scans-scanId.
+      operations:
+      - method: GET
+        name: getscan
+        description: Checkmarx Get scan details
+        call: sca-scans.getscan
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sca-scans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx SCA API — Scans. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: checkmarx-list-scans
+      description: Checkmarx List scans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sca-scans.listscans
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-trigger-new-scan
+      description: Checkmarx Trigger a new scan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sca-scans.createscan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-scan-details
+      description: Checkmarx Get scan details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sca-scans.getscan
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,218 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Applications
+  description: 'Checkmarx One API — Applications. 5 operations. Lead operation: Checkmarx List applications. Self-contained
+    Naftiko capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-applications
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Checkmarx List applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: name
+          in: query
+          type: string
+          description: Filter by application name
+      - name: createapplication
+        method: POST
+        description: Checkmarx Create an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationId
+      path: /applications/{applicationId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Checkmarx Get application details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplication
+        method: PUT
+        description: Checkmarx Update an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapplication
+        method: DELETE
+        description: Checkmarx Delete an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-applications-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Applications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: listapplications
+        description: Checkmarx List applications
+        call: one-applications.listapplications
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplication
+        description: Checkmarx Create an application
+        call: one-applications.createapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationid}
+      name: applications-applicationid
+      description: REST surface for applications-applicationId.
+      operations:
+      - method: GET
+        name: getapplication
+        description: Checkmarx Get application details
+        call: one-applications.getapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapplication
+        description: Checkmarx Update an application
+        call: one-applications.updateapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplication
+        description: Checkmarx Delete an application
+        call: one-applications.deleteapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Applications. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: checkmarx-list-applications
+      description: Checkmarx List applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-applications.listapplications
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-create-application
+      description: Checkmarx Create an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: one-applications.createapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-application-details
+      description: Checkmarx Get application details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-applications.getapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-update-application
+      description: Checkmarx Update an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: one-applications.updateapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-delete-application
+      description: Checkmarx Delete an application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: one-applications.deleteapplication
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,236 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Results
+  description: 'Checkmarx One API — Results. 4 operations. Lead operation: Checkmarx List scan results. Self-contained Naftiko
+    capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Results
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-results
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Results business capability. Self-contained, no shared references.
+    resources:
+    - name: results
+      path: /results
+      operations:
+      - name: listresults
+        method: GET
+        description: Checkmarx List scan results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scan-id
+          in: query
+          type: string
+          description: Scan ID to retrieve results for
+          required: true
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: severity
+          in: query
+          type: string
+          description: Filter by severity (comma-separated)
+        - name: state
+          in: query
+          type: string
+          description: Filter by result state (comma-separated)
+        - name: status
+          in: query
+          type: string
+          description: Filter by result status
+    - name: results-summary
+      path: /results/summary
+      operations:
+      - name: getresultssummary
+        method: GET
+        description: Checkmarx Get results summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scan-id
+          in: query
+          type: string
+          description: Scan ID to summarize
+          required: true
+    - name: results-resultId
+      path: /results/{resultId}
+      operations:
+      - name: getresult
+        method: GET
+        description: Checkmarx Get result details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resultId
+          in: path
+          type: string
+          description: Result unique identifier
+          required: true
+      - name: updateresult
+        method: PATCH
+        description: Checkmarx Update result state
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resultId
+          in: path
+          type: string
+          description: Result unique identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-results-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Results. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/results
+      name: results
+      description: REST surface for results.
+      operations:
+      - method: GET
+        name: listresults
+        description: Checkmarx List scan results
+        call: one-results.listresults
+        with:
+          scan-id: rest.scan-id
+          offset: rest.offset
+          limit: rest.limit
+          severity: rest.severity
+          state: rest.state
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/results/summary
+      name: results-summary
+      description: REST surface for results-summary.
+      operations:
+      - method: GET
+        name: getresultssummary
+        description: Checkmarx Get results summary
+        call: one-results.getresultssummary
+        with:
+          scan-id: rest.scan-id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/results/{resultid}
+      name: results-resultid
+      description: REST surface for results-resultId.
+      operations:
+      - method: GET
+        name: getresult
+        description: Checkmarx Get result details
+        call: one-results.getresult
+        with:
+          resultId: rest.resultId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateresult
+        description: Checkmarx Update result state
+        call: one-results.updateresult
+        with:
+          resultId: rest.resultId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-results-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Results. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: checkmarx-list-scan-results
+      description: Checkmarx List scan results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-results.listresults
+      with:
+        scan-id: tools.scan-id
+        offset: tools.offset
+        limit: tools.limit
+        severity: tools.severity
+        state: tools.state
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-results-summary
+      description: Checkmarx Get results summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-results.getresultssummary
+      with:
+        scan-id: tools.scan-id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-result-details
+      description: Checkmarx Get result details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-results.getresult
+      with:
+        resultId: tools.resultId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-update-result-state
+      description: Checkmarx Update result state
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: one-results.updateresult
+      with:
+        resultId: tools.resultId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

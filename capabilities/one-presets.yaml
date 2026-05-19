@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Presets
+  description: 'Checkmarx One API — Presets. 2 operations. Lead operation: Checkmarx List scan presets. Self-contained Naftiko
+    capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Presets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-presets
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Presets business capability. Self-contained, no shared references.
+    resources:
+    - name: presets
+      path: /presets
+      operations:
+      - name: listpresets
+        method: GET
+        description: Checkmarx List scan presets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: presets-presetId
+      path: /presets/{presetId}
+      operations:
+      - name: getpreset
+        method: GET
+        description: Checkmarx Get preset details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: presetId
+          in: path
+          type: integer
+          description: Preset unique identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-presets-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Presets. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/presets
+      name: presets
+      description: REST surface for presets.
+      operations:
+      - method: GET
+        name: listpresets
+        description: Checkmarx List scan presets
+        call: one-presets.listpresets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/presets/{presetid}
+      name: presets-presetid
+      description: REST surface for presets-presetId.
+      operations:
+      - method: GET
+        name: getpreset
+        description: Checkmarx Get preset details
+        call: one-presets.getpreset
+        with:
+          presetId: rest.presetId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-presets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Presets. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: checkmarx-list-scan-presets
+      description: Checkmarx List scan presets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-presets.listpresets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-preset-details
+      description: Checkmarx Get preset details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-presets.getpreset
+      with:
+        presetId: tools.presetId
+      outputParameters:
+      - type: object
+        mapping: $.

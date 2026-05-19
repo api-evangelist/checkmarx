@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx SAST API — Teams
+  description: 'Checkmarx SAST API — Teams. 1 operations. Lead operation: Checkmarx List all teams. Self-contained Naftiko
+    capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sast-teams
+    baseUri: https://{checkmarx-server}/cxrestapi
+    description: Checkmarx SAST API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: auth-teams
+      path: /auth/teams
+      operations:
+      - name: listteams
+        method: GET
+        description: Checkmarx List all teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sast-teams-rest
+    port: 8080
+    description: REST adapter for Checkmarx SAST API — Teams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/auth/teams
+      name: auth-teams
+      description: REST surface for auth-teams.
+      operations:
+      - method: GET
+        name: listteams
+        description: Checkmarx List all teams
+        call: sast-teams.listteams
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sast-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx SAST API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: checkmarx-list-all-teams
+      description: Checkmarx List all teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sast-teams.listteams
+      outputParameters:
+      - type: object
+        mapping: $.

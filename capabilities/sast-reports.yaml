@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx SAST API — Reports
+  description: 'Checkmarx SAST API — Reports. 3 operations. Lead operation: Checkmarx Register a new scan report. Self-contained
+    Naftiko capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sast-reports
+    baseUri: https://{checkmarx-server}/cxrestapi
+    description: Checkmarx SAST API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: reports-sastScan
+      path: /reports/sastScan
+      operations:
+      - name: createreport
+        method: POST
+        description: Checkmarx Register a new scan report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: reports-sastScan-reportId
+      path: /reports/sastScan/{reportId}
+      operations:
+      - name: getreportbyid
+        method: GET
+        description: Checkmarx Get report by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reports-sastScan-reportId-status
+      path: /reports/sastScan/{reportId}/status
+      operations:
+      - name: getreportstatus
+        method: GET
+        description: Checkmarx Get report generation status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sast-reports-rest
+    port: 8080
+    description: REST adapter for Checkmarx SAST API — Reports. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/reports/sastscan
+      name: reports-sastscan
+      description: REST surface for reports-sastScan.
+      operations:
+      - method: POST
+        name: createreport
+        description: Checkmarx Register a new scan report
+        call: sast-reports.createreport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/sastscan/{reportid}
+      name: reports-sastscan-reportid
+      description: REST surface for reports-sastScan-reportId.
+      operations:
+      - method: GET
+        name: getreportbyid
+        description: Checkmarx Get report by ID
+        call: sast-reports.getreportbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/sastscan/{reportid}/status
+      name: reports-sastscan-reportid-status
+      description: REST surface for reports-sastScan-reportId-status.
+      operations:
+      - method: GET
+        name: getreportstatus
+        description: Checkmarx Get report generation status
+        call: sast-reports.getreportstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sast-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx SAST API — Reports. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: checkmarx-register-new-scan-report
+      description: Checkmarx Register a new scan report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sast-reports.createreport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-report-id
+      description: Checkmarx Get report by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sast-reports.getreportbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-report-generation-status
+      description: Checkmarx Get report generation status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sast-reports.getreportstatus
+      outputParameters:
+      - type: object
+        mapping: $.

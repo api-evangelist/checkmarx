@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx SCA API — Authentication
+  description: 'Checkmarx SCA API — Authentication. 1 operations. Lead operation: Checkmarx Obtain access token. Self-contained
+    Naftiko capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sca-authentication
+    baseUri: https://api-sca.checkmarx.net
+    description: Checkmarx SCA API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: identity-connect-token
+      path: /identity/connect/token
+      operations:
+      - name: authenticate
+        method: POST
+        description: Checkmarx Obtain access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sca-authentication-rest
+    port: 8080
+    description: REST adapter for Checkmarx SCA API — Authentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/identity/connect/token
+      name: identity-connect-token
+      description: REST surface for identity-connect-token.
+      operations:
+      - method: POST
+        name: authenticate
+        description: Checkmarx Obtain access token
+        call: sca-authentication.authenticate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sca-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx SCA API — Authentication. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: checkmarx-obtain-access-token
+      description: Checkmarx Obtain access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sca-authentication.authenticate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

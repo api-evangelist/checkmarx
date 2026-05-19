@@ -1,0 +1,236 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Projects
+  description: 'Checkmarx One API — Projects. 5 operations. Lead operation: Checkmarx List projects. Self-contained Naftiko
+    capability covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-projects
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: Checkmarx List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results to return
+        - name: name
+          in: query
+          type: string
+          description: Filter by project name
+        - name: groups
+          in: query
+          type: string
+          description: Filter by group IDs (comma-separated)
+        - name: tags-keys
+          in: query
+          type: string
+          description: Filter by tag keys
+        - name: tags-values
+          in: query
+          type: string
+          description: Filter by tag values
+      - name: createproject
+        method: POST
+        description: Checkmarx Create a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId
+      path: /projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Checkmarx Get project details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PUT
+        description: Checkmarx Update a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteproject
+        method: DELETE
+        description: Checkmarx Delete a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-projects-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Projects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/projects
+      name: projects
+      description: REST surface for projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: Checkmarx List projects
+        call: one-projects.listprojects
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          name: rest.name
+          groups: rest.groups
+          tags-keys: rest.tags-keys
+          tags-values: rest.tags-values
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproject
+        description: Checkmarx Create a project
+        call: one-projects.createproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}
+      name: projects-projectid
+      description: REST surface for projects-projectId.
+      operations:
+      - method: GET
+        name: getproject
+        description: Checkmarx Get project details
+        call: one-projects.getproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproject
+        description: Checkmarx Update a project
+        call: one-projects.updateproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproject
+        description: Checkmarx Delete a project
+        call: one-projects.deleteproject
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Projects. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: checkmarx-list-projects
+      description: Checkmarx List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-projects.listprojects
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        name: tools.name
+        groups: tools.groups
+        tags-keys: tools.tags-keys
+        tags-values: tools.tags-values
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-create-project
+      description: Checkmarx Create a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: one-projects.createproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-get-project-details
+      description: Checkmarx Get project details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-projects.getproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-update-project
+      description: Checkmarx Update a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: one-projects.updateproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checkmarx-delete-project
+      description: Checkmarx Delete a project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: one-projects.deleteproject
+      outputParameters:
+      - type: object
+        mapping: $.

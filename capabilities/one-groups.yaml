@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Checkmarx One API — Groups
+  description: 'Checkmarx One API — Groups. 1 operations. Lead operation: Checkmarx List groups. Self-contained Naftiko capability
+    covering one Checkmarx business surface.'
+  tags:
+  - Checkmarx
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHECKMARX_API_KEY: CHECKMARX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: one-groups
+    baseUri: https://ast.checkmarx.net/api
+    description: Checkmarx One API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: groups
+      path: /groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Checkmarx List groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CHECKMARX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: one-groups-rest
+    port: 8080
+    description: REST adapter for Checkmarx One API — Groups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/groups
+      name: groups
+      description: REST surface for groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: Checkmarx List groups
+        call: one-groups.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: one-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Checkmarx One API — Groups. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: checkmarx-list-groups
+      description: Checkmarx List groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: one-groups.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
