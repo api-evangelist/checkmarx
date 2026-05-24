@@ -147,6 +147,8 @@ common:
   url: spectral/checkmarx-spectral.yml
 - type: NaftikoCapabilities
   url: naftiko/checkmarx-capabilities.yml
+- type: LLMsTxt
+  url: https://checkmarx.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
