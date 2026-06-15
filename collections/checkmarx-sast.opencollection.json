@@ -1,0 +1,475 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx SAST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Obtain access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{checkmarx-server}/cxrestapi/auth/identity/connect/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using OAuth 2.0 to obtain a bearer token for accessing the Checkmarx SAST REST API. Supports both password and refresh token grant types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/projects",
+            "params": [
+              {
+                "name": "projectName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project name"
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all SAST projects accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{checkmarx-server}/cxrestapi/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SAST project with the specified configuration."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific SAST project by ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{checkmarx-server}/cxrestapi/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing SAST project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{checkmarx-server}/cxrestapi/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete a SAST project and all associated scan data."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get Git remote source settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/projects/:projectId/sourceCode/remoteSettings/git",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the Git repository settings for a project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Set Git remote source settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{checkmarx-server}/cxrestapi/projects/:projectId/sourceCode/remoteSettings/git",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure the Git repository source settings for a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List all scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/scans",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter scans by project ID"
+              },
+              {
+                "name": "scanStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan status"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "Number of most recent scans to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all SAST scans, with optional filtering by project, scan status, and date range."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new SAST scan for a project. The scan will be queued and executed based on engine availability."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan by ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update scan status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a scan, such as canceling a running scan."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get scan results statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/scans/:scanId/resultsStatistics",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve summary statistics for a completed scan, including vulnerability counts by severity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Register a new scan report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{checkmarx-server}/cxrestapi/reports/sastScan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request generation of a scan report in the specified format (PDF, XML, CSV, RTF)."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/reports/sastScan/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Report unique identifier"
+              }
+            ]
+          },
+          "docs": "Download a generated scan report by its ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get report generation status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/reports/sastScan/:reportId/status",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Report unique identifier"
+              }
+            ]
+          },
+          "docs": "Check the status of a report generation request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Engines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List engine servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/engineServers"
+          },
+          "docs": "Retrieve a list of all configured SAST engine servers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List all teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/auth/teams"
+          },
+          "docs": "Retrieve a list of all teams in the system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Presets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List all scan presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/presets"
+          },
+          "docs": "Retrieve a list of all available scan presets."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get preset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{checkmarx-server}/cxrestapi/sast/presets/:presetId",
+            "params": [
+              {
+                "name": "presetId",
+                "value": "",
+                "type": "path",
+                "description": "Preset unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan preset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

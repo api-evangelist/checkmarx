@@ -1,0 +1,393 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx SCA API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Obtain access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sca.checkmarx.net/identity/connect/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "acr_values",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using OAuth 2.0 client credentials to obtain a bearer token for accessing the Checkmarx SCA API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/projects"
+          },
+          "docs": "Retrieve a list of all SCA projects for the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sca.checkmarx.net/risk-management/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SCA project for scanning open source dependencies."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific SCA project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sca.checkmarx.net/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing SCA project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sca.checkmarx.net/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete an SCA project and all associated scan data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/scans",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of SCA scans with optional filtering by project ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Trigger a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sca.checkmarx.net/risk-management/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new SCA scan for a project by uploading a source archive or pointing to a repository."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details and status of a specific SCA scan."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Risk Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project risk report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/risk-reports/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the risk report for a project, including vulnerability summary and risk score."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/risk-reports/:projectId/vulnerabilities",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all vulnerabilities found in a project from the most recent scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/risk-reports/:projectId/packages",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all open source packages detected in a project with their license and vulnerability information."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/risk-management/risk-reports/:projectId/licenses",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all licenses detected across open source packages in a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get package details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/packages/:packageType/:packageName/:version",
+            "params": [
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "path",
+                "description": "Package ecosystem type"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific open source package version, including known vulnerabilities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sca.checkmarx.net/settings/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve scan and policy settings for a project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update project settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sca.checkmarx.net/settings/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update scan and policy settings for a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

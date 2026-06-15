@@ -1,0 +1,674 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Obtain access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/auth/realms/:realm/protocol/openid-connect/token",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "Authentication realm name"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using OAuth 2.0 client credentials via the Checkmarx One IAM service to obtain a bearer token for API access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/applications",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name"
+              }
+            ]
+          },
+          "docs": "Retrieve all applications. Applications are logical groupings of related projects for organizational purposes."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new application to group related projects."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get application details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific application."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ast.checkmarx.net/api/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing application's properties."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete an application. Projects within will be unassigned."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/projects",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project name"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group IDs (comma-separated)"
+              },
+              {
+                "name": "tags-keys",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag keys"
+              },
+              {
+                "name": "tags-values",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag values"
+              }
+            ]
+          },
+          "docs": "Retrieve all projects with optional filtering by name, group, or tag."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project for security scanning. A project represents a code repository or application component to be scanned."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific project by ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing project's configuration."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete a project and all its associated scans and results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/scans",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan statuses (comma-separated)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction"
+              }
+            ]
+          },
+          "docs": "Retrieve scans with optional filtering by project, status, and scan type."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new security scan for a project. The scan can include SAST, SCA, KICS, and other scan types based on project configuration."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details and status of a specific scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Cancel a scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Cancel a running or queued scan."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scan results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results",
+            "params": [
+              {
+                "name": "scan-id",
+                "value": "",
+                "type": "query",
+                "description": "Scan ID to retrieve results for"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity (comma-separated)"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by result state (comma-separated)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by result status"
+              }
+            ]
+          },
+          "docs": "Retrieve vulnerability results for a scan, with optional filtering by severity, state, and scan type."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get result details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results/:resultId",
+            "params": [
+              {
+                "name": "resultId",
+                "value": "",
+                "type": "path",
+                "description": "Result unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific finding."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update result state",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ast.checkmarx.net/api/results/:resultId",
+            "params": [
+              {
+                "name": "resultId",
+                "value": "",
+                "type": "path",
+                "description": "Result unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the triage state of a result, such as confirming, marking as not exploitable, or setting to proposed not exploitable."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get results summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results/summary",
+            "params": [
+              {
+                "name": "scan-id",
+                "value": "",
+                "type": "query",
+                "description": "Scan ID to summarize"
+              }
+            ]
+          },
+          "docs": "Retrieve an aggregated summary of scan results grouped by severity and status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List SAST queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/queries",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available SAST queries and presets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Presets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scan presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/presets"
+          },
+          "docs": "Retrieve all available scan presets that define which queries and rules to apply during scans."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get preset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/presets/:presetId",
+            "params": [
+              {
+                "name": "presetId",
+                "value": "",
+                "type": "path",
+                "description": "Preset unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan preset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/groups"
+          },
+          "docs": "Retrieve all access control groups for the tenant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project scan configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/configuration/project",
+            "params": [
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the scan configuration for a project, including engine-specific settings for SAST, SCA, and KICS."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update project scan configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ast.checkmarx.net/api/configuration/project",
+            "params": [
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the scan configuration for a project, including SAST preset, exclusion filters, and engine settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

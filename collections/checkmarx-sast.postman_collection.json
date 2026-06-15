@@ -1,0 +1,4455 @@
+{
+  "item": [
+    {
+      "id": "677f5416-22c2-4a3a-b4c2-545677308d04",
+      "name": "Authentication",
+      "description": {
+        "content": "Obtain and manage authentication tokens",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07e575f8-e46b-4aa0-a1cd-c2d0f2482328",
+          "name": "Checkmarx Obtain access token",
+          "request": {
+            "name": "Checkmarx Obtain access token",
+            "description": {
+              "content": "Authenticate using OAuth 2.0 to obtain a bearer token for accessing the Checkmarx SAST REST API. Supports both password and refresh token grant types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "identity",
+                "connect",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "(Required) Checkmarx username"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) Checkmarx password"
+                },
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) OAuth 2.0 grant type"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(Required) OAuth scope"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) OAuth client identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) OAuth client secret"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5951ff35-388e-412f-ab25-fc55b8d3cc67",
+              "name": "Authentication successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "identity",
+                    "connect",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Checkmarx username",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Checkmarx password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth 2.0 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth scope",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "sast_rest_api"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth client identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "resource_owner_client"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 9067,\n  \"refresh_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9de2c682-4832-492f-b160-49b3b6e7bba9",
+              "name": "Invalid credentials or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "identity",
+                    "connect",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Checkmarx username",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Checkmarx password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth 2.0 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth scope",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "sast_rest_api"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth client identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "resource_owner_client"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth client secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ad4cb5df-cbc7-436b-aac7-c5832154a1d1",
+      "name": "Engines",
+      "description": {
+        "content": "Manage scan engines and engine servers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd53b2b2-d902-4830-a1ce-469a900224ef",
+          "name": "Checkmarx List engine servers",
+          "request": {
+            "name": "Checkmarx List engine servers",
+            "description": {
+              "content": "Retrieve a list of all configured SAST engine servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "engineServers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3224753e-2ff0-49bb-b29b-9af477fd97e8",
+              "name": "List of engine servers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "engineServers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9179,\n    \"name\": \"string\",\n    \"uri\": \"https://VUPTsuawFkzRag.ojfyeDNbiyVzm61xo47pSJOraWrnNUeJQyGWjV1p4541oOtrXAOniSqnnPA6x0LJB,c\",\n    \"minLoc\": 9072,\n    \"maxLoc\": 211,\n    \"isAlive\": false,\n    \"maxScans\": 7548\n  },\n  {\n    \"id\": 3056,\n    \"name\": \"string\",\n    \"uri\": \"http://CTkkxdnoGZjkAtxTMXqUrAIWq.gphPfwok1dPyqeJx\",\n    \"minLoc\": 8403,\n    \"maxLoc\": 3951,\n    \"isAlive\": true,\n    \"maxScans\": 2965\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "435f19b2-8537-457a-bd45-bc0661d5d39d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "engineServers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4622d832-d074-4fb7-a45d-248e70607a5a",
+      "name": "Presets",
+      "description": {
+        "content": "Manage scan presets and query configurations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "419762ec-c726-4a1c-a21b-5f2f3383b6ee",
+          "name": "Checkmarx List all scan presets",
+          "request": {
+            "name": "Checkmarx List all scan presets",
+            "description": {
+              "content": "Retrieve a list of all available scan presets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "presets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8243481b-790c-434c-8a19-fcd3e62fc668",
+              "name": "List of presets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "presets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7238,\n    \"name\": \"string\",\n    \"ownerName\": \"string\",\n    \"link\": {\n      \"rel\": \"string\",\n      \"uri\": \"http://fJHcCsmGTNIZQVJ.vlAkbaxnJu2nQsX1\"\n    }\n  },\n  {\n    \"id\": 3591,\n    \"name\": \"string\",\n    \"ownerName\": \"string\",\n    \"link\": {\n      \"rel\": \"string\",\n      \"uri\": \"http://PcWMer.jvjktMyY6iLNU-kb3kLJS\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "552ba6f4-157a-4b68-a203-c046dfde4e12",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "presets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5588d06c-ff57-483e-b00d-ce7803f2421e",
+          "name": "Checkmarx Get preset details",
+          "request": {
+            "name": "Checkmarx Get preset details",
+            "description": {
+              "content": "Retrieve details of a specific scan preset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "presets",
+                ":presetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "presetId",
+                  "description": "(Required) Preset unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "357ec127-a4b5-4f94-aac8-b22ce1829683",
+              "name": "Preset details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "presets",
+                    ":presetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "presetId",
+                      "description": "(Required) Preset unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1868,\n  \"name\": \"string\",\n  \"ownerName\": \"string\",\n  \"link\": {\n    \"rel\": \"string\",\n    \"uri\": \"https://tHJVvZOHxTdNdCkWXYXWgdjfGo.rzGSmJ3rjTP6O4v6uqjz.vQszycQy.V.S,Bg7bQBSsVenUUR.K57jjoJIp8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36bf9277-bdb4-479f-9ae1-f1decabd27f8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "presets",
+                    ":presetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "presetId",
+                      "description": "(Required) Preset unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa3f7539-043c-4cc1-a7ba-be0f62f77125",
+              "name": "Preset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "presets",
+                    ":presetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "presetId",
+                      "description": "(Required) Preset unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "81f34997-b319-43c1-9b0f-d8dc78941cc7",
+      "name": "Projects",
+      "description": {
+        "content": "Manage SAST projects and their configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c526319a-a222-43e1-98f4-c4413a23e441",
+          "name": "Checkmarx List all projects",
+          "request": {
+            "name": "Checkmarx List all projects",
+            "description": {
+              "content": "Retrieve a list of all SAST projects accessible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectName",
+                  "value": "<string>",
+                  "description": "Filter by project name"
+                },
+                {
+                  "disabled": false,
+                  "key": "teamId",
+                  "value": "<string>",
+                  "description": "Filter by team ID"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81366cfe-f80d-4178-8f03-7b47243afaec",
+              "name": "List of projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4805,\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"isPublic\": true,\n    \"customFields\": [\n      {\n        \"id\": 7276,\n        \"value\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 178,\n        \"value\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"uri\": \"http://UCtZJdpYtooXgXC.yiqwR8YvYJInlCRKE-mP8j8KzaoBli\"\n      },\n      {\n        \"rel\": \"string\",\n        \"uri\": \"http://NlTQqfungeCOhTXVbgXfTpLjTB.ypigX4,mnrr-j9GjFJA5T8YbmZ3xo1\"\n      }\n    ]\n  },\n  {\n    \"id\": 6226,\n    \"teamId\": \"string\",\n    \"name\": \"string\",\n    \"isPublic\": false,\n    \"customFields\": [\n      {\n        \"id\": 2309,\n        \"value\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 8219,\n        \"value\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"uri\": \"http://VTbyxefIUXKuZShmq.qdfwFF8U7fdx4X-Dz9GFlF9vUMtCdj.jNDTGNJWu3VR7-LRD-E4lBO3B3B+-X9WFdJ9vQaSsqIx\"\n      },\n      {\n        \"rel\": \"string\",\n        \"uri\": \"http://cCouJrrQcsOIQBCAEgJh.wzgZCmya-Cjksg\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5f7693c-6d39-4876-abbf-885173d3ae94",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a1c1e01-1be2-4686-aea4-1490bcfe1947",
+          "name": "Checkmarx Create a new project",
+          "request": {
+            "name": "Checkmarx Create a new project",
+            "description": {
+              "content": "Create a new SAST project with the specified configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"isPublic\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "379336b1-9601-4926-b223-92493831e247",
+              "name": "Project created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"isPublic\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 294,\n  \"teamId\": \"string\",\n  \"name\": \"string\",\n  \"isPublic\": true,\n  \"customFields\": [\n    {\n      \"id\": 6234,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1199,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"uri\": \"https://gwenZhaAjmSoZKRl.aqdh+rk5Ufq3dEbE3gG80uwbKPkYLbKzFTtZgo75yAhC.e17n4GOzpVHogiL\"\n    },\n    {\n      \"rel\": \"string\",\n      \"uri\": \"http://QmrKIttsRMmSBcuVzhHF.qhqXln2LfDC\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ffff6bb-58e0-41fd-b408-8ed1579623c3",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"isPublic\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50644d7f-bd45-4e37-86da-e56f18fb9638",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"isPublic\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df745535-8354-4db7-bc13-64e748e4219d",
+          "name": "Checkmarx Get project details",
+          "request": {
+            "name": "Checkmarx Get project details",
+            "description": {
+              "content": "Retrieve details of a specific SAST project by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c4cb89a-35ac-426f-9e4b-fef75f59e81d",
+              "name": "Project details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 294,\n  \"teamId\": \"string\",\n  \"name\": \"string\",\n  \"isPublic\": true,\n  \"customFields\": [\n    {\n      \"id\": 6234,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1199,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"uri\": \"https://gwenZhaAjmSoZKRl.aqdh+rk5Ufq3dEbE3gG80uwbKPkYLbKzFTtZgo75yAhC.e17n4GOzpVHogiL\"\n    },\n    {\n      \"rel\": \"string\",\n      \"uri\": \"http://QmrKIttsRMmSBcuVzhHF.qhqXln2LfDC\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08886fa1-82d0-4e4b-8dda-717dafe0f768",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3df7caef-cd9d-49c9-8cad-821a2b771529",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d73cf368-d6be-4b28-a46a-a11940716248",
+          "name": "Checkmarx Update a project",
+          "request": {
+            "name": "Checkmarx Update a project",
+            "description": {
+              "content": "Update the configuration of an existing SAST project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"customFields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6fa50dc9-05cc-426d-a5d5-6d3c33cf8648",
+              "name": "Project updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"customFields\": [\n    {\n      \"id\": 6102,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1032,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "851575dd-47a9-49fa-8c43-2ed1274ab351",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"customFields\": [\n    {\n      \"id\": 6102,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1032,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfd9487f-2042-4586-a965-4c88c3e63c6f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"customFields\": [\n    {\n      \"id\": 6102,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1032,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e7b3417-329c-4e5d-8698-186e3c4152d8",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"owningTeam\": \"<string>\",\n  \"customFields\": [\n    {\n      \"id\": 6102,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 1032,\n      \"value\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1798a4a1-3cc3-465e-afcc-96c97ce16407",
+          "name": "Checkmarx Delete a project",
+          "request": {
+            "name": "Checkmarx Delete a project",
+            "description": {
+              "content": "Delete a SAST project and all associated scan data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e6ab100-abae-41e3-84a8-48c6d05ad606",
+              "name": "Project deletion accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31ba4b59-841f-49bd-8c75-0804bbb4246e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e5f64fb-adc3-4f72-aeeb-c6d7c8546450",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f94271b-831b-44eb-b38b-349287776227",
+          "name": "Checkmarx Get Git remote source settings",
+          "request": {
+            "name": "Checkmarx Get Git remote source settings",
+            "description": {
+              "content": "Retrieve the Git repository settings for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "sourceCode",
+                "remoteSettings",
+                "git"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc4550ac-de84-43da-a004-6017089052b7",
+              "name": "Git remote settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\",\n  \"branch\": \"string\",\n  \"privateKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46cea307-8dda-44a7-a5e8-1674f74474f1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d54f20ae-cfdf-494f-ac5e-a88f56d8f523",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b129fcdf-03c8-4d19-81af-4518f4291af4",
+          "name": "Checkmarx Set Git remote source settings",
+          "request": {
+            "name": "Checkmarx Set Git remote source settings",
+            "description": {
+              "content": "Configure the Git repository source settings for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "sourceCode",
+                "remoteSettings",
+                "git"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a701f87-d93f-4475-991e-6c966dc72907",
+              "name": "Git settings updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0780408b-eb2d-48ed-8065-f7843d73db60",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4228674-f843-4879-9dda-b84afe887f53",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "sourceCode",
+                    "remoteSettings",
+                    "git"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "287fbcd2-65df-40e9-9888-ca3ef605a2ad",
+      "name": "Reports",
+      "description": {
+        "content": "Generate and download scan reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fd6c6a4-723d-4f14-8baf-17698ecd10f5",
+          "name": "Checkmarx Register a new scan report",
+          "request": {
+            "name": "Checkmarx Register a new scan report",
+            "description": {
+              "content": "Request generation of a scan report in the specified format (PDF, XML, CSV, RTF).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "sastScan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportType\": \"<string>\",\n  \"scanId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c6c939b-ce82-41af-8f16-fc7ffa028c10",
+              "name": "Report generation accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"<string>\",\n  \"scanId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportId\": 2611,\n  \"status\": {\n    \"id\": 9603,\n    \"value\": \"InProcess\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "909b97ae-dbaf-4ff2-b509-fa321e6806ed",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"<string>\",\n  \"scanId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64e554db-cc9a-4c7a-9efb-eb783442924c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"<string>\",\n  \"scanId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dc40a88-4baa-4fa3-8909-bcb8ee541e8d",
+          "name": "Checkmarx Get report by ID",
+          "request": {
+            "name": "Checkmarx Get report by ID",
+            "description": {
+              "content": "Download a generated scan report by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "sastScan",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "reportId",
+                  "description": "(Required) Report unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2a8f716-138a-4342-a7c8-f9e6049ef47a",
+              "name": "Report content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "1132403a-e780-4ab2-9a0b-afc587f3feb0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "388cf773-015e-4eb4-9c8a-4484abf8c641",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69864408-439f-41cf-ab6c-1ed52aede0c2",
+          "name": "Checkmarx Get report generation status",
+          "request": {
+            "name": "Checkmarx Get report generation status",
+            "description": {
+              "content": "Check the status of a report generation request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "sastScan",
+                ":reportId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "reportId",
+                  "description": "(Required) Report unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f007fda9-539c-4dbc-be6c-9c2cb21e1c96",
+              "name": "Report status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportId\": 2611,\n  \"status\": {\n    \"id\": 9603,\n    \"value\": \"InProcess\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d155df32-419d-4c55-908d-0340d504884a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8332c3d5-f0d6-4acc-9994-c7750b01d231",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "sastScan",
+                    ":reportId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "reportId",
+                      "description": "(Required) Report unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2e870504-fb50-4111-97b1-c5d0e6f6d501",
+      "name": "Results",
+      "description": {
+        "content": "Retrieve scan results and vulnerability findings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "959cad1e-c1c3-4702-8aac-835ad3a2e458",
+          "name": "Checkmarx Get scan results statistics",
+          "request": {
+            "name": "Checkmarx Get scan results statistics",
+            "description": {
+              "content": "Retrieve summary statistics for a completed scan, including vulnerability counts by severity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "scans",
+                ":scanId",
+                "resultsStatistics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scanId",
+                  "description": "(Required) Scan unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75a3ef5e-5263-4163-ae5d-27b382f6a48b",
+              "name": "Scan results statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId",
+                    "resultsStatistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"highSeverity\": 2949,\n  \"mediumSeverity\": 9436,\n  \"lowSeverity\": 7630,\n  \"infoSeverity\": 5130,\n  \"statisticsCalculationDate\": \"2008-01-12T08:08:02.330Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd2d7500-ff12-48bd-8567-b57f26350ce7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId",
+                    "resultsStatistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d19c10d-8d1f-491a-840e-640ca2892466",
+              "name": "Scan not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId",
+                    "resultsStatistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a9fda9cb-b0fe-4ec1-a307-a31323963274",
+      "name": "Scans",
+      "description": {
+        "content": "Create, manage, and monitor code scans",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "321bf459-4730-449b-a5e7-ab031e325678",
+          "name": "Checkmarx List all scans",
+          "request": {
+            "name": "Checkmarx List all scans",
+            "description": {
+              "content": "Retrieve a list of all SAST scans, with optional filtering by project, scan status, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "scans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<integer>",
+                  "description": "Filter scans by project ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "scanStatus",
+                  "value": "<string>",
+                  "description": "Filter by scan status"
+                },
+                {
+                  "disabled": false,
+                  "key": "last",
+                  "value": "<integer>",
+                  "description": "Number of most recent scans to return"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3958bbe9-f125-4224-855b-10b142ee22a0",
+              "name": "List of scans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scanStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8476,\n    \"project\": {\n      \"id\": 5091,\n      \"name\": \"string\"\n    },\n    \"status\": {\n      \"id\": 8838,\n      \"name\": \"Finished\"\n    },\n    \"scanType\": \"Incremental\",\n    \"comment\": \"string\",\n    \"dateAndTime\": {\n      \"startedOn\": \"1962-06-30T14:04:57.324Z\",\n      \"finishedOn\": \"1998-11-05T10:46:05.952Z\",\n      \"engineStartedOn\": \"2018-01-09T02:30:44.409Z\",\n      \"engineFinishedOn\": \"1986-09-03T22:41:05.834Z\"\n    },\n    \"resultsStatistics\": {\n      \"highSeverity\": 7050,\n      \"mediumSeverity\": 2585,\n      \"lowSeverity\": 1177,\n      \"infoSeverity\": 7984,\n      \"statisticsCalculationDate\": \"1955-12-26T09:24:14.837Z\"\n    }\n  },\n  {\n    \"id\": 9483,\n    \"project\": {\n      \"id\": 6036,\n      \"name\": \"string\"\n    },\n    \"status\": {\n      \"id\": 4286,\n      \"name\": \"Finished\"\n    },\n    \"scanType\": \"Incremental\",\n    \"comment\": \"string\",\n    \"dateAndTime\": {\n      \"startedOn\": \"1953-08-09T16:13:54.182Z\",\n      \"finishedOn\": \"2017-11-13T23:56:09.814Z\",\n      \"engineStartedOn\": \"2017-06-13T20:37:38.954Z\",\n      \"engineFinishedOn\": \"1957-04-04T07:59:03.095Z\"\n    },\n    \"resultsStatistics\": {\n      \"highSeverity\": 7809,\n      \"mediumSeverity\": 4556,\n      \"lowSeverity\": 6681,\n      \"infoSeverity\": 2131,\n      \"statisticsCalculationDate\": \"2016-01-19T00:14:40.606Z\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa6cfedc-e52f-42a6-88bf-fc4382e9d813",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scanStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aee86e56-3e7b-4479-ace8-ea12ad1dcd89",
+          "name": "Checkmarx Create a new scan",
+          "request": {
+            "name": "Checkmarx Create a new scan",
+            "description": {
+              "content": "Initiate a new SAST scan for a project. The scan will be queued and executed based on engine availability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "scans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad13b782-797a-42c9-821f-5b14eb96c840",
+              "name": "Scan created and queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9044,\n  \"project\": {\n    \"id\": 7870,\n    \"name\": \"string\"\n  },\n  \"status\": {\n    \"id\": 7100,\n    \"name\": \"Failed\"\n  },\n  \"scanType\": \"Incremental\",\n  \"comment\": \"string\",\n  \"dateAndTime\": {\n    \"startedOn\": \"1950-03-01T20:43:43.197Z\",\n    \"finishedOn\": \"1958-07-25T13:51:19.028Z\",\n    \"engineStartedOn\": \"1960-01-05T01:30:05.579Z\",\n    \"engineFinishedOn\": \"2019-08-06T18:38:34.966Z\"\n  },\n  \"resultsStatistics\": {\n    \"highSeverity\": 9585,\n    \"mediumSeverity\": 5238,\n    \"lowSeverity\": 9482,\n    \"infoSeverity\": 219,\n    \"statisticsCalculationDate\": \"1950-06-24T14:58:28.356Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02a4b776-09a1-4561-be11-7abe2f648423",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbeec0d3-7991-4a57-a559-0fa7a2ad3da1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53fba386-90ac-4038-8dd2-669c16d79557",
+          "name": "Checkmarx Get scan details",
+          "request": {
+            "name": "Checkmarx Get scan details",
+            "description": {
+              "content": "Retrieve details of a specific scan by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "scans",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scanId",
+                  "description": "(Required) Scan unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc4a682c-8c18-40be-b78b-1973a0d7f489",
+              "name": "Scan details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9044,\n  \"project\": {\n    \"id\": 7870,\n    \"name\": \"string\"\n  },\n  \"status\": {\n    \"id\": 7100,\n    \"name\": \"Failed\"\n  },\n  \"scanType\": \"Incremental\",\n  \"comment\": \"string\",\n  \"dateAndTime\": {\n    \"startedOn\": \"1950-03-01T20:43:43.197Z\",\n    \"finishedOn\": \"1958-07-25T13:51:19.028Z\",\n    \"engineStartedOn\": \"1960-01-05T01:30:05.579Z\",\n    \"engineFinishedOn\": \"2019-08-06T18:38:34.966Z\"\n  },\n  \"resultsStatistics\": {\n    \"highSeverity\": 9585,\n    \"mediumSeverity\": 5238,\n    \"lowSeverity\": 9482,\n    \"infoSeverity\": 219,\n    \"statisticsCalculationDate\": \"1950-06-24T14:58:28.356Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0749e6c1-15d2-4496-95ad-fed61fa72b27",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e896a56-9132-4cb4-b480-f5a9d126f2ea",
+              "name": "Scan not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c46e0d3-8937-4a12-a1e7-aeb055c47396",
+          "name": "Checkmarx Update scan status",
+          "request": {
+            "name": "Checkmarx Update scan status",
+            "description": {
+              "content": "Update the status of a scan, such as canceling a running scan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "scans",
+                ":scanId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "scanId",
+                  "description": "(Required) Scan unique identifier"
+                },
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f385d2b1-7ec6-462c-bd8e-4a04f0f145f5",
+              "name": "Scan status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6c10f60-0fff-49ba-b120-9ee4f875becf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6030e23a-b677-4bc5-9249-6b379f5c868f",
+              "name": "Scan not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "scans",
+                    ":scanId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "scanId",
+                      "description": "(Required) Scan unique identifier"
+                    },
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7344ec4c-9b41-4e6b-a94b-fbe9b9a7fde0",
+      "name": "Teams",
+      "description": {
+        "content": "Manage teams and access control",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f34bb7b-4b41-4493-abdf-0e995f6cf9c9",
+          "name": "Checkmarx List all teams",
+          "request": {
+            "name": "Checkmarx List all teams",
+            "description": {
+              "content": "Retrieve a list of all teams in the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "teams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of the Checkmarx SAST server",
+                  "type": "any",
+                  "value": "{{checkmarx-server}}",
+                  "key": "checkmarx-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "396fc524-841b-4e6d-818f-14b401c53992",
+              "name": "List of teams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"fullName\": \"string\",\n    \"parentId\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"fullName\": \"string\",\n    \"parentId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16d223ed-6ef4-4b1d-a27d-4c921f8445d7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "teams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of the Checkmarx SAST server",
+                      "type": "any",
+                      "value": "{{checkmarx-server}}",
+                      "key": "checkmarx-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of the Checkmarx SAST server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-checkmarx-instance.com",
+      "key": "checkmarx-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{checkmarx-server}}/cxrestapi",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1cfa337-0b4a-47a0-a580-a3df31405c94",
+    "name": "Checkmarx SAST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Checkmarx Static Application Security Testing (SAST), enabling programmatic management of projects, scans, and results for identifying security vulnerabilities in source code through static analysis.\n\nContact Support:\n Name: Checkmarx Support",
+      "type": "text/plain"
+    }
+  }
+}
