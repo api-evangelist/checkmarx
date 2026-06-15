@@ -1,0 +1,907 @@
+"""
+Checkmarx GraphQL Schema
+Derived from Checkmarx One REST API covering SAST, SCA, DAST, API security, and container security.
+"""
+
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum ScanStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELED
+  PARTIAL
+}
+
+enum ScanType {
+  SAST
+  SCA
+  DAST
+  KICS
+  APISEC
+  CONTAINERS
+}
+
+enum Severity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  INFORMATIONAL
+}
+
+enum VulnerabilityState {
+  TO_VERIFY
+  NOT_EXPLOITABLE
+  PROPOSED_NOT_EXPLOITABLE
+  CONFIRMED
+  URGENT
+  IGNORED
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum EngineType {
+  SAST
+  SCA
+  DAST
+  KICS
+  APISEC
+  CONTAINERS
+}
+
+enum PresetType {
+  DEFAULT
+  CUSTOM
+  OWASP_TOP_10
+  PCI_DSS
+  HIPAA
+  CWE_TOP_25
+}
+
+enum PolicyAction {
+  BREAK_BUILD
+  NOTIFY
+  AUDIT
+}
+
+enum ReportFormat {
+  PDF
+  CSV
+  JSON
+  XML
+  SARIF
+}
+
+enum GroupRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+enum TokenScope {
+  READ
+  WRITE
+  ADMIN
+}
+
+# ─── Core Types ──────────────────────────────────────────────────────────────
+
+"""A Checkmarx tenant/organization."""
+type Tenant {
+  id: ID!
+  name: String!
+  region: String!
+  plan: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  users: [User!]!
+  projects: [Project!]!
+  groups: [Group!]!
+  policies: [Policy!]!
+  presets: [Preset!]!
+  integrations: [Integration!]!
+}
+
+"""A Checkmarx user account."""
+type User {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  username: String!
+  active: Boolean!
+  roles: [String!]!
+  groups: [Group!]!
+  createdAt: DateTime!
+  lastLogin: DateTime
+}
+
+"""A group of users for role-based access control."""
+type Group {
+  id: ID!
+  name: String!
+  description: String
+  members: [User!]!
+  roles: [GroupRole!]!
+  projects: [Project!]!
+}
+
+"""An application security project."""
+type Project {
+  id: ID!
+  name: String!
+  description: String
+  status: ProjectStatus!
+  groups: [Group!]!
+  tags: [Tag!]!
+  repoUrl: String
+  mainBranch: String
+  origin: String
+  criticality: Int
+  applicationId: ID
+  application: Application
+  configuration: ProjectConfiguration
+  scans(filter: ScanFilter, page: Int, limit: Int): ScanConnection!
+  latestScan: Scan
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Configuration settings for a project."""
+type ProjectConfiguration {
+  id: ID!
+  projectId: ID!
+  sastConfig: SASTConfiguration
+  scaConfig: SCAConfiguration
+  dastConfig: DASTConfiguration
+  kicsConfig: KICSConfiguration
+  apiSecConfig: APISecConfiguration
+  containerConfig: ContainerConfiguration
+  preExecutionCommand: String
+  postExecutionCommand: String
+  exclusions: [String!]!
+}
+
+"""An application grouping multiple projects."""
+type Application {
+  id: ID!
+  name: String!
+  description: String
+  criticality: Int
+  tags: [Tag!]!
+  projects: [Project!]!
+  riskScore: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A security scan instance."""
+type Scan {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  status: ScanStatus!
+  branch: String
+  commitId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  finishedAt: DateTime
+  initiator: String
+  engines: [ScanEngine!]!
+  statusDetails: [ScanStatusDetail!]!
+  tags: [Tag!]!
+  metadata: ScanMetadata
+  results: ScanResults
+  vulnerabilities(filter: VulnerabilityFilter, page: Int, limit: Int): VulnerabilityConnection!
+}
+
+"""Engine-specific scan information."""
+type ScanEngine {
+  engineType: EngineType!
+  status: ScanStatus!
+  startedAt: DateTime
+  finishedAt: DateTime
+  loc: Int
+  filesScanned: Int
+  errorMessage: String
+}
+
+"""Detailed status information for a scan phase."""
+type ScanStatusDetail {
+  stage: String!
+  status: String!
+  startedAt: DateTime
+  finishedAt: DateTime
+  message: String
+}
+
+"""Metadata associated with a scan."""
+type ScanMetadata {
+  loc: Int
+  filesScanned: Int
+  languages: [String!]!
+  sourcePath: String
+  repoUrl: String
+  branch: String
+  commitId: String
+  pullRequestId: String
+}
+
+"""Aggregated results from a scan."""
+type ScanResults {
+  scanId: ID!
+  totalVulnerabilities: Int!
+  criticalCount: Int!
+  highCount: Int!
+  mediumCount: Int!
+  lowCount: Int!
+  infoCount: Int!
+  newVulnerabilities: Int!
+  fixedVulnerabilities: Int!
+  riskScore: Float
+  byEngine: [EngineResults!]!
+}
+
+"""Results summary per engine."""
+type EngineResults {
+  engineType: EngineType!
+  totalCount: Int!
+  criticalCount: Int!
+  highCount: Int!
+  mediumCount: Int!
+  lowCount: Int!
+}
+
+# ─── Vulnerability Types ──────────────────────────────────────────────────────
+
+"""A detected security vulnerability."""
+type Vulnerability {
+  id: ID!
+  scanId: ID!
+  scan: Scan
+  engineType: EngineType!
+  queryId: String
+  queryName: String!
+  queryUrl: String
+  language: String
+  severity: Severity!
+  state: VulnerabilityState!
+  status: String!
+  cwe: String
+  cvss: Float
+  cvssScore: Float
+  cveId: String
+  description: String
+  recommendations: String
+  sourceFile: String
+  sourceLine: Int
+  sourceObject: String
+  destFile: String
+  destLine: Int
+  destObject: String
+  nodes: [VulnerabilityNode!]!
+  similarityId: String
+  firstFound: DateTime
+  lastFound: DateTime
+  comments: [VulnerabilityComment!]!
+  stateHistory: [VulnerabilityStateChange!]!
+  fixLink: String
+  references: [String!]!
+  complianceMappings: [ComplianceMapping!]!
+}
+
+"""A node in the vulnerability data flow path."""
+type VulnerabilityNode {
+  fileName: String!
+  line: Int!
+  column: Int
+  name: String!
+  domType: String
+  method: String
+  methodLine: Int
+  definitions: String
+  nodeSystemId: String
+  length: Int
+}
+
+"""A comment on a vulnerability."""
+type VulnerabilityComment {
+  id: ID!
+  vulnerabilityId: ID!
+  content: String!
+  createdBy: User
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+"""A state change record for a vulnerability."""
+type VulnerabilityStateChange {
+  id: ID!
+  vulnerabilityId: ID!
+  fromState: VulnerabilityState
+  toState: VulnerabilityState!
+  changedBy: User
+  changedAt: DateTime!
+  comment: String
+}
+
+"""Mapping between a vulnerability and a compliance framework."""
+type ComplianceMapping {
+  framework: String!
+  control: String!
+  description: String
+}
+
+# ─── Engine Configuration Types ──────────────────────────────────────────────
+
+"""SAST engine configuration."""
+type SASTConfiguration {
+  presetId: ID
+  preset: Preset
+  languageMode: String
+  incrementalScan: Boolean
+  fastScanMode: Boolean
+  engineVerbose: Boolean
+  customFields: JSON
+}
+
+"""SCA engine configuration."""
+type SCAConfiguration {
+  exploitablePath: Boolean
+  lastSastScanTime: DateTime
+  microDependencies: Boolean
+  privatePackageFiles: [String!]!
+  privatePackageUrl: String
+}
+
+"""DAST engine configuration."""
+type DASTConfiguration {
+  targetUrl: String
+  authType: String
+  username: String
+  apiDefinitionUrl: String
+  maxDepth: Int
+  maxPages: Int
+  allowedHosts: [String!]!
+}
+
+"""KICS (Infrastructure as Code) engine configuration."""
+type KICSConfiguration {
+  platforms: [String!]!
+  excludePaths: [String!]!
+  includeOnlyPaths: [String!]!
+}
+
+"""API Security engine configuration."""
+type APISecConfiguration {
+  apiDefinitionPath: String
+  apiDefinitionUrl: String
+  authType: String
+  targetUrl: String
+}
+
+"""Container security engine configuration."""
+type ContainerConfiguration {
+  imagePath: String
+  registryUrl: String
+  username: String
+  includeDevDependencies: Boolean
+}
+
+# ─── Preset and Policy Types ──────────────────────────────────────────────────
+
+"""A scan preset defining which queries to run."""
+type Preset {
+  id: ID!
+  name: String!
+  description: String
+  type: PresetType!
+  queryCount: Int!
+  queries: [Query!]!
+  isDefault: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A security query definition."""
+type Query {
+  id: ID!
+  queryId: String!
+  name: String!
+  group: String!
+  language: String
+  severity: Severity!
+  description: String
+  engineType: EngineType!
+  cwe: String
+  isCustom: Boolean!
+  isActive: Boolean!
+}
+
+"""A security policy with enforcement rules."""
+type Policy {
+  id: ID!
+  name: String!
+  description: String
+  isActive: Boolean!
+  rules: [PolicyRule!]!
+  action: PolicyAction!
+  projects: [Project!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A rule within a security policy."""
+type PolicyRule {
+  id: ID!
+  policyId: ID!
+  name: String!
+  description: String
+  condition: PolicyCondition!
+  isActive: Boolean!
+}
+
+"""Condition definition for a policy rule."""
+type PolicyCondition {
+  type: String!
+  severity: Severity
+  engineType: EngineType
+  threshold: Int
+  timeWindow: Int
+}
+
+# ─── Report Types ─────────────────────────────────────────────────────────────
+
+"""A generated security report."""
+type Report {
+  id: ID!
+  scanId: ID!
+  scan: Scan
+  format: ReportFormat!
+  status: String!
+  downloadUrl: String
+  createdAt: DateTime!
+  expiresAt: DateTime
+}
+
+"""A compliance report covering multiple scans."""
+type ComplianceReport {
+  id: ID!
+  projectId: ID!
+  framework: String!
+  coveragePercentage: Float!
+  passingControls: Int!
+  failingControls: Int!
+  generatedAt: DateTime!
+  downloadUrl: String
+}
+
+# ─── Integration Types ────────────────────────────────────────────────────────
+
+"""An external integration (e.g., SCM, ticketing, CI/CD)."""
+type Integration {
+  id: ID!
+  name: String!
+  type: String!
+  config: JSON
+  isActive: Boolean!
+  projectId: ID
+  tenantId: ID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A webhook subscription for event notifications."""
+type Webhook {
+  id: ID!
+  url: String!
+  events: [String!]!
+  secret: String
+  isActive: Boolean!
+  projectId: ID
+  lastTriggeredAt: DateTime
+  createdAt: DateTime!
+}
+
+"""An API access token."""
+type AccessToken {
+  id: ID!
+  name: String!
+  scopes: [TokenScope!]!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  createdAt: DateTime!
+  prefix: String!
+}
+
+# ─── Tag Types ────────────────────────────────────────────────────────────────
+
+"""A label/tag for organizing resources."""
+type Tag {
+  key: String!
+  value: String!
+}
+
+# ─── Connection / Pagination Types ───────────────────────────────────────────
+
+"""Paginated list of scans."""
+type ScanConnection {
+  nodes: [Scan!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""Paginated list of vulnerabilities."""
+type VulnerabilityConnection {
+  nodes: [Vulnerability!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""Paginated list of projects."""
+type ProjectConnection {
+  nodes: [Project!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""Pagination metadata."""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  totalPages: Int!
+  currentPage: Int!
+  pageSize: Int!
+}
+
+# ─── Filter Input Types ───────────────────────────────────────────────────────
+
+"""Filter options for scans."""
+input ScanFilter {
+  status: [ScanStatus!]
+  engineTypes: [EngineType!]
+  branch: String
+  createdAfter: DateTime
+  createdBefore: DateTime
+  initiator: String
+  tags: [TagInput!]
+}
+
+"""Filter options for vulnerabilities."""
+input VulnerabilityFilter {
+  engineTypes: [EngineType!]
+  severities: [Severity!]
+  states: [VulnerabilityState!]
+  languages: [String!]
+  queryNames: [String!]
+  cweIds: [String!]
+  assignees: [ID!]
+  firstFoundAfter: DateTime
+  firstFoundBefore: DateTime
+}
+
+"""Filter options for projects."""
+input ProjectFilter {
+  status: ProjectStatus
+  applicationId: ID
+  groupId: ID
+  tags: [TagInput!]
+  search: String
+}
+
+"""Tag input for queries and mutations."""
+input TagInput {
+  key: String!
+  value: String!
+}
+
+# ─── Mutation Input Types ──────────────────────────────────────────────────────
+
+"""Input for creating a new project."""
+input CreateProjectInput {
+  name: String!
+  description: String
+  repoUrl: String
+  mainBranch: String
+  applicationId: ID
+  groupIds: [ID!]
+  tags: [TagInput!]
+  criticality: Int
+}
+
+"""Input for updating an existing project."""
+input UpdateProjectInput {
+  name: String
+  description: String
+  repoUrl: String
+  mainBranch: String
+  applicationId: ID
+  groupIds: [ID!]
+  tags: [TagInput!]
+  criticality: Int
+  status: ProjectStatus
+}
+
+"""Input for triggering a new scan."""
+input TriggerScanInput {
+  projectId: ID!
+  branch: String
+  commitId: String
+  engineTypes: [EngineType!]
+  presetId: ID
+  tags: [TagInput!]
+  configOverride: JSON
+  waitForCompletion: Boolean
+}
+
+"""Input for updating vulnerability state."""
+input UpdateVulnerabilityStateInput {
+  vulnerabilityIds: [ID!]!
+  state: VulnerabilityState!
+  comment: String
+}
+
+"""Input for creating a report."""
+input CreateReportInput {
+  scanId: ID!
+  format: ReportFormat!
+  includeFixed: Boolean
+  severityFilter: [Severity!]
+  engineFilter: [EngineType!]
+}
+
+"""Input for creating a webhook."""
+input CreateWebhookInput {
+  url: String!
+  events: [String!]!
+  secret: String
+  projectId: ID
+}
+
+"""Input for creating an access token."""
+input CreateAccessTokenInput {
+  name: String!
+  scopes: [TokenScope!]!
+  expiresAt: DateTime
+}
+
+"""Input for creating a policy."""
+input CreatePolicyInput {
+  name: String!
+  description: String
+  action: PolicyAction!
+  projectIds: [ID!]
+  rules: [PolicyRuleInput!]!
+}
+
+"""Input for a policy rule."""
+input PolicyRuleInput {
+  name: String!
+  description: String
+  conditionType: String!
+  severity: Severity
+  engineType: EngineType
+  threshold: Int
+  timeWindow: Int
+}
+
+# ─── Root Query ───────────────────────────────────────────────────────────────
+
+type RootQuery {
+  """Get the current tenant information."""
+  tenant: Tenant!
+
+  """Get the currently authenticated user."""
+  me: User!
+
+  """Get a user by ID."""
+  user(id: ID!): User
+
+  """List all users in the tenant."""
+  users(page: Int, limit: Int, search: String): [User!]!
+
+  """Get a group by ID."""
+  group(id: ID!): Group
+
+  """List all groups."""
+  groups(page: Int, limit: Int): [Group!]!
+
+  """Get a project by ID."""
+  project(id: ID!): Project
+
+  """List projects with optional filtering."""
+  projects(filter: ProjectFilter, page: Int, limit: Int, sortBy: String, sortOrder: SortOrder): ProjectConnection!
+
+  """Get an application by ID."""
+  application(id: ID!): Application
+
+  """List all applications."""
+  applications(page: Int, limit: Int): [Application!]!
+
+  """Get a scan by ID."""
+  scan(id: ID!): Scan
+
+  """List scans for a project."""
+  scans(projectId: ID!, filter: ScanFilter, page: Int, limit: Int): ScanConnection!
+
+  """Get a vulnerability by ID."""
+  vulnerability(id: ID!): Vulnerability
+
+  """List vulnerabilities across scans."""
+  vulnerabilities(scanId: ID, projectId: ID, filter: VulnerabilityFilter, page: Int, limit: Int): VulnerabilityConnection!
+
+  """Get a preset by ID."""
+  preset(id: ID!): Preset
+
+  """List available scan presets."""
+  presets: [Preset!]!
+
+  """Get a policy by ID."""
+  policy(id: ID!): Policy
+
+  """List all policies."""
+  policies: [Policy!]!
+
+  """Get a report by ID."""
+  report(id: ID!): Report
+
+  """List reports for a scan."""
+  reports(scanId: ID!): [Report!]!
+
+  """Get an integration by ID."""
+  integration(id: ID!): Integration
+
+  """List all integrations."""
+  integrations: [Integration!]!
+
+  """List webhooks."""
+  webhooks(projectId: ID): [Webhook!]!
+
+  """List access tokens."""
+  accessTokens: [AccessToken!]!
+
+  """List available scan queries."""
+  queries(engineType: EngineType, language: String): [Query!]!
+
+  """Get scan results summary."""
+  scanResults(scanId: ID!): ScanResults
+
+  """Get compliance report for a project."""
+  complianceReport(projectId: ID!, framework: String!): ComplianceReport
+}
+
+# ─── Root Mutation ────────────────────────────────────────────────────────────
+
+type Mutation {
+  """Create a new project."""
+  createProject(input: CreateProjectInput!): Project!
+
+  """Update an existing project."""
+  updateProject(id: ID!, input: UpdateProjectInput!): Project!
+
+  """Delete a project."""
+  deleteProject(id: ID!): Boolean!
+
+  """Trigger a new security scan."""
+  triggerScan(input: TriggerScanInput!): Scan!
+
+  """Cancel a running scan."""
+  cancelScan(id: ID!): Scan!
+
+  """Delete a scan."""
+  deleteScan(id: ID!): Boolean!
+
+  """Update vulnerability state (triage)."""
+  updateVulnerabilityState(input: UpdateVulnerabilityStateInput!): [Vulnerability!]!
+
+  """Add a comment to a vulnerability."""
+  addVulnerabilityComment(vulnerabilityId: ID!, content: String!): VulnerabilityComment!
+
+  """Update project configuration."""
+  updateProjectConfiguration(projectId: ID!, config: JSON!): ProjectConfiguration!
+
+  """Create a report."""
+  createReport(input: CreateReportInput!): Report!
+
+  """Create a new policy."""
+  createPolicy(input: CreatePolicyInput!): Policy!
+
+  """Update an existing policy."""
+  updatePolicy(id: ID!, input: CreatePolicyInput!): Policy!
+
+  """Delete a policy."""
+  deletePolicy(id: ID!): Boolean!
+
+  """Create an application."""
+  createApplication(name: String!, description: String, criticality: Int): Application!
+
+  """Update an application."""
+  updateApplication(id: ID!, name: String, description: String, criticality: Int): Application!
+
+  """Delete an application."""
+  deleteApplication(id: ID!): Boolean!
+
+  """Create a webhook subscription."""
+  createWebhook(input: CreateWebhookInput!): Webhook!
+
+  """Delete a webhook."""
+  deleteWebhook(id: ID!): Boolean!
+
+  """Create an API access token."""
+  createAccessToken(input: CreateAccessTokenInput!): AccessToken!
+
+  """Revoke an API access token."""
+  revokeAccessToken(id: ID!): Boolean!
+
+  """Create a group."""
+  createGroup(name: String!, description: String): Group!
+
+  """Add users to a group."""
+  addUsersToGroup(groupId: ID!, userIds: [ID!]!): Group!
+
+  """Remove users from a group."""
+  removeUsersFromGroup(groupId: ID!, userIds: [ID!]!): Group!
+
+  """Assign projects to a group."""
+  assignProjectsToGroup(groupId: ID!, projectIds: [ID!]!): Group!
+
+  """Create a custom scan preset."""
+  createPreset(name: String!, description: String, queryIds: [ID!]!): Preset!
+
+  """Update a custom preset."""
+  updatePreset(id: ID!, name: String, queryIds: [ID!]): Preset!
+
+  """Delete a custom preset."""
+  deletePreset(id: ID!): Boolean!
+
+  """Invite a user to the tenant."""
+  inviteUser(email: String!, roles: [String!]!, groupIds: [ID!]): User!
+
+  """Update a user's roles."""
+  updateUserRoles(userId: ID!, roles: [String!]!): User!
+
+  """Deactivate a user."""
+  deactivateUser(userId: ID!): User!
+}
+
+# ─── Root Subscription ────────────────────────────────────────────────────────
+
+type Subscription {
+  """Subscribe to scan status updates."""
+  scanStatusChanged(scanId: ID!): Scan!
+
+  """Subscribe to new vulnerability detections."""
+  vulnerabilityDetected(projectId: ID!): Vulnerability!
+
+  """Subscribe to policy violation events."""
+  policyViolation(policyId: ID): PolicyViolationEvent!
+}
+
+"""An event emitted when a policy violation is detected."""
+type PolicyViolationEvent {
+  policy: Policy!
+  scan: Scan!
+  violationCount: Int!
+  triggeredAt: DateTime!
+}
+
+schema {
+  query: RootQuery
+  mutation: Mutation
+  subscription: Subscription
+}
