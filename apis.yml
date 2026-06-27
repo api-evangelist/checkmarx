@@ -104,7 +104,7 @@ common:
   url: json-schema/checkmarx-vulnerability-schema.json
 - type: Spectral
   url: spectral/checkmarx-spectral.yml
-- type: LLMsTxt
+- type: LlmsText
   url: https://checkmarx.com/llms.txt
 maintainers:
 - FN: Kin Lane

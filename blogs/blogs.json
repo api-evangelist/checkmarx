@@ -2,10 +2,10 @@
   "repo": "checkmarx",
   "feeds": [
     {
-      "source": "https://checkmarx.com/blog/feed/",
-      "feed_url": "https://checkmarx.com/blog/feed/",
+      "source": "https://checkmarx.com/feed/",
+      "feed_url": "https://checkmarx.com/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 3,
       "method": "feed"
     },
     {
@@ -13,6 +13,6 @@
       "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 1
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 16
 }
