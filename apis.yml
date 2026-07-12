@@ -74,6 +74,12 @@ apis:
   - type: OpenAPI
     url: openapi/checkmarx-one-openapi.yml
 common:
+- type: TrustCenter
+  url: security/checkmarx-trust-center.yml
+- type: DomainSecurity
+  url: security/checkmarx-domain-security.yml
+- type: Authentication
+  url: authentication/checkmarx-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/checkmarx
 - type: Website

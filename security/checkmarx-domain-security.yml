@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.checkmarx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 16:25:35 2026 GMT
+  hsts: false
+- host: checkmarx.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 15 11:28:19 2026 GMT
+  hsts: false
+- host: your-checkmarx-instance.com
+  https: false
+domains:
+- domain: checkmarx.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: your-checkmarx-instance.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
