@@ -5,7 +5,7 @@
       "source": "https://checkmarx.com/feed/",
       "feed_url": "https://checkmarx.com/feed/",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -13,6 +13,6 @@
       "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T12:03:07Z",
-  "post_count": 16
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 21
 }
