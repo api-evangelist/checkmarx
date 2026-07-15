@@ -74,6 +74,8 @@ apis:
   - type: OpenAPI
     url: openapi/checkmarx-one-openapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/checkmarx-agentic-access.yml
 - type: TrustCenter
   url: security/checkmarx-trust-center.yml
 - type: DomainSecurity
