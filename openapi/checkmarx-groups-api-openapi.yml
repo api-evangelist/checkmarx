@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Groups API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Groups
+  description: Manage access control groups
+paths:
+  /groups:
+    get:
+      operationId: listGroups
+      summary: Checkmarx List groups
+      description: Retrieve all access control groups for the tenant.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Group unique identifier
+        name:
+          type: string
+          description: Group name
+        parentId:
+          type: string
+          description: Parent group ID
+        subGroups:
+          type: array
+          items:
+            type: string
+          description: Sub-group IDs
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

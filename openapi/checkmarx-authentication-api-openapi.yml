@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Authentication API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: Obtain and manage authentication tokens via OAuth 2.0
+paths:
+  /auth/realms/{realm}/protocol/openid-connect/token:
+    post:
+      operationId: authenticate
+      summary: Checkmarx Obtain access token
+      description: Authenticate using OAuth 2.0 client credentials via the Checkmarx One IAM service to obtain a bearer token for API access.
+      tags:
+      - Authentication
+      parameters:
+      - name: realm
+        in: path
+        required: true
+        description: Authentication realm name
+        schema:
+          type: string
+          example: your-tenant
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  - refresh_token
+                  description: OAuth 2.0 grant type
+                client_id:
+                  type: string
+                  description: API key client ID
+                client_secret:
+                  type: string
+                  description: API key client secret
+                refresh_token:
+                  type: string
+                  description: Refresh token (when using refresh_token grant)
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid credentials
+      security: []
+  /auth/identity/connect/token:
+    post:
+      operationId: authenticate
+      summary: Checkmarx Obtain access token
+      description: Authenticate using OAuth 2.0 to obtain a bearer token for accessing the Checkmarx SAST REST API. Supports both password and refresh token grant types.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              - grant_type
+              - scope
+              - client_id
+              - client_secret
+              properties:
+                username:
+                  type: string
+                  description: Checkmarx username
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                  - refresh_token
+                  description: OAuth 2.0 grant type
+                scope:
+                  type: string
+                  description: OAuth scope
+                  example: sast_rest_api
+                client_id:
+                  type: string
+                  description: OAuth client identifier
+                  example: resource_owner_client
+                client_secret:
+                  type: string
+                  description: OAuth client secret
+                password:
+                  type: string
+                  description: Checkmarx password
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse_2'
+        '400':
+          description: Invalid credentials or request
+      security: []
+  /identity/connect/token:
+    post:
+      operationId: authenticate
+      summary: Checkmarx Obtain access token
+      description: Authenticate using OAuth 2.0 client credentials to obtain a bearer token for accessing the Checkmarx SCA API.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - username
+              - password
+              - acr_values
+              - scope
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - password
+                  description: OAuth 2.0 grant type
+                username:
+                  type: string
+                  description: SCA account username
+                password:
+                  type: string
+                  description: SCA account password
+                acr_values:
+                  type: string
+                  description: Tenant identifier
+                  example: Tenant:your-tenant
+                scope:
+                  type: string
+                  description: API access scope
+                  example: sca_api
+                client_id:
+                  type: string
+                  description: OAuth client ID
+                  example: sca_resource_owner
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse_3'
+        '400':
+          description: Invalid credentials
+      security: []
+components:
+  schemas:
+    TokenResponse_2:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth 2.0 access token
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+        refresh_token:
+          type: string
+          description: Refresh token for obtaining new access tokens
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth 2.0 access token
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+        refresh_token:
+          type: string
+          description: Refresh token
+    TokenResponse_3:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: OAuth 2.0 access token
+        token_type:
+          type: string
+          description: Token type
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

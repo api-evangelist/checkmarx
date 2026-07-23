@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Results API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Results
+  description: Retrieve and manage scan results and findings
+paths:
+  /results:
+    get:
+      operationId: listResults
+      summary: Checkmarx List scan results
+      description: Retrieve vulnerability results for a scan, with optional filtering by severity, state, and scan type.
+      tags:
+      - Results
+      parameters:
+      - name: scan-id
+        in: query
+        required: true
+        description: Scan ID to retrieve results for
+        schema:
+          type: string
+          format: uuid
+      - name: offset
+        in: query
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 20
+      - name: severity
+        in: query
+        description: Filter by severity (comma-separated)
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: Filter by result state (comma-separated)
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by result status
+        schema:
+          type: string
+          enum:
+          - NEW
+          - RECURRENT
+      responses:
+        '200':
+          description: List of results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultListResponse'
+        '401':
+          description: Unauthorized
+  /results/{resultId}:
+    get:
+      operationId: getResult
+      summary: Checkmarx Get result details
+      description: Retrieve detailed information about a specific finding.
+      tags:
+      - Results
+      parameters:
+      - name: resultId
+        in: path
+        required: true
+        description: Result unique identifier
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Result details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Result not found
+    patch:
+      operationId: updateResult
+      summary: Checkmarx Update result state
+      description: Update the triage state of a result, such as confirming, marking as not exploitable, or setting to proposed not exploitable.
+      tags:
+      - Results
+      parameters:
+      - name: resultId
+        in: path
+        required: true
+        description: Result unique identifier
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResultRequest'
+      responses:
+        '200':
+          description: Result updated
+        '401':
+          description: Unauthorized
+        '404':
+          description: Result not found
+  /results/summary:
+    get:
+      operationId: getResultsSummary
+      summary: Checkmarx Get results summary
+      description: Retrieve an aggregated summary of scan results grouped by severity and status.
+      tags:
+      - Results
+      parameters:
+      - name: scan-id
+        in: query
+        required: true
+        description: Scan ID to summarize
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Results summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultsSummary'
+        '401':
+          description: Unauthorized
+  /sast/scans/{scanId}/resultsStatistics:
+    get:
+      operationId: getScanResultsStatistics
+      summary: Checkmarx Get scan results statistics
+      description: Retrieve summary statistics for a completed scan, including vulnerability counts by severity.
+      tags:
+      - Results
+      parameters:
+      - $ref: '#/components/parameters/scanId'
+      responses:
+        '200':
+          description: Scan results statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanResultsStatistics'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Scan not found
+components:
+  schemas:
+    Result:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Result unique identifier
+        similarityId:
+          type: string
+          description: Similarity ID for tracking across scans
+        status:
+          type: string
+          enum:
+          - NEW
+          - RECURRENT
+          description: Result status
+        state:
+          type: string
+          enum:
+          - TO_VERIFY
+          - NOT_EXPLOITABLE
+          - PROPOSED_NOT_EXPLOITABLE
+          - CONFIRMED
+          - URGENT
+          description: Triage state
+        severity:
+          type: string
+          enum:
+          - CRITICAL
+          - HIGH
+          - MEDIUM
+          - LOW
+          - INFO
+          description: Severity level
+        type:
+          type: string
+          enum:
+          - sast
+          - sca
+          - kics
+          - apisec
+          description: Engine type that found this result
+        data:
+          type: object
+          description: Engine-specific result data
+          properties:
+            queryId:
+              type: string
+              description: SAST query identifier
+            queryName:
+              type: string
+              description: SAST query name
+            group:
+              type: string
+              description: Query group name
+            languageName:
+              type: string
+              description: Programming language
+            nodes:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResultNode'
+              description: Code flow nodes (SAST)
+            packageIdentifier:
+              type: string
+              description: Package identifier (SCA)
+            recommendedVersion:
+              type: string
+              description: Recommended package version (SCA)
+        description:
+          type: string
+          description: Finding description
+        vulnerabilityDetails:
+          type: object
+          properties:
+            cweId:
+              type: integer
+              description: CWE identifier
+            cvss:
+              type: number
+              format: float
+              description: CVSS score
+            cveName:
+              type: string
+              description: CVE identifier
+            compliances:
+              type: array
+              items:
+                type: string
+              description: Compliance standards references
+        firstFoundAt:
+          type: string
+          format: date-time
+          description: When the result was first found
+        foundAt:
+          type: string
+          format: date-time
+          description: When the result was found in this scan
+    EngineCounters:
+      type: object
+      properties:
+        severityCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - CRITICAL
+                - HIGH
+                - MEDIUM
+                - LOW
+                - INFO
+              counter:
+                type: integer
+        statusCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              counter:
+                type: integer
+        stateCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              state:
+                type: string
+              counter:
+                type: integer
+        totalCounter:
+          type: integer
+          description: Total count for this engine
+    ScanResultsStatistics:
+      type: object
+      properties:
+        highSeverity:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumSeverity:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowSeverity:
+          type: integer
+          description: Number of low severity vulnerabilities
+        infoSeverity:
+          type: integer
+          description: Number of informational findings
+        statisticsCalculationDate:
+          type: string
+          format: date-time
+          description: When the statistics were calculated
+    UpdateResultRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - TO_VERIFY
+          - NOT_EXPLOITABLE
+          - PROPOSED_NOT_EXPLOITABLE
+          - CONFIRMED
+          - URGENT
+          description: New triage state
+        comment:
+          type: string
+          description: Triage comment
+    ResultNode:
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: Source file name
+        line:
+          type: integer
+          description: Line number
+        column:
+          type: integer
+          description: Column number
+        length:
+          type: integer
+          description: Code length
+        methodLine:
+          type: integer
+          description: Method start line
+        name:
+          type: string
+          description: Node name
+        fullName:
+          type: string
+          description: Fully qualified name
+    ResultListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of results
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+    ResultsSummary:
+      type: object
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Scan identifier
+        sastCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        scaCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        kicsCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        totalCounter:
+          type: integer
+          description: Total result count
+  parameters:
+    scanId:
+      name: scanId
+      in: path
+      required: true
+      description: Scan unique identifier
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

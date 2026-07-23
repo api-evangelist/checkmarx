@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Settings API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Settings
+  description: Manage project and organization settings
+paths:
+  /settings/projects/{projectId}:
+    get:
+      operationId: getProjectSettings
+      summary: Checkmarx Get project settings
+      description: Retrieve scan and policy settings for a project.
+      tags:
+      - Settings
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSettings'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProjectSettings
+      summary: Checkmarx Update project settings
+      description: Update scan and policy settings for a project.
+      tags:
+      - Settings
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectSettings'
+      responses:
+        '204':
+          description: Settings updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+components:
+  schemas:
+    ProjectSettings:
+      type: object
+      properties:
+        enableExploitablePath:
+          type: boolean
+          description: Enable exploitable path analysis
+        enableSastIntegration:
+          type: boolean
+          description: Enable SAST integration for contextual risk
+        policySeverity:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          - None
+          description: Minimum severity to enforce policies
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

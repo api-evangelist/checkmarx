@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Risk Reports API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Risk Reports
+  description: Retrieve vulnerability and risk analysis results
+paths:
+  /risk-management/risk-reports/{projectId}:
+    get:
+      operationId: getRiskReport
+      summary: Checkmarx Get project risk report
+      description: Retrieve the risk report for a project, including vulnerability summary and risk score.
+      tags:
+      - Risk Reports
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Risk report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskReport'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /risk-management/risk-reports/{projectId}/vulnerabilities:
+    get:
+      operationId: listProjectVulnerabilities
+      summary: Checkmarx List project vulnerabilities
+      description: Retrieve all vulnerabilities found in a project from the most recent scan.
+      tags:
+      - Risk Reports
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of vulnerabilities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /risk-management/risk-reports/{projectId}/packages:
+    get:
+      operationId: listProjectPackages
+      summary: Checkmarx List project packages
+      description: Retrieve all open source packages detected in a project with their license and vulnerability information.
+      tags:
+      - Risk Reports
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of packages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /risk-management/risk-reports/{projectId}/licenses:
+    get:
+      operationId: listProjectLicenses
+      summary: Checkmarx List project licenses
+      description: Retrieve all licenses detected across open source packages in a project.
+      tags:
+      - Risk Reports
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of licenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/License'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+components:
+  schemas:
+    VulnerabilitySummary:
+      type: object
+      properties:
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        totalVulnerabilityCount:
+          type: integer
+          description: Total number of vulnerabilities
+    License:
+      type: object
+      properties:
+        name:
+          type: string
+          description: License name
+        riskLevel:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          - Unknown
+          description: License risk level
+        copyleftType:
+          type: string
+          enum:
+          - true
+          - Partial
+          - false
+          - Unknown
+          description: Whether the license has copyleft requirements
+        referenceUrl:
+          type: string
+          format: uri
+          description: License reference URL
+        packageCount:
+          type: integer
+          description: Number of packages using this license
+    Package:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Package identifier
+        name:
+          type: string
+          description: Package name
+        version:
+          type: string
+          description: Package version
+        packageRepository:
+          type: string
+          description: Package ecosystem (npm, maven, etc.)
+        isDirectDependency:
+          type: boolean
+          description: Whether this is a direct dependency
+        licenses:
+          type: array
+          items:
+            type: string
+          description: License names
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        riskScore:
+          type: number
+          format: float
+          description: Package risk score
+        outdated:
+          type: boolean
+          description: Whether the package is outdated
+        newestVersion:
+          type: string
+          description: Newest available version
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Vulnerability identifier (CVE ID)
+        cveName:
+          type: string
+          description: CVE name
+        score:
+          type: number
+          format: float
+          description: CVSS score
+        severity:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          description: Vulnerability severity
+        publishDate:
+          type: string
+          format: date-time
+          description: Vulnerability publish date
+        packageId:
+          type: string
+          description: Affected package identifier
+        description:
+          type: string
+          description: Vulnerability description
+        recommendations:
+          type: string
+          description: Recommended remediation
+        cwe:
+          type: string
+          description: CWE identifier
+        isIgnored:
+          type: boolean
+          description: Whether the vulnerability has been marked as ignored
+        references:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: External reference URLs
+    RiskReport:
+      type: object
+      properties:
+        projectId:
+          type: string
+          format: uuid
+          description: Project identifier
+        riskScore:
+          type: number
+          format: float
+          description: Overall risk score (0-10)
+        totalPackages:
+          type: integer
+          description: Total number of open source packages
+        directPackages:
+          type: integer
+          description: Number of direct dependency packages
+        totalOutdatedPackages:
+          type: integer
+          description: Number of outdated packages
+        vulnerabilitySummary:
+          $ref: '#/components/schemas/VulnerabilitySummary'
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

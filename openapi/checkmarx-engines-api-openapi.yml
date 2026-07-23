@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Engines API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Engines
+  description: Manage scan engines and engine servers
+paths:
+  /sast/engineServers:
+    get:
+      operationId: listEngineServers
+      summary: Checkmarx List engine servers
+      description: Retrieve a list of all configured SAST engine servers.
+      tags:
+      - Engines
+      responses:
+        '200':
+          description: List of engine servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EngineServer'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    EngineServer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Engine server unique identifier
+        name:
+          type: string
+          description: Engine server name
+        uri:
+          type: string
+          format: uri
+          description: Engine server URI
+        minLoc:
+          type: integer
+          description: Minimum lines of code for this engine
+        maxLoc:
+          type: integer
+          description: Maximum lines of code for this engine
+        isAlive:
+          type: boolean
+          description: Whether the engine is currently available
+        maxScans:
+          type: integer
+          description: Maximum concurrent scans
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

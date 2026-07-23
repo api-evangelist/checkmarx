@@ -1,0 +1,262 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Applications
+  description: Manage applications that group related projects
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: Checkmarx List applications
+      description: Retrieve all applications. Applications are logical groupings of related projects for organizational purposes.
+      tags:
+      - Applications
+      parameters:
+      - name: offset
+        in: query
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 20
+      - name: name
+        in: query
+        description: Filter by application name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createApplication
+      summary: Checkmarx Create an application
+      description: Create a new application to group related projects.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+      responses:
+        '201':
+          description: Application created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Checkmarx Get application details
+      description: Retrieve details of a specific application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+    put:
+      operationId: updateApplication
+      summary: Checkmarx Update an application
+      description: Update an existing application's properties.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationRequest'
+      responses:
+        '204':
+          description: Application updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+    delete:
+      operationId: deleteApplication
+      summary: Checkmarx Delete an application
+      description: Delete an application. Projects within will be unassigned.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      responses:
+        '204':
+          description: Application deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Application not found
+components:
+  parameters:
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application unique identifier
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ApplicationListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of applications
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Application unique identifier
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality level (1-5)
+          minimum: 1
+          maximum: 5
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+          description: Rules for auto-assigning projects
+        projectIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: IDs of projects in this application
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value tags
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    ApplicationRule:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type
+        value:
+          type: string
+          description: Rule value pattern
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateApplicationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+          default: 3
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

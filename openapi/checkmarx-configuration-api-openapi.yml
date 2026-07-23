@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Configuration API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Configuration
+  description: Manage project and tenant-level scan configuration
+paths:
+  /configuration/project:
+    get:
+      operationId: getProjectConfiguration
+      summary: Checkmarx Get project scan configuration
+      description: Retrieve the scan configuration for a project, including engine-specific settings for SAST, SCA, and KICS.
+      tags:
+      - Configuration
+      parameters:
+      - name: project-id
+        in: query
+        required: true
+        description: Project ID
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Project configuration
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectConfiguration'
+        '401':
+          description: Unauthorized
+    patch:
+      operationId: updateProjectConfiguration
+      summary: Checkmarx Update project scan configuration
+      description: Update the scan configuration for a project, including SAST preset, exclusion filters, and engine settings.
+      tags:
+      - Configuration
+      parameters:
+      - name: project-id
+        in: query
+        required: true
+        description: Project ID
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectConfiguration'
+      responses:
+        '204':
+          description: Configuration updated
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    ProjectConfiguration:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Configuration key
+        name:
+          type: string
+          description: Configuration display name
+        category:
+          type: string
+          description: Configuration category
+        originLevel:
+          type: string
+          description: Level at which the configuration is set
+        value:
+          type: string
+          description: Configuration value
+        valuetype:
+          type: string
+          description: Configuration value type
+        allowOverride:
+          type: boolean
+          description: Whether the value can be overridden
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

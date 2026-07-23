@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Queries API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Queries
+  description: Manage custom SAST queries and presets
+paths:
+  /queries:
+    get:
+      operationId: listQueries
+      summary: Checkmarx List SAST queries
+      description: Retrieve a list of available SAST queries and presets.
+      tags:
+      - Queries
+      parameters:
+      - name: offset
+        in: query
+        description: Pagination offset
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Query unique identifier
+        name:
+          type: string
+          description: Query name
+        group:
+          type: string
+          description: Query group
+        language:
+          type: string
+          description: Target programming language
+        severity:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          - Info
+          description: Default severity
+        cweId:
+          type: integer
+          description: Associated CWE identifier
+        isCustom:
+          type: boolean
+          description: Whether this is a custom query
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html

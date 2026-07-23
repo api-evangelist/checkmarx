@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: Checkmarx One Applications Teams API
+  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  version: '1.0'
+  contact:
+    name: Checkmarx Support
+    url: https://support.checkmarx.com/
+  termsOfService: https://checkmarx.com/terms-of-use/
+servers:
+- url: https://ast.checkmarx.net/api
+  description: Checkmarx One (US)
+- url: https://eu.ast.checkmarx.net/api
+  description: Checkmarx One (EU)
+security:
+- bearerAuth: []
+tags:
+- name: Teams
+  description: Manage teams and access control
+paths:
+  /auth/teams:
+    get:
+      operationId: listTeams
+      summary: Checkmarx List all teams
+      description: Retrieve a list of all teams in the system.
+      tags:
+      - Teams
+      responses:
+        '200':
+          description: List of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Team unique identifier
+        name:
+          type: string
+          description: Team name
+        fullName:
+          type: string
+          description: Full team path name
+        parentId:
+          type: string
+          description: Parent team ID
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+externalDocs:
+  description: Checkmarx One API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
