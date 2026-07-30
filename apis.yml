@@ -3,6 +3,19 @@ description: Checkmarx is a leading application security testing solution provid
   offering static application security testing (SAST), software composition analysis
   (SCA), and other security tools to help organizations identify and remediate vulnerabilities
   in their code.
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.checkmarx.com/wp-content/uploads/2022/03/checkmarx-logo.svg
 tags:
 - Application Security
@@ -16,64 +29,369 @@ modified: '2026-05-19'
 url: https://www.checkmarx.com
 specificationVersion: '0.20'
 apis:
-- name: Checkmarx SAST API
-  description: API for Checkmarx Static Application Security Testing (SAST) to scan
-    source code for security vulnerabilities.
-  image: https://www.checkmarx.com/wp-content/uploads/2022/03/checkmarx-logo.svg
+- aid: checkmarx:checkmarx-applications-api
+  name: Checkmarx Applications API
+  description: Manage applications that group related projects
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
-  - SAST
-  - Security Scanning
-  - Static Analysis
-  - Vulnerability Detection
+  - Applications
   properties:
-  - type: Documentation
-    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: OpenAPI
+    url: openapi/checkmarx-applications-api-openapi.yml
+  - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: OpenAPI
-    url: openapi/checkmarx-sast-openapi.yml
-  - url: graphql/checkmarx-graphql.md
-    type: GraphQL
-- name: Checkmarx SCA API
-  description: API for Software Composition Analysis to identify open source vulnerabilities
-    and license compliance issues.
-  image: https://www.checkmarx.com/wp-content/uploads/2022/03/checkmarx-logo.svg
-  humanURL: https://checkmarx.com/resource/documents/en/34965-68617-api.html
-  baseURL: https://api-sca.checkmarx.net
-  tags:
-  - Dependency Scanning
-  - License Compliance
-  - Open Source Security
-  - SCA
-  properties:
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
-  - type: OpenAPI
-    url: openapi/checkmarx-sca-openapi.yml
-- name: Checkmarx One API
-  description: Unified API for Checkmarx One cloud-native application security platform.
-  image: https://www.checkmarx.com/wp-content/uploads/2022/03/checkmarx-logo.svg
-  humanURL: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
-  baseURL: https://ast.checkmarx.net/api
-  tags:
-  - Application Security
-  - Cloud Security
-  - DevSecOps
-  - Unified Platform
-  properties:
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
   - type: APIReference
     url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-authentication-api
+  name: Checkmarx Authentication API
+  description: Obtain and manage authentication tokens via OAuth 2.0
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Authentication
+  properties:
   - type: OpenAPI
-    url: openapi/checkmarx-one-openapi.yml
+    url: openapi/checkmarx-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-configuration-api
+  name: Checkmarx Configuration API
+  description: Manage project and tenant-level scan configuration
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-engines-api
+  name: Checkmarx Engines API
+  description: Manage scan engines and engine servers
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Engines
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-engines-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-groups-api
+  name: Checkmarx Groups API
+  description: Manage access control groups
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-groups-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-packages-api
+  name: Checkmarx Packages API
+  description: Query open source package information
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-packages-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-presets-api
+  name: Checkmarx Presets API
+  description: Manage scan configuration presets
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Presets
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-presets-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-projects-api
+  name: Checkmarx Projects API
+  description: Manage scanning projects and their configuration
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-projects-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-queries-api
+  name: Checkmarx Queries API
+  description: Manage custom SAST queries and presets
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-queries-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-reports-api
+  name: Checkmarx Reports API
+  description: Generate and download scan reports
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-reports-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-results-api
+  name: Checkmarx Results API
+  description: Retrieve and manage scan results and findings
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Results
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-results-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-risk-reports-api
+  name: Checkmarx Risk Reports API
+  description: Retrieve vulnerability and risk analysis results
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Risk Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-risk-reports-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-scans-api
+  name: Checkmarx Scans API
+  description: Trigger, monitor, and manage security scans
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-scans-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-settings-api
+  name: Checkmarx Settings API
+  description: Manage project and organization settings
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-settings-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
+- aid: checkmarx:checkmarx-teams-api
+  name: Checkmarx Teams API
+  description: Manage teams and access control
+  humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  baseURL: https://your-checkmarx-instance.com/cxrestapi
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/checkmarx-teams-api-openapi.yml
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
+  - type: GraphQL
+    url: graphql/checkmarx-graphql.md
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
+  - type: Authentication
+    url: https://checkmarx.com/resource/documents/en/34965-68617-authentication.html
+  - type: Documentation
+    url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  - type: APIReference
+    url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/checkmarx/overview
 - type: AgenticAccess
   url: agentic-access/checkmarx-agentic-access.yml
 - type: TrustCenter
