@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "bf97e998-34a5-46f2-bc29-f4f8bacec9ad",
+    "name": "Checkmarx One Applications Presets API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:55.000Z",
+    "updatedAt": "2026-07-28T01:19:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bf97e998-34a5-46f2-bc29-f4f8bacec9ad"
+  },
+  "item": [
+    {
+      "name": "presets",
+      "item": [
+        {
+          "name": "{presetId}",
+          "item": [
+            {
+              "name": "Checkmarx Get preset details",
+              "id": "36a00879-660e-4bbd-8df2-5fb305f771ba",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/presets/:presetId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presets",
+                    ":presetId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3c69de6a-da79-4fcc-8d3f-5499fda67044",
+                      "key": "presetId",
+                      "value": "<integer>",
+                      "description": "(Required) Preset unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific scan preset."
+              },
+              "response": [
+                {
+                  "id": "360a230b-94cb-4159-899b-6d9e8a2927c2",
+                  "name": "Preset details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presets/:presetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presets",
+                        ":presetId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presetId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"custom\": \"<boolean>\",\n  \"queryIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-360a230b-94cb-4159-899b-6d9e8a2927c2"
+                },
+                {
+                  "id": "70014f84-e642-462d-8903-17c931711387",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presets/:presetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presets",
+                        ":presetId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presetId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-70014f84-e642-462d-8903-17c931711387"
+                },
+                {
+                  "id": "9aab8566-5c33-4cef-af4d-83e1449e714a",
+                  "name": "Preset not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presets/:presetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presets",
+                        ":presetId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presetId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-9aab8566-5c33-4cef-af4d-83e1449e714a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:56.000Z",
+              "updatedAt": "2026-07-28T01:19:56.000Z",
+              "uid": "35240-36a00879-660e-4bbd-8df2-5fb305f771ba"
+            }
+          ],
+          "id": "d6ca140f-2e93-40aa-8569-2425eabe7bb1",
+          "createdAt": "2026-07-28T01:19:56.000Z",
+          "updatedAt": "2026-07-28T01:19:56.000Z",
+          "uid": "35240-d6ca140f-2e93-40aa-8569-2425eabe7bb1"
+        },
+        {
+          "name": "Checkmarx List scan presets",
+          "id": "492a90ed-2c3a-4227-88dd-3c34cafe8130",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/presets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "presets"
+              ]
+            },
+            "description": "Retrieve all available scan presets that define which queries and rules to apply during scans."
+          },
+          "response": [
+            {
+              "id": "4202d96c-5246-471f-802e-198415400f91",
+              "name": "List of presets",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/presets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"custom\": \"<boolean>\",\n    \"queryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"custom\": \"<boolean>\",\n    \"queryIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-07-28T01:19:56.000Z",
+              "updatedAt": "2026-07-28T01:19:56.000Z",
+              "uid": "35240-4202d96c-5246-471f-802e-198415400f91"
+            },
+            {
+              "id": "f7967be7-7d53-4826-8fdb-d571b6b8f622",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/presets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presets"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:19:56.000Z",
+              "updatedAt": "2026-07-28T01:19:56.000Z",
+              "uid": "35240-f7967be7-7d53-4826-8fdb-d571b6b8f622"
+            }
+          ],
+          "createdAt": "2026-07-28T01:19:56.000Z",
+          "updatedAt": "2026-07-28T01:19:56.000Z",
+          "uid": "35240-492a90ed-2c3a-4227-88dd-3c34cafe8130"
+        }
+      ],
+      "id": "5e1756e4-ff2f-4426-8088-b660105f52d4",
+      "createdAt": "2026-07-28T01:19:56.000Z",
+      "updatedAt": "2026-07-28T01:19:56.000Z",
+      "uid": "35240-5e1756e4-ff2f-4426-8088-b660105f52d4"
+    },
+    {
+      "name": "sast",
+      "item": [
+        {
+          "name": "presets",
+          "item": [
+            {
+              "name": "{presetId}",
+              "item": [
+                {
+                  "name": "Checkmarx Get preset details",
+                  "id": "caa87828-32d7-49a0-b00f-4e66599acb5d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/presets/:presetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "presets",
+                        ":presetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ea1abd96-d889-41dc-b03e-ff69870a72d4",
+                          "key": "presetId",
+                          "value": "<integer>",
+                          "description": "(Required) Preset unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific scan preset."
+                  },
+                  "response": [
+                    {
+                      "id": "3d4a23e3-93d7-4c33-85ba-4ad591a1d2d2",
+                      "name": "Preset details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/presets/:presetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "presets",
+                            ":presetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"ownerName\": \"<string>\",\n  \"link\": {\n    \"rel\": \"<string>\",\n    \"uri\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:19:56.000Z",
+                      "updatedAt": "2026-07-28T01:19:56.000Z",
+                      "uid": "35240-3d4a23e3-93d7-4c33-85ba-4ad591a1d2d2"
+                    },
+                    {
+                      "id": "e3c43a65-44a1-4152-b570-1f185d455571",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/presets/:presetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "presets",
+                            ":presetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:19:56.000Z",
+                      "updatedAt": "2026-07-28T01:19:56.000Z",
+                      "uid": "35240-e3c43a65-44a1-4152-b570-1f185d455571"
+                    },
+                    {
+                      "id": "aac5952c-235b-42fa-851a-5414e48e9939",
+                      "name": "Preset not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/presets/:presetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "presets",
+                            ":presetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:19:56.000Z",
+                      "updatedAt": "2026-07-28T01:19:56.000Z",
+                      "uid": "35240-aac5952c-235b-42fa-851a-5414e48e9939"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-caa87828-32d7-49a0-b00f-4e66599acb5d"
+                }
+              ],
+              "id": "ee8a146f-caeb-4b3c-9dee-24ab002172a3",
+              "createdAt": "2026-07-28T01:19:56.000Z",
+              "updatedAt": "2026-07-28T01:19:56.000Z",
+              "uid": "35240-ee8a146f-caeb-4b3c-9dee-24ab002172a3"
+            },
+            {
+              "name": "Checkmarx List all scan presets",
+              "id": "72c0ae92-20d4-469f-ae9d-76b2d762d6e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sast/presets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sast",
+                    "presets"
+                  ]
+                },
+                "description": "Retrieve a list of all available scan presets."
+              },
+              "response": [
+                {
+                  "id": "0b649116-6314-41d4-874e-488d38c024fd",
+                  "name": "List of presets",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/presets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "presets"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"link\": {\n      \"rel\": \"<string>\",\n      \"uri\": \"<uri>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ownerName\": \"<string>\",\n    \"link\": {\n      \"rel\": \"<string>\",\n      \"uri\": \"<uri>\"\n    }\n  }\n]",
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-0b649116-6314-41d4-874e-488d38c024fd"
+                },
+                {
+                  "id": "3734419b-2488-419e-ab2f-ce521732dfc9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/presets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "presets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:56.000Z",
+                  "updatedAt": "2026-07-28T01:19:56.000Z",
+                  "uid": "35240-3734419b-2488-419e-ab2f-ce521732dfc9"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:56.000Z",
+              "updatedAt": "2026-07-28T01:19:56.000Z",
+              "uid": "35240-72c0ae92-20d4-469f-ae9d-76b2d762d6e8"
+            }
+          ],
+          "id": "20b97ac0-dfae-4b8a-b10d-6748fcf899b3",
+          "createdAt": "2026-07-28T01:19:56.000Z",
+          "updatedAt": "2026-07-28T01:19:56.000Z",
+          "uid": "35240-20b97ac0-dfae-4b8a-b10d-6748fcf899b3"
+        }
+      ],
+      "id": "ae5e430d-125a-499f-9147-1e044b3b4059",
+      "createdAt": "2026-07-28T01:19:56.000Z",
+      "updatedAt": "2026-07-28T01:19:56.000Z",
+      "uid": "35240-ae5e430d-125a-499f-9147-1e044b3b4059"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

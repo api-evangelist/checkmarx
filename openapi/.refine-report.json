@@ -1,0 +1,42 @@
+{
+  "provider": "checkmarx",
+  "sources": [
+    "checkmarx-applications-api-openapi.yml",
+    "checkmarx-authentication-api-openapi.yml",
+    "checkmarx-configuration-api-openapi.yml",
+    "checkmarx-engines-api-openapi.yml",
+    "checkmarx-groups-api-openapi.yml",
+    "checkmarx-packages-api-openapi.yml",
+    "checkmarx-presets-api-openapi.yml",
+    "checkmarx-projects-api-openapi.yml",
+    "checkmarx-queries-api-openapi.yml",
+    "checkmarx-reports-api-openapi.yml",
+    "checkmarx-results-api-openapi.yml",
+    "checkmarx-risk-reports-api-openapi.yml",
+    "checkmarx-scans-api-openapi.yml",
+    "checkmarx-settings-api-openapi.yml",
+    "checkmarx-teams-api-openapi.yml"
+  ],
+  "outputs": [
+    "checkmarx-applications-api-openapi.yml",
+    "checkmarx-authentication-api-openapi.yml",
+    "checkmarx-configuration-api-openapi.yml",
+    "checkmarx-engines-api-openapi.yml",
+    "checkmarx-groups-api-openapi.yml",
+    "checkmarx-packages-api-openapi.yml",
+    "checkmarx-presets-api-openapi.yml",
+    "checkmarx-projects-api-openapi.yml",
+    "checkmarx-queries-api-openapi.yml",
+    "checkmarx-reports-api-openapi.yml",
+    "checkmarx-results-api-openapi.yml",
+    "checkmarx-risk-reports-api-openapi.yml",
+    "checkmarx-scans-api-openapi.yml",
+    "checkmarx-settings-api-openapi.yml",
+    "checkmarx-teams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

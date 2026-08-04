@@ -1,0 +1,825 @@
+{
+  "info": {
+    "_postman_id": "4ff5bc96-28ae-44fc-af82-bdadac92ba3c",
+    "name": "Checkmarx One Applications Authentication API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:35.000Z",
+    "updatedAt": "2026-07-28T01:19:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4ff5bc96-28ae-44fc-af82-bdadac92ba3c"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "{realm}",
+              "item": [
+                {
+                  "name": "protocol",
+                  "item": [
+                    {
+                      "name": "openid-connect",
+                      "item": [
+                        {
+                          "name": "token",
+                          "item": [
+                            {
+                              "name": "Checkmarx Obtain access token",
+                              "id": "9196bc89-a004-48e2-9abe-2fabb85fe0e9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "description": "(Required) OAuth 2.0 grant type",
+                                      "key": "grant_type",
+                                      "value": "refresh_token"
+                                    },
+                                    {
+                                      "description": "(Required) API key client ID",
+                                      "key": "client_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "(Required) API key client secret",
+                                      "key": "client_secret",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Refresh token (when using refresh_token grant)",
+                                      "key": "refresh_token",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/auth/realms/:realm/protocol/openid-connect/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "auth",
+                                    "realms",
+                                    ":realm",
+                                    "protocol",
+                                    "openid-connect",
+                                    "token"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "e1a47c91-7963-4b1d-86c4-66bbc8bb5e33",
+                                      "key": "realm",
+                                      "value": "<string>",
+                                      "description": "(Required) Authentication realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Authenticate using OAuth 2.0 client credentials via the Checkmarx One IAM service to obtain a bearer token for API access."
+                              },
+                              "response": [
+                                {
+                                  "id": "9a869695-0539-4a15-bc7d-c3388d6a9d76",
+                                  "name": "Authentication successful",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) OAuth 2.0 grant type",
+                                          "key": "grant_type",
+                                          "value": "refresh_token"
+                                        },
+                                        {
+                                          "description": "(Required) API key client ID",
+                                          "key": "client_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) API key client secret",
+                                          "key": "client_secret",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Refresh token (when using refresh_token grant)",
+                                          "key": "refresh_token",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/auth/realms/:realm/protocol/openid-connect/token",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "auth",
+                                        "realms",
+                                        ":realm",
+                                        "protocol",
+                                        "openid-connect",
+                                        "token"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:19:36.000Z",
+                                  "updatedAt": "2026-07-28T01:19:36.000Z",
+                                  "uid": "35240-9a869695-0539-4a15-bc7d-c3388d6a9d76"
+                                },
+                                {
+                                  "id": "2783484d-8384-4107-b984-551e275144c8",
+                                  "name": "Invalid credentials",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "urlencoded",
+                                      "urlencoded": [
+                                        {
+                                          "description": "(Required) OAuth 2.0 grant type",
+                                          "key": "grant_type",
+                                          "value": "refresh_token"
+                                        },
+                                        {
+                                          "description": "(Required) API key client ID",
+                                          "key": "client_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "(Required) API key client secret",
+                                          "key": "client_secret",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Refresh token (when using refresh_token grant)",
+                                          "key": "refresh_token",
+                                          "value": "<string>"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/auth/realms/:realm/protocol/openid-connect/token",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "auth",
+                                        "realms",
+                                        ":realm",
+                                        "protocol",
+                                        "openid-connect",
+                                        "token"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:19:36.000Z",
+                                  "updatedAt": "2026-07-28T01:19:36.000Z",
+                                  "uid": "35240-2783484d-8384-4107-b984-551e275144c8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:19:36.000Z",
+                              "updatedAt": "2026-07-28T01:19:36.000Z",
+                              "uid": "35240-9196bc89-a004-48e2-9abe-2fabb85fe0e9"
+                            }
+                          ],
+                          "id": "f8b0e368-80f3-43d0-b9b4-dfbbf1c3cb77",
+                          "createdAt": "2026-07-28T01:19:36.000Z",
+                          "updatedAt": "2026-07-28T01:19:36.000Z",
+                          "uid": "35240-f8b0e368-80f3-43d0-b9b4-dfbbf1c3cb77"
+                        }
+                      ],
+                      "id": "3d7ab0e6-5b08-4309-bde3-dec9ed3584e3",
+                      "createdAt": "2026-07-28T01:19:36.000Z",
+                      "updatedAt": "2026-07-28T01:19:36.000Z",
+                      "uid": "35240-3d7ab0e6-5b08-4309-bde3-dec9ed3584e3"
+                    }
+                  ],
+                  "id": "e4b400b9-688f-4f2f-a2a1-f87fa4a40fd1",
+                  "createdAt": "2026-07-28T01:19:36.000Z",
+                  "updatedAt": "2026-07-28T01:19:36.000Z",
+                  "uid": "35240-e4b400b9-688f-4f2f-a2a1-f87fa4a40fd1"
+                }
+              ],
+              "id": "0229fef0-0497-49f7-a441-42a5b301427f",
+              "createdAt": "2026-07-28T01:19:36.000Z",
+              "updatedAt": "2026-07-28T01:19:36.000Z",
+              "uid": "35240-0229fef0-0497-49f7-a441-42a5b301427f"
+            }
+          ],
+          "id": "43d39913-b803-4cce-bbea-3dd1eefa78b6",
+          "createdAt": "2026-07-28T01:19:36.000Z",
+          "updatedAt": "2026-07-28T01:19:36.000Z",
+          "uid": "35240-43d39913-b803-4cce-bbea-3dd1eefa78b6"
+        },
+        {
+          "name": "identity",
+          "item": [
+            {
+              "name": "connect",
+              "item": [
+                {
+                  "name": "token",
+                  "item": [
+                    {
+                      "name": "Checkmarx Obtain access token",
+                      "id": "86fabd50-3351-4458-affe-44ec0e32e24e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) Checkmarx username",
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Checkmarx password",
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) OAuth 2.0 grant type",
+                              "key": "grant_type",
+                              "value": "password"
+                            },
+                            {
+                              "description": "(Required) OAuth scope",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) OAuth client identifier",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) OAuth client secret",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/identity/connect/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "identity",
+                            "connect",
+                            "token"
+                          ]
+                        },
+                        "description": "Authenticate using OAuth 2.0 to obtain a bearer token for accessing the Checkmarx SAST REST API. Supports both password and refresh token grant types."
+                      },
+                      "response": [
+                        {
+                          "id": "82088c92-bce1-493a-b32d-9e3c8f3406dd",
+                          "name": "Authentication successful",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) Checkmarx username",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Checkmarx password",
+                                  "key": "password",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth 2.0 grant type",
+                                  "key": "grant_type",
+                                  "value": "password"
+                                },
+                                {
+                                  "description": "(Required) OAuth scope",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth client identifier",
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth client secret",
+                                  "key": "client_secret",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/identity/connect/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "identity",
+                                "connect",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refresh_token\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:19:36.000Z",
+                          "updatedAt": "2026-07-28T01:19:36.000Z",
+                          "uid": "35240-82088c92-bce1-493a-b32d-9e3c8f3406dd"
+                        },
+                        {
+                          "id": "6afb094e-5bab-470a-b91b-c4f0d26264d7",
+                          "name": "Invalid credentials or request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) Checkmarx username",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Checkmarx password",
+                                  "key": "password",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth 2.0 grant type",
+                                  "key": "grant_type",
+                                  "value": "password"
+                                },
+                                {
+                                  "description": "(Required) OAuth scope",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth client identifier",
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) OAuth client secret",
+                                  "key": "client_secret",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/identity/connect/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "identity",
+                                "connect",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:19:36.000Z",
+                          "updatedAt": "2026-07-28T01:19:36.000Z",
+                          "uid": "35240-6afb094e-5bab-470a-b91b-c4f0d26264d7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:19:36.000Z",
+                      "updatedAt": "2026-07-28T01:19:36.000Z",
+                      "uid": "35240-86fabd50-3351-4458-affe-44ec0e32e24e"
+                    }
+                  ],
+                  "id": "01b6fcef-a906-4d18-8587-141379f40f62",
+                  "createdAt": "2026-07-28T01:19:36.000Z",
+                  "updatedAt": "2026-07-28T01:19:36.000Z",
+                  "uid": "35240-01b6fcef-a906-4d18-8587-141379f40f62"
+                }
+              ],
+              "id": "60124d47-07eb-44af-af1b-5f431c64b3e7",
+              "createdAt": "2026-07-28T01:19:36.000Z",
+              "updatedAt": "2026-07-28T01:19:36.000Z",
+              "uid": "35240-60124d47-07eb-44af-af1b-5f431c64b3e7"
+            }
+          ],
+          "id": "3b504446-bdf9-4a79-b6d5-076fa3a7d7cb",
+          "createdAt": "2026-07-28T01:19:36.000Z",
+          "updatedAt": "2026-07-28T01:19:36.000Z",
+          "uid": "35240-3b504446-bdf9-4a79-b6d5-076fa3a7d7cb"
+        }
+      ],
+      "id": "acf6debf-57c5-47d5-933b-25d5efbde10a",
+      "createdAt": "2026-07-28T01:19:36.000Z",
+      "updatedAt": "2026-07-28T01:19:36.000Z",
+      "uid": "35240-acf6debf-57c5-47d5-933b-25d5efbde10a"
+    },
+    {
+      "name": "identity",
+      "item": [
+        {
+          "name": "connect",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Checkmarx Obtain access token",
+                  "id": "493b88de-da29-48d8-80a4-a6c5342465c5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "password"
+                        },
+                        {
+                          "description": "(Required) SCA account username",
+                          "key": "username",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) SCA account password",
+                          "key": "password",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Tenant identifier",
+                          "key": "acr_values",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) API access scope",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "OAuth client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/identity/connect/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "identity",
+                        "connect",
+                        "token"
+                      ]
+                    },
+                    "description": "Authenticate using OAuth 2.0 client credentials to obtain a bearer token for accessing the Checkmarx SCA API."
+                  },
+                  "response": [
+                    {
+                      "id": "5795a56c-73af-45eb-a6b4-86d24a52fac8",
+                      "name": "Authentication successful",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) OAuth 2.0 grant type",
+                              "key": "grant_type",
+                              "value": "password"
+                            },
+                            {
+                              "description": "(Required) SCA account username",
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) SCA account password",
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Tenant identifier",
+                              "key": "acr_values",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) API access scope",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "OAuth client ID",
+                              "key": "client_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/identity/connect/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "identity",
+                            "connect",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:19:36.000Z",
+                      "updatedAt": "2026-07-28T01:19:36.000Z",
+                      "uid": "35240-5795a56c-73af-45eb-a6b4-86d24a52fac8"
+                    },
+                    {
+                      "id": "7083d1ea-a9df-4a25-b903-fa298f1500ae",
+                      "name": "Invalid credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) OAuth 2.0 grant type",
+                              "key": "grant_type",
+                              "value": "password"
+                            },
+                            {
+                              "description": "(Required) SCA account username",
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) SCA account password",
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Tenant identifier",
+                              "key": "acr_values",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) API access scope",
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "OAuth client ID",
+                              "key": "client_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/identity/connect/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "identity",
+                            "connect",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:19:36.000Z",
+                      "updatedAt": "2026-07-28T01:19:36.000Z",
+                      "uid": "35240-7083d1ea-a9df-4a25-b903-fa298f1500ae"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:19:36.000Z",
+                  "updatedAt": "2026-07-28T01:19:36.000Z",
+                  "uid": "35240-493b88de-da29-48d8-80a4-a6c5342465c5"
+                }
+              ],
+              "id": "667313c1-b6bf-4134-a1d9-b5f69a50fa3f",
+              "createdAt": "2026-07-28T01:19:36.000Z",
+              "updatedAt": "2026-07-28T01:19:36.000Z",
+              "uid": "35240-667313c1-b6bf-4134-a1d9-b5f69a50fa3f"
+            }
+          ],
+          "id": "ece73d93-3c5c-4acf-aa5b-e1b52959a9f4",
+          "createdAt": "2026-07-28T01:19:36.000Z",
+          "updatedAt": "2026-07-28T01:19:36.000Z",
+          "uid": "35240-ece73d93-3c5c-4acf-aa5b-e1b52959a9f4"
+        }
+      ],
+      "id": "d1e66801-9ecf-4156-9862-37b4500df15c",
+      "createdAt": "2026-07-28T01:19:36.000Z",
+      "updatedAt": "2026-07-28T01:19:36.000Z",
+      "uid": "35240-d1e66801-9ecf-4156-9862-37b4500df15c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

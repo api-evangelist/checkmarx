@@ -1,0 +1,157 @@
+{
+  "info": {
+    "_postman_id": "2e579a54-c09a-4bbd-a226-03e67d970cb9",
+    "name": "Checkmarx One Applications Engines API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:37.000Z",
+    "updatedAt": "2026-07-28T01:19:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2e579a54-c09a-4bbd-a226-03e67d970cb9"
+  },
+  "item": [
+    {
+      "name": "sast",
+      "item": [
+        {
+          "name": "engineServers",
+          "item": [
+            {
+              "name": "Checkmarx List engine servers",
+              "id": "4c2f0a1c-c705-41ee-b932-4cdd7dea4d20",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sast/engineServers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sast",
+                    "engineServers"
+                  ]
+                },
+                "description": "Retrieve a list of all configured SAST engine servers."
+              },
+              "response": [
+                {
+                  "id": "e8c5cb08-5a22-4121-8518-cf948e492713",
+                  "name": "List of engine servers",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/engineServers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "engineServers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"uri\": \"<uri>\",\n    \"minLoc\": \"<integer>\",\n    \"maxLoc\": \"<integer>\",\n    \"isAlive\": \"<boolean>\",\n    \"maxScans\": \"<integer>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"uri\": \"<uri>\",\n    \"minLoc\": \"<integer>\",\n    \"maxLoc\": \"<integer>\",\n    \"isAlive\": \"<boolean>\",\n    \"maxScans\": \"<integer>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:19:37.000Z",
+                  "updatedAt": "2026-07-28T01:19:37.000Z",
+                  "uid": "35240-e8c5cb08-5a22-4121-8518-cf948e492713"
+                },
+                {
+                  "id": "fc319725-05f3-4a99-97eb-3de3818693cb",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/engineServers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "engineServers"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:37.000Z",
+                  "updatedAt": "2026-07-28T01:19:37.000Z",
+                  "uid": "35240-fc319725-05f3-4a99-97eb-3de3818693cb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:37.000Z",
+              "updatedAt": "2026-07-28T01:19:37.000Z",
+              "uid": "35240-4c2f0a1c-c705-41ee-b932-4cdd7dea4d20"
+            }
+          ],
+          "id": "1f5bd363-3bad-4ff6-8aed-3f81e62fa42b",
+          "createdAt": "2026-07-28T01:19:37.000Z",
+          "updatedAt": "2026-07-28T01:19:37.000Z",
+          "uid": "35240-1f5bd363-3bad-4ff6-8aed-3f81e62fa42b"
+        }
+      ],
+      "id": "67cddf6f-5a3b-4e25-92f1-d15b901c5f2e",
+      "createdAt": "2026-07-28T01:19:37.000Z",
+      "updatedAt": "2026-07-28T01:19:37.000Z",
+      "uid": "35240-67cddf6f-5a3b-4e25-92f1-d15b901c5f2e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

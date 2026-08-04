@@ -1,0 +1,2379 @@
+{
+  "info": {
+    "_postman_id": "aae33ce6-7ebd-4718-aa27-c69cf1b40369",
+    "name": "Checkmarx One Applications Projects API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:59.000Z",
+    "updatedAt": "2026-07-28T01:19:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aae33ce6-7ebd-4718-aa27-c69cf1b40369"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "sourceCode",
+              "item": [
+                {
+                  "name": "remoteSettings",
+                  "item": [
+                    {
+                      "name": "git",
+                      "item": [
+                        {
+                          "name": "Checkmarx Get Git remote source settings",
+                          "id": "4ccf48b0-2c62-4e35-b9f3-a5b93a4baf0d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "sourceCode",
+                                "remoteSettings",
+                                "git"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b320c2ee-475b-44e8-91c4-5caf826e2c7f",
+                                  "key": "projectId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Project unique identifier"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the Git repository settings for a project."
+                          },
+                          "response": [
+                            {
+                              "id": "e17e4e83-c50c-400d-89b3-8a03554d68f7",
+                              "name": "Git remote settings",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-e17e4e83-c50c-400d-89b3-8a03554d68f7"
+                            },
+                            {
+                              "id": "a00f4802-b200-4c74-9866-b3503b016570",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-a00f4802-b200-4c74-9866-b3503b016570"
+                            },
+                            {
+                              "id": "8e85c7ad-f276-4fee-b95d-4ff9b618be52",
+                              "name": "Project not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-8e85c7ad-f276-4fee-b95d-4ff9b618be52"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:20:00.000Z",
+                          "updatedAt": "2026-07-28T01:20:00.000Z",
+                          "uid": "35240-4ccf48b0-2c62-4e35-b9f3-a5b93a4baf0d"
+                        },
+                        {
+                          "name": "Checkmarx Set Git remote source settings",
+                          "id": "56f4346e-e1a3-4add-9683-35ebcf1a72d5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "sourceCode",
+                                "remoteSettings",
+                                "git"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3597ecd8-d060-446f-a1fd-bb97f3aa3000",
+                                  "key": "projectId",
+                                  "value": "<integer>",
+                                  "description": "(Required) Project unique identifier"
+                                }
+                              ]
+                            },
+                            "description": "Configure the Git repository source settings for a project."
+                          },
+                          "response": [
+                            {
+                              "id": "1ac2c902-dd66-46c5-a230-86da850aabc5",
+                              "name": "Git settings updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-1ac2c902-dd66-46c5-a230-86da850aabc5"
+                            },
+                            {
+                              "id": "c88e4d96-e94e-4299-99bb-1e34bd03eb53",
+                              "name": "Invalid request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-c88e4d96-e94e-4299-99bb-1e34bd03eb53"
+                            },
+                            {
+                              "id": "68a8168a-ae8e-40d4-a4cf-3e7280ecdd43",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"url\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"privateKey\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/sourceCode/remoteSettings/git",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "sourceCode",
+                                    "remoteSettings",
+                                    "git"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:20:00.000Z",
+                              "updatedAt": "2026-07-28T01:20:00.000Z",
+                              "uid": "35240-68a8168a-ae8e-40d4-a4cf-3e7280ecdd43"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:20:00.000Z",
+                          "updatedAt": "2026-07-28T01:20:00.000Z",
+                          "uid": "35240-56f4346e-e1a3-4add-9683-35ebcf1a72d5"
+                        }
+                      ],
+                      "id": "451cd990-a49f-4969-bded-3d6847477e1a",
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-451cd990-a49f-4969-bded-3d6847477e1a"
+                    }
+                  ],
+                  "id": "f87eff95-451d-45b5-9765-dbde1850d20b",
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-f87eff95-451d-45b5-9765-dbde1850d20b"
+                }
+              ],
+              "id": "4fd4a9c2-c3ee-4c01-865f-89bed1c1d064",
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-4fd4a9c2-c3ee-4c01-865f-89bed1c1d064"
+            },
+            {
+              "name": "Checkmarx Get project details",
+              "id": "e88402cd-6e38-46aa-87ec-5993aae40ba7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:projectId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "732bd76b-8890-4936-9f75-9c57cbf858a5",
+                      "key": "projectId",
+                      "value": "<uuid>",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific project by ID."
+              },
+              "response": [
+                {
+                  "id": "941d42b7-836e-4878-9d7c-88cbb98b4999",
+                  "name": "Project details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"minim45\": \"<string>\",\n    \"do_e3\": \"<string>\",\n    \"incididunt_b_6\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-941d42b7-836e-4878-9d7c-88cbb98b4999"
+                },
+                {
+                  "id": "c24748a9-981a-45fe-9f9b-195b7be44404",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-c24748a9-981a-45fe-9f9b-195b7be44404"
+                },
+                {
+                  "id": "1f56d388-6b76-424d-9697-ae0a72d1c21e",
+                  "name": "Project not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-1f56d388-6b76-424d-9697-ae0a72d1c21e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-e88402cd-6e38-46aa-87ec-5993aae40ba7"
+            },
+            {
+              "name": "Checkmarx Update a project",
+              "id": "da182c8b-3ee5-48b9-8560-ddeb13498429",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"tags\": {\n    \"irurea\": \"<string>\",\n    \"magna_5ce\": \"<string>\",\n    \"aute1\": \"<string>\",\n    \"dolor_9\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:projectId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "38f472f8-9b76-4821-ae8f-1db6a26fe1fb",
+                      "key": "projectId",
+                      "value": "<uuid>",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "description": "Update an existing project's configuration."
+              },
+              "response": [
+                {
+                  "id": "93f1490c-0fa9-42f4-ab90-9cfc9df00418",
+                  "name": "Project updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"tags\": {\n    \"irurea\": \"<string>\",\n    \"magna_5ce\": \"<string>\",\n    \"aute1\": \"<string>\",\n    \"dolor_9\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-93f1490c-0fa9-42f4-ab90-9cfc9df00418"
+                },
+                {
+                  "id": "742ceb3a-000e-411b-9a58-0db0745490e3",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"tags\": {\n    \"irurea\": \"<string>\",\n    \"magna_5ce\": \"<string>\",\n    \"aute1\": \"<string>\",\n    \"dolor_9\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-742ceb3a-000e-411b-9a58-0db0745490e3"
+                },
+                {
+                  "id": "01a3c7cd-4250-465a-8986-c7bb31320c73",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"tags\": {\n    \"irurea\": \"<string>\",\n    \"magna_5ce\": \"<string>\",\n    \"aute1\": \"<string>\",\n    \"dolor_9\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-01a3c7cd-4250-465a-8986-c7bb31320c73"
+                },
+                {
+                  "id": "63b1cc77-df17-44e4-8c28-9e12f2a2872b",
+                  "name": "Project not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"tags\": {\n    \"irurea\": \"<string>\",\n    \"magna_5ce\": \"<string>\",\n    \"aute1\": \"<string>\",\n    \"dolor_9\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-63b1cc77-df17-44e4-8c28-9e12f2a2872b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-da182c8b-3ee5-48b9-8560-ddeb13498429"
+            },
+            {
+              "name": "Checkmarx Delete a project",
+              "id": "58134898-471b-4956-9ae1-140aa8e39e13",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:projectId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a7e156e8-c480-4705-8196-75c8c40953ea",
+                      "key": "projectId",
+                      "value": "<uuid>",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a project and all its associated scans and results."
+              },
+              "response": [
+                {
+                  "id": "5cda6418-9297-46ec-87a5-430a3b928e99",
+                  "name": "Project deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-5cda6418-9297-46ec-87a5-430a3b928e99"
+                },
+                {
+                  "id": "20d65b53-ae53-49e5-997a-d206b7a9697c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-20d65b53-ae53-49e5-997a-d206b7a9697c"
+                },
+                {
+                  "id": "60134e94-ace9-43df-b87b-128c3d8db027",
+                  "name": "Project not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-60134e94-ace9-43df-b87b-128c3d8db027"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-58134898-471b-4956-9ae1-140aa8e39e13"
+            }
+          ],
+          "id": "b47f058f-4b38-4fd3-a981-462ea676ae89",
+          "createdAt": "2026-07-28T01:20:00.000Z",
+          "updatedAt": "2026-07-28T01:20:00.000Z",
+          "uid": "35240-b47f058f-4b38-4fd3-a981-462ea676ae89"
+        },
+        {
+          "name": "Checkmarx List projects",
+          "id": "2146f06f-7cb5-42f4-b44d-d2cb5820e1e7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects?offset=0&limit=20&name=<string>&groups=<string>&tags-keys=<string>&tags-values=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ],
+              "query": [
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Filter by project name",
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by group IDs (comma-separated)",
+                  "key": "groups",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by tag keys",
+                  "key": "tags-keys",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by tag values",
+                  "key": "tags-values",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve all projects with optional filtering by name, group, or tag."
+          },
+          "response": [
+            {
+              "id": "c49152ab-23f6-49bb-aeeb-3e1ebc64eb5d",
+              "name": "List of projects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects?offset=0&limit=20&name=<string>&groups=<string>&tags-keys=<string>&tags-values=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by project name",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by group IDs (comma-separated)",
+                      "key": "groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tag keys",
+                      "key": "tags-keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tag values",
+                      "key": "tags-values",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"filteredTotalCount\": \"<integer>\",\n  \"projects\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"groups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"repoUrl\": \"<string>\",\n      \"mainBranch\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"tags\": {\n        \"nostruddb4\": \"<string>\",\n        \"consequat_d\": \"<string>\",\n        \"adf17\": \"<string>\"\n      },\n      \"criticality\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"groups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"repoUrl\": \"<string>\",\n      \"mainBranch\": \"<string>\",\n      \"origin\": \"<string>\",\n      \"tags\": {\n        \"irure1\": \"<string>\"\n      },\n      \"criticality\": \"<integer>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-c49152ab-23f6-49bb-aeeb-3e1ebc64eb5d"
+            },
+            {
+              "id": "262f2c41-bbb3-49f1-99cb-5451a7c54d67",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects?offset=0&limit=20&name=<string>&groups=<string>&tags-keys=<string>&tags-values=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by project name",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by group IDs (comma-separated)",
+                      "key": "groups",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tag keys",
+                      "key": "tags-keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tag values",
+                      "key": "tags-values",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-262f2c41-bbb3-49f1-99cb-5451a7c54d67"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:00.000Z",
+          "updatedAt": "2026-07-28T01:20:00.000Z",
+          "uid": "35240-2146f06f-7cb5-42f4-b44d-d2cb5820e1e7"
+        },
+        {
+          "name": "Checkmarx Create a project",
+          "id": "641292ec-c980-4e9e-817e-2d084c2ab557",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"main\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"velit4\": \"<string>\",\n    \"ut_6e\": \"<string>\"\n  },\n  \"criticality\": 3\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Create a new project for security scanning. A project represents a code repository or application component to be scanned."
+          },
+          "response": [
+            {
+              "id": "d7c82dcd-fc0f-405d-909d-e073596fdc06",
+              "name": "Project created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"main\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"velit4\": \"<string>\",\n    \"ut_6e\": \"<string>\"\n  },\n  \"criticality\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"minim45\": \"<string>\",\n    \"do_e3\": \"<string>\",\n    \"incididunt_b_6\": \"<string>\"\n  },\n  \"criticality\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-d7c82dcd-fc0f-405d-909d-e073596fdc06"
+            },
+            {
+              "id": "17b2fa40-bfa9-4053-9380-dd00fea37cb2",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"main\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"velit4\": \"<string>\",\n    \"ut_6e\": \"<string>\"\n  },\n  \"criticality\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-17b2fa40-bfa9-4053-9380-dd00fea37cb2"
+            },
+            {
+              "id": "6eb43953-3cf7-4275-82c5-a5e64b4c06d2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repoUrl\": \"<string>\",\n  \"mainBranch\": \"main\",\n  \"origin\": \"<string>\",\n  \"tags\": {\n    \"velit4\": \"<string>\",\n    \"ut_6e\": \"<string>\"\n  },\n  \"criticality\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-6eb43953-3cf7-4275-82c5-a5e64b4c06d2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:00.000Z",
+          "updatedAt": "2026-07-28T01:20:00.000Z",
+          "uid": "35240-641292ec-c980-4e9e-817e-2d084c2ab557"
+        }
+      ],
+      "id": "02c23a5b-1e45-4ff2-a796-d7128f89ea9d",
+      "createdAt": "2026-07-28T01:20:00.000Z",
+      "updatedAt": "2026-07-28T01:20:00.000Z",
+      "uid": "35240-02c23a5b-1e45-4ff2-a796-d7128f89ea9d"
+    },
+    {
+      "name": "risk-management",
+      "item": [
+        {
+          "name": "projects",
+          "item": [
+            {
+              "name": "{projectId}",
+              "item": [
+                {
+                  "name": "Checkmarx Get project details",
+                  "id": "64ad3d4a-6274-4fde-964a-d9377b0bf31d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9cf06cb1-752a-48f2-8072-d2283a23c770",
+                          "key": "projectId",
+                          "value": "<uuid>",
+                          "description": "(Required) Project unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific SCA project."
+                  },
+                  "response": [
+                    {
+                      "id": "e89f84f9-f34e-49c4-8c55-2cac4154f1c1",
+                      "name": "Project details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"createdOn\": \"<dateTime>\",\n  \"tenantId\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastScanDate\": \"<dateTime>\",\n  \"riskScore\": \"<float>\",\n  \"totalPackages\": \"<integer>\",\n  \"highVulnerabilityCount\": \"<integer>\",\n  \"mediumVulnerabilityCount\": \"<integer>\",\n  \"lowVulnerabilityCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-e89f84f9-f34e-49c4-8c55-2cac4154f1c1"
+                    },
+                    {
+                      "id": "03406522-002b-4b7d-9c3a-79ebd2996ead",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-03406522-002b-4b7d-9c3a-79ebd2996ead"
+                    },
+                    {
+                      "id": "9ae587c3-339d-4c2a-82bc-66a9883172a5",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-9ae587c3-339d-4c2a-82bc-66a9883172a5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-64ad3d4a-6274-4fde-964a-d9377b0bf31d"
+                },
+                {
+                  "name": "Checkmarx Update a project",
+                  "id": "774be97c-c7e9-4938-ada5-219b788620ce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "529887b9-63ae-45b4-bcd6-3a2c261c0cfd",
+                          "key": "projectId",
+                          "value": "<uuid>",
+                          "description": "(Required) Project unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Update the configuration of an existing SCA project."
+                  },
+                  "response": [
+                    {
+                      "id": "4293fb70-a0ec-42b0-9abf-3cbe826b9f71",
+                      "name": "Project updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-4293fb70-a0ec-42b0-9abf-3cbe826b9f71"
+                    },
+                    {
+                      "id": "829d8962-5bc2-452f-b00d-13b92edf004e",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-829d8962-5bc2-452f-b00d-13b92edf004e"
+                    },
+                    {
+                      "id": "69f30209-6482-47e3-a09b-380e38b02dda",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-69f30209-6482-47e3-a09b-380e38b02dda"
+                    },
+                    {
+                      "id": "bebf4672-ac12-40f5-8b60-11c27c80d2ee",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-bebf4672-ac12-40f5-8b60-11c27c80d2ee"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-774be97c-c7e9-4938-ada5-219b788620ce"
+                },
+                {
+                  "name": "Checkmarx Delete a project",
+                  "id": "15247df0-97a9-43f5-97ea-211568703734",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "37ff0d1a-c7c0-4822-ba4c-cc37ea9316a9",
+                          "key": "projectId",
+                          "value": "<uuid>",
+                          "description": "(Required) Project unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Delete an SCA project and all associated scan data."
+                  },
+                  "response": [
+                    {
+                      "id": "050a3c2a-e846-403e-8a17-a773475ccc0b",
+                      "name": "Project deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-050a3c2a-e846-403e-8a17-a773475ccc0b"
+                    },
+                    {
+                      "id": "81be63bb-91ff-4893-8eee-6db1fa3f00ad",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-81be63bb-91ff-4893-8eee-6db1fa3f00ad"
+                    },
+                    {
+                      "id": "5d013ec3-8636-43c5-a74e-f5183ba835fb",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/projects/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "projects",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:00.000Z",
+                      "updatedAt": "2026-07-28T01:20:00.000Z",
+                      "uid": "35240-5d013ec3-8636-43c5-a74e-f5183ba835fb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-15247df0-97a9-43f5-97ea-211568703734"
+                }
+              ],
+              "id": "f0ba746d-1be5-480e-81d7-4584b58e6fd1",
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-f0ba746d-1be5-480e-81d7-4584b58e6fd1"
+            },
+            {
+              "name": "Checkmarx List all projects",
+              "id": "858f4851-ee25-4560-b7e8-e32f676e4048",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/risk-management/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "risk-management",
+                    "projects"
+                  ]
+                },
+                "description": "Retrieve a list of all SCA projects for the authenticated tenant."
+              },
+              "response": [
+                {
+                  "id": "933f969f-79de-4ce1-ba8e-d8170b72144b",
+                  "name": "List of projects",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"createdOn\": \"<dateTime>\",\n    \"tenantId\": \"<string>\",\n    \"assignedTeams\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastScanDate\": \"<dateTime>\",\n    \"riskScore\": \"<float>\",\n    \"totalPackages\": \"<integer>\",\n    \"highVulnerabilityCount\": \"<integer>\",\n    \"mediumVulnerabilityCount\": \"<integer>\",\n    \"lowVulnerabilityCount\": \"<integer>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"createdOn\": \"<dateTime>\",\n    \"tenantId\": \"<string>\",\n    \"assignedTeams\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastScanDate\": \"<dateTime>\",\n    \"riskScore\": \"<float>\",\n    \"totalPackages\": \"<integer>\",\n    \"highVulnerabilityCount\": \"<integer>\",\n    \"mediumVulnerabilityCount\": \"<integer>\",\n    \"lowVulnerabilityCount\": \"<integer>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-933f969f-79de-4ce1-ba8e-d8170b72144b"
+                },
+                {
+                  "id": "9f169dc4-f4bd-45bd-860b-87218c0cd6c4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-9f169dc4-f4bd-45bd-860b-87218c0cd6c4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-858f4851-ee25-4560-b7e8-e32f676e4048"
+            },
+            {
+              "name": "Checkmarx Create a new project",
+              "id": "9455791d-0016-4b13-a42d-85d3d2a56645",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/risk-management/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "risk-management",
+                    "projects"
+                  ]
+                },
+                "description": "Create a new SCA project for scanning open source dependencies."
+              },
+              "response": [
+                {
+                  "id": "b203c2b0-1c36-4444-b990-e206bcad6d41",
+                  "name": "Project created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"createdOn\": \"<dateTime>\",\n  \"tenantId\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastScanDate\": \"<dateTime>\",\n  \"riskScore\": \"<float>\",\n  \"totalPackages\": \"<integer>\",\n  \"highVulnerabilityCount\": \"<integer>\",\n  \"mediumVulnerabilityCount\": \"<integer>\",\n  \"lowVulnerabilityCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-b203c2b0-1c36-4444-b990-e206bcad6d41"
+                },
+                {
+                  "id": "32cb4e57-8d5b-4bad-82e8-35ad341b7e73",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-32cb4e57-8d5b-4bad-82e8-35ad341b7e73"
+                },
+                {
+                  "id": "ad86bcc0-de81-4462-b412-8d310c595d38",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"assignedTeams\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/projects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "projects"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:00.000Z",
+                  "updatedAt": "2026-07-28T01:20:00.000Z",
+                  "uid": "35240-ad86bcc0-de81-4462-b412-8d310c595d38"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:00.000Z",
+              "updatedAt": "2026-07-28T01:20:00.000Z",
+              "uid": "35240-9455791d-0016-4b13-a42d-85d3d2a56645"
+            }
+          ],
+          "id": "78faefdb-03d5-4e0a-a2e3-198c1ee293bf",
+          "createdAt": "2026-07-28T01:20:00.000Z",
+          "updatedAt": "2026-07-28T01:20:00.000Z",
+          "uid": "35240-78faefdb-03d5-4e0a-a2e3-198c1ee293bf"
+        }
+      ],
+      "id": "bb8ed9de-fd22-459a-92a9-8444c660cb53",
+      "createdAt": "2026-07-28T01:20:00.000Z",
+      "updatedAt": "2026-07-28T01:20:00.000Z",
+      "uid": "35240-bb8ed9de-fd22-459a-92a9-8444c660cb53"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

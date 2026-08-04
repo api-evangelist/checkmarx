@@ -1,0 +1,181 @@
+{
+  "info": {
+    "_postman_id": "fa71ac0d-3646-4b58-bd5b-5723ad84e76b",
+    "name": "Checkmarx One Applications Queries API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:00.000Z",
+    "updatedAt": "2026-07-28T01:20:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fa71ac0d-3646-4b58-bd5b-5723ad84e76b"
+  },
+  "item": [
+    {
+      "name": "queries",
+      "item": [
+        {
+          "name": "Checkmarx List SAST queries",
+          "id": "b7ed9a35-7d17-43ad-b75a-2d6369a84c8c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/queries?offset=<integer>&limit=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "queries"
+              ],
+              "query": [
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of available SAST queries and presets."
+          },
+          "response": [
+            {
+              "id": "6b003967-dd39-47e8-96a9-25eabf0cdac9",
+              "name": "List of queries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries?offset=<integer>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"group\": \"<string>\",\n    \"language\": \"<string>\",\n    \"severity\": \"High\",\n    \"cweId\": \"<integer>\",\n    \"isCustom\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"group\": \"<string>\",\n    \"language\": \"<string>\",\n    \"severity\": \"Info\",\n    \"cweId\": \"<integer>\",\n    \"isCustom\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:20:01.000Z",
+              "updatedAt": "2026-07-28T01:20:01.000Z",
+              "uid": "35240-6b003967-dd39-47e8-96a9-25eabf0cdac9"
+            },
+            {
+              "id": "49c5727a-6462-48fa-98a6-481dcf59806e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries?offset=<integer>&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:01.000Z",
+              "updatedAt": "2026-07-28T01:20:01.000Z",
+              "uid": "35240-49c5727a-6462-48fa-98a6-481dcf59806e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:01.000Z",
+          "updatedAt": "2026-07-28T01:20:01.000Z",
+          "uid": "35240-b7ed9a35-7d17-43ad-b75a-2d6369a84c8c"
+        }
+      ],
+      "id": "37e6b377-e350-4bcf-bb24-136c6ae8eba2",
+      "createdAt": "2026-07-28T01:20:01.000Z",
+      "updatedAt": "2026-07-28T01:20:01.000Z",
+      "uid": "35240-37e6b377-e350-4bcf-bb24-136c6ae8eba2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

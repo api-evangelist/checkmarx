@@ -1,0 +1,2043 @@
+{
+  "info": {
+    "_postman_id": "a72044f6-de13-45fd-8249-73845bd345cb",
+    "name": "Checkmarx One Applications Scans API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:04.000Z",
+    "updatedAt": "2026-07-28T01:20:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a72044f6-de13-45fd-8249-73845bd345cb"
+  },
+  "item": [
+    {
+      "name": "scans",
+      "item": [
+        {
+          "name": "{scanId}",
+          "item": [
+            {
+              "name": "Checkmarx Get scan details",
+              "id": "100eb09f-c8cb-4d2e-9595-592e2fb7d1bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scans/:scanId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans",
+                    ":scanId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f5670330-12f0-48a3-ad60-638479a20711",
+                      "key": "scanId",
+                      "value": "<uuid>",
+                      "description": "(Required) Scan unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details and status of a specific scan."
+              },
+              "response": [
+                {
+                  "id": "620079b4-6009-402c-b2c4-8ea5142637a0",
+                  "name": "Scan details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"Running\",\n  \"statusDetails\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    }\n  ],\n  \"projectId\": \"<uuid>\",\n  \"projectName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"engines\": [\n    \"kics\",\n    \"sast\"\n  ],\n  \"sourceType\": \"<string>\",\n  \"sourceOrigin\": \"<string>\",\n  \"initiator\": \"<string>\",\n  \"tags\": {\n    \"sunt_33\": \"<string>\",\n    \"ut_daa\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-620079b4-6009-402c-b2c4-8ea5142637a0"
+                },
+                {
+                  "id": "d817c33e-27fe-40c5-a7bd-1e6e81ea18d7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-d817c33e-27fe-40c5-a7bd-1e6e81ea18d7"
+                },
+                {
+                  "id": "a6f7fb5b-d0de-4588-add0-70b037057664",
+                  "name": "Scan not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-a6f7fb5b-d0de-4588-add0-70b037057664"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-100eb09f-c8cb-4d2e-9595-592e2fb7d1bb"
+            },
+            {
+              "name": "Checkmarx Cancel a scan",
+              "id": "19ae2f70-aac7-4dfa-a900-8d830639f5c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/scans/:scanId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans",
+                    ":scanId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1bf4dfcf-f586-4628-b34a-abc3615feb3e",
+                      "key": "scanId",
+                      "value": "<uuid>",
+                      "description": "(Required) Scan unique identifier"
+                    }
+                  ]
+                },
+                "description": "Cancel a running or queued scan."
+              },
+              "response": [
+                {
+                  "id": "a8e6b51f-5059-4c25-88b3-72a980d45e61",
+                  "name": "Scan canceled",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-a8e6b51f-5059-4c25-88b3-72a980d45e61"
+                },
+                {
+                  "id": "78a79bc0-01ed-4ac1-9a82-d57e70fa767d",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-78a79bc0-01ed-4ac1-9a82-d57e70fa767d"
+                },
+                {
+                  "id": "31d2e5c9-cedb-4042-a486-ff97706dc66b",
+                  "name": "Scan not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scanId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-31d2e5c9-cedb-4042-a486-ff97706dc66b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-19ae2f70-aac7-4dfa-a900-8d830639f5c7"
+            }
+          ],
+          "id": "51f8ce12-6aee-43de-9a04-049e3f4f4774",
+          "createdAt": "2026-07-28T01:20:05.000Z",
+          "updatedAt": "2026-07-28T01:20:05.000Z",
+          "uid": "35240-51f8ce12-6aee-43de-9a04-049e3f4f4774"
+        },
+        {
+          "name": "Checkmarx List scans",
+          "id": "29a067bb-6b6d-47e2-9fd4-565a9f5fb06c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scans?offset=0&limit=20&project-id=<uuid>&statuses=<string>&sort=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scans"
+              ],
+              "query": [
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Filter by project ID",
+                  "key": "project-id",
+                  "value": "<uuid>"
+                },
+                {
+                  "description": "Filter by scan statuses (comma-separated)",
+                  "key": "statuses",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort field and direction",
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve scans with optional filtering by project, status, and scan type."
+          },
+          "response": [
+            {
+              "id": "1b0ba184-a5cf-4723-a315-7c448a5aabd8",
+              "name": "List of scans",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scans?offset=0&limit=20&project-id=<uuid>&statuses=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by project ID",
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Filter by scan statuses (comma-separated)",
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"filteredTotalCount\": \"<integer>\",\n  \"scans\": [\n    {\n      \"id\": \"<uuid>\",\n      \"status\": \"Failed\",\n      \"statusDetails\": [\n        {\n          \"name\": \"<string>\",\n          \"status\": \"<string>\",\n          \"details\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"status\": \"<string>\",\n          \"details\": \"<string>\"\n        }\n      ],\n      \"projectId\": \"<uuid>\",\n      \"projectName\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"engines\": [\n        \"sca\",\n        \"kics\"\n      ],\n      \"sourceType\": \"<string>\",\n      \"sourceOrigin\": \"<string>\",\n      \"initiator\": \"<string>\",\n      \"tags\": {\n        \"ut8a\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"status\": \"Queued\",\n      \"statusDetails\": [\n        {\n          \"name\": \"<string>\",\n          \"status\": \"<string>\",\n          \"details\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"status\": \"<string>\",\n          \"details\": \"<string>\"\n        }\n      ],\n      \"projectId\": \"<uuid>\",\n      \"projectName\": \"<string>\",\n      \"branch\": \"<string>\",\n      \"engines\": [\n        \"sast\",\n        \"kics\"\n      ],\n      \"sourceType\": \"<string>\",\n      \"sourceOrigin\": \"<string>\",\n      \"initiator\": \"<string>\",\n      \"tags\": {\n        \"officia_91e\": \"<string>\",\n        \"culpa_4c\": \"<string>\",\n        \"ullamco__9\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-1b0ba184-a5cf-4723-a315-7c448a5aabd8"
+            },
+            {
+              "id": "2b0e5cfe-ca0e-49b9-a429-e8afcde57b28",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scans?offset=0&limit=20&project-id=<uuid>&statuses=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by project ID",
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Filter by scan statuses (comma-separated)",
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field and direction",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-2b0e5cfe-ca0e-49b9-a429-e8afcde57b28"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:05.000Z",
+          "updatedAt": "2026-07-28T01:20:05.000Z",
+          "uid": "35240-29a067bb-6b6d-47e2-9fd4-565a9f5fb06c"
+        },
+        {
+          "name": "Checkmarx Create a new scan",
+          "id": "0ffa0040-ca50-4c5c-b8f6-c89e385a2f49",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": {\n    \"id\": \"<uuid>\"\n  },\n  \"type\": \"upload\",\n  \"handler\": {\n    \"repoUrl\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"uploadUrl\": \"<string>\"\n  },\n  \"config\": [\n    {\n      \"type\": \"apisec\",\n      \"value\": {\n        \"ete26\": \"qui sit Excepteur\"\n      }\n    },\n    {\n      \"type\": \"kics\",\n      \"value\": {\n        \"laborecf\": \"dolore sunt qui\",\n        \"commodo8\": \"et do aliqua ullamco\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"dolore_f_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/scans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scans"
+              ]
+            },
+            "description": "Initiate a new security scan for a project. The scan can include SAST, SCA, KICS, and other scan types based on project configuration."
+          },
+          "response": [
+            {
+              "id": "05299fb7-6de8-4b1d-bc04-f4eb65396405",
+              "name": "Scan created and queued",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<uuid>\"\n  },\n  \"type\": \"upload\",\n  \"handler\": {\n    \"repoUrl\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"uploadUrl\": \"<string>\"\n  },\n  \"config\": [\n    {\n      \"type\": \"apisec\",\n      \"value\": {\n        \"ete26\": \"qui sit Excepteur\"\n      }\n    },\n    {\n      \"type\": \"kics\",\n      \"value\": {\n        \"laborecf\": \"dolore sunt qui\",\n        \"commodo8\": \"et do aliqua ullamco\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"dolore_f_3\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"status\": \"Running\",\n  \"statusDetails\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"details\": \"<string>\"\n    }\n  ],\n  \"projectId\": \"<uuid>\",\n  \"projectName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"engines\": [\n    \"kics\",\n    \"sast\"\n  ],\n  \"sourceType\": \"<string>\",\n  \"sourceOrigin\": \"<string>\",\n  \"initiator\": \"<string>\",\n  \"tags\": {\n    \"sunt_33\": \"<string>\",\n    \"ut_daa\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-05299fb7-6de8-4b1d-bc04-f4eb65396405"
+            },
+            {
+              "id": "8070460d-2684-4126-b91f-a6b48b6ef056",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<uuid>\"\n  },\n  \"type\": \"upload\",\n  \"handler\": {\n    \"repoUrl\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"uploadUrl\": \"<string>\"\n  },\n  \"config\": [\n    {\n      \"type\": \"apisec\",\n      \"value\": {\n        \"ete26\": \"qui sit Excepteur\"\n      }\n    },\n    {\n      \"type\": \"kics\",\n      \"value\": {\n        \"laborecf\": \"dolore sunt qui\",\n        \"commodo8\": \"et do aliqua ullamco\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"dolore_f_3\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-8070460d-2684-4126-b91f-a6b48b6ef056"
+            },
+            {
+              "id": "da4ba35d-5271-470c-983c-524f0d9e567f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": {\n    \"id\": \"<uuid>\"\n  },\n  \"type\": \"upload\",\n  \"handler\": {\n    \"repoUrl\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"uploadUrl\": \"<string>\"\n  },\n  \"config\": [\n    {\n      \"type\": \"apisec\",\n      \"value\": {\n        \"ete26\": \"qui sit Excepteur\"\n      }\n    },\n    {\n      \"type\": \"kics\",\n      \"value\": {\n        \"laborecf\": \"dolore sunt qui\",\n        \"commodo8\": \"et do aliqua ullamco\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"dolore_f_3\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/scans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scans"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-da4ba35d-5271-470c-983c-524f0d9e567f"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:05.000Z",
+          "updatedAt": "2026-07-28T01:20:05.000Z",
+          "uid": "35240-0ffa0040-ca50-4c5c-b8f6-c89e385a2f49"
+        }
+      ],
+      "id": "c442355f-00d8-49bf-819c-c1f3036c2497",
+      "createdAt": "2026-07-28T01:20:05.000Z",
+      "updatedAt": "2026-07-28T01:20:05.000Z",
+      "uid": "35240-c442355f-00d8-49bf-819c-c1f3036c2497"
+    },
+    {
+      "name": "sast",
+      "item": [
+        {
+          "name": "scans",
+          "item": [
+            {
+              "name": "{scanId}",
+              "item": [
+                {
+                  "name": "Checkmarx Get scan details",
+                  "id": "89e05bae-84cf-481c-bf18-e63190754a0f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4c343674-912f-413f-9c73-9014192801b1",
+                          "key": "scanId",
+                          "value": "<integer>",
+                          "description": "(Required) Scan unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific scan by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "627fda61-a795-4540-8e04-3dd63de28c5c",
+                      "name": "Scan details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"project\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Failed\"\n  },\n  \"scanType\": \"Full\",\n  \"comment\": \"<string>\",\n  \"dateAndTime\": {\n    \"startedOn\": \"<dateTime>\",\n    \"finishedOn\": \"<dateTime>\",\n    \"engineStartedOn\": \"<dateTime>\",\n    \"engineFinishedOn\": \"<dateTime>\"\n  },\n  \"resultsStatistics\": {\n    \"highSeverity\": \"<integer>\",\n    \"mediumSeverity\": \"<integer>\",\n    \"lowSeverity\": \"<integer>\",\n    \"infoSeverity\": \"<integer>\",\n    \"statisticsCalculationDate\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-627fda61-a795-4540-8e04-3dd63de28c5c"
+                    },
+                    {
+                      "id": "75ebcb89-50a9-48a6-9a19-bda4a0d8494d",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-75ebcb89-50a9-48a6-9a19-bda4a0d8494d"
+                    },
+                    {
+                      "id": "c509a53f-2916-4545-bf08-0f63d7959341",
+                      "name": "Scan not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-c509a53f-2916-4545-bf08-0f63d7959341"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-89e05bae-84cf-481c-bf18-e63190754a0f"
+                },
+                {
+                  "name": "Checkmarx Update scan status",
+                  "id": "d5e35791-3d58-4b6a-bf09-5edecf7035ac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"Canceled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "14b4728d-d4e2-4cb5-b497-2d6fa601cc8e",
+                          "key": "scanId",
+                          "value": "<integer>",
+                          "description": "(Required) Scan unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Update the status of a scan, such as canceling a running scan."
+                  },
+                  "response": [
+                    {
+                      "id": "5ec5a7bf-c8bb-4a0e-9c70-e9a73421345e",
+                      "name": "Scan status updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"Canceled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-5ec5a7bf-c8bb-4a0e-9c70-e9a73421345e"
+                    },
+                    {
+                      "id": "0ad0cd75-97ac-4b43-8a2a-9468571fe46f",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"Canceled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-0ad0cd75-97ac-4b43-8a2a-9468571fe46f"
+                    },
+                    {
+                      "id": "9681d7f1-147b-4c38-a4bd-3577e18fc552",
+                      "name": "Scan not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"Canceled\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-9681d7f1-147b-4c38-a4bd-3577e18fc552"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-d5e35791-3d58-4b6a-bf09-5edecf7035ac"
+                }
+              ],
+              "id": "40322452-9e54-47ad-833b-ca4cfdca8c6d",
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-40322452-9e54-47ad-833b-ca4cfdca8c6d"
+            },
+            {
+              "name": "Checkmarx List all scans",
+              "id": "3bf01851-6444-47ab-bba2-bade44861ce7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sast/scans?projectId=<integer>&scanStatus=Finished&last=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sast",
+                    "scans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter scans by project ID",
+                      "key": "projectId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Filter by scan status",
+                      "key": "scanStatus",
+                      "value": "Finished"
+                    },
+                    {
+                      "description": "Number of most recent scans to return",
+                      "key": "last",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of all SAST scans, with optional filtering by project, scan status, and date range."
+              },
+              "response": [
+                {
+                  "id": "ad826e79-7e1b-473c-ba35-ddb1e250197a",
+                  "name": "List of scans",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans?projectId=<integer>&scanStatus=Finished&last=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter scans by project ID",
+                          "key": "projectId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filter by scan status",
+                          "key": "scanStatus",
+                          "value": "Finished"
+                        },
+                        {
+                          "description": "Number of most recent scans to return",
+                          "key": "last",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"project\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"status\": {\n      \"id\": \"<integer>\",\n      \"name\": \"PreScan\"\n    },\n    \"scanType\": \"Incremental\",\n    \"comment\": \"<string>\",\n    \"dateAndTime\": {\n      \"startedOn\": \"<dateTime>\",\n      \"finishedOn\": \"<dateTime>\",\n      \"engineStartedOn\": \"<dateTime>\",\n      \"engineFinishedOn\": \"<dateTime>\"\n    },\n    \"resultsStatistics\": {\n      \"highSeverity\": \"<integer>\",\n      \"mediumSeverity\": \"<integer>\",\n      \"lowSeverity\": \"<integer>\",\n      \"infoSeverity\": \"<integer>\",\n      \"statisticsCalculationDate\": \"<dateTime>\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"project\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"status\": {\n      \"id\": \"<integer>\",\n      \"name\": \"PreScan\"\n    },\n    \"scanType\": \"Incremental\",\n    \"comment\": \"<string>\",\n    \"dateAndTime\": {\n      \"startedOn\": \"<dateTime>\",\n      \"finishedOn\": \"<dateTime>\",\n      \"engineStartedOn\": \"<dateTime>\",\n      \"engineFinishedOn\": \"<dateTime>\"\n    },\n    \"resultsStatistics\": {\n      \"highSeverity\": \"<integer>\",\n      \"mediumSeverity\": \"<integer>\",\n      \"lowSeverity\": \"<integer>\",\n      \"infoSeverity\": \"<integer>\",\n      \"statisticsCalculationDate\": \"<dateTime>\"\n    }\n  }\n]",
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-ad826e79-7e1b-473c-ba35-ddb1e250197a"
+                },
+                {
+                  "id": "d669231d-e729-41e1-bec2-596779c49890",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans?projectId=<integer>&scanStatus=Finished&last=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter scans by project ID",
+                          "key": "projectId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filter by scan status",
+                          "key": "scanStatus",
+                          "value": "Finished"
+                        },
+                        {
+                          "description": "Number of most recent scans to return",
+                          "key": "last",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-d669231d-e729-41e1-bec2-596779c49890"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-3bf01851-6444-47ab-bba2-bade44861ce7"
+            },
+            {
+              "name": "Checkmarx Create a new scan",
+              "id": "6fb6281f-2f84-4e70-91d8-244e78a83e6d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sast/scans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sast",
+                    "scans"
+                  ]
+                },
+                "description": "Initiate a new SAST scan for a project. The scan will be queued and executed based on engine availability."
+              },
+              "response": [
+                {
+                  "id": "15628654-e28b-4d02-a919-7bd484f7f88b",
+                  "name": "Scan created and queued",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"project\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Failed\"\n  },\n  \"scanType\": \"Full\",\n  \"comment\": \"<string>\",\n  \"dateAndTime\": {\n    \"startedOn\": \"<dateTime>\",\n    \"finishedOn\": \"<dateTime>\",\n    \"engineStartedOn\": \"<dateTime>\",\n    \"engineFinishedOn\": \"<dateTime>\"\n  },\n  \"resultsStatistics\": {\n    \"highSeverity\": \"<integer>\",\n    \"mediumSeverity\": \"<integer>\",\n    \"lowSeverity\": \"<integer>\",\n    \"infoSeverity\": \"<integer>\",\n    \"statisticsCalculationDate\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-15628654-e28b-4d02-a919-7bd484f7f88b"
+                },
+                {
+                  "id": "06c30fb7-65a4-47e5-a655-f4e8f16ebbcb",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-06c30fb7-65a4-47e5-a655-f4e8f16ebbcb"
+                },
+                {
+                  "id": "6171b6b3-eb7a-42be-8ccb-8db442ee4d7b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<integer>\",\n  \"isIncremental\": false,\n  \"isPublic\": true,\n  \"forceScan\": false,\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sast/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sast",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-6171b6b3-eb7a-42be-8ccb-8db442ee4d7b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-6fb6281f-2f84-4e70-91d8-244e78a83e6d"
+            }
+          ],
+          "id": "e03bc587-bf9c-476d-9be8-7afd71a0582a",
+          "createdAt": "2026-07-28T01:20:05.000Z",
+          "updatedAt": "2026-07-28T01:20:05.000Z",
+          "uid": "35240-e03bc587-bf9c-476d-9be8-7afd71a0582a"
+        }
+      ],
+      "id": "7d135201-e2e7-4f9d-a585-07efcd399a5d",
+      "createdAt": "2026-07-28T01:20:05.000Z",
+      "updatedAt": "2026-07-28T01:20:05.000Z",
+      "uid": "35240-7d135201-e2e7-4f9d-a585-07efcd399a5d"
+    },
+    {
+      "name": "risk-management",
+      "item": [
+        {
+          "name": "scans",
+          "item": [
+            {
+              "name": "{scanId}",
+              "item": [
+                {
+                  "name": "Checkmarx Get scan details",
+                  "id": "5a8d58e4-27b3-41f3-83b2-bf53a0947ade",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans/:scanId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans",
+                        ":scanId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8a2492a2-5a17-4f3a-a858-df37523d2133",
+                          "key": "scanId",
+                          "value": "<uuid>",
+                          "description": "(Required) Scan unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details and status of a specific SCA scan."
+                  },
+                  "response": [
+                    {
+                      "id": "fb802200-fbc5-439f-9c54-7d41fb4b91d9",
+                      "name": "Scan details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"scanId\": \"<uuid>\",\n  \"projectId\": \"<uuid>\",\n  \"status\": \"Queued\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"origin\": \"CLI\",\n  \"riskReportId\": \"<uuid>\"\n}",
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-fb802200-fbc5-439f-9c54-7d41fb4b91d9"
+                    },
+                    {
+                      "id": "fe1eb1dd-f606-4347-975c-8823faa0e12c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-fe1eb1dd-f606-4347-975c-8823faa0e12c"
+                    },
+                    {
+                      "id": "97d799f2-dce4-421c-a903-c32809aa1c08",
+                      "name": "Scan not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/scans/:scanId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "scans",
+                            ":scanId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "scanId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:05.000Z",
+                      "updatedAt": "2026-07-28T01:20:05.000Z",
+                      "uid": "35240-97d799f2-dce4-421c-a903-c32809aa1c08"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-5a8d58e4-27b3-41f3-83b2-bf53a0947ade"
+                }
+              ],
+              "id": "5b96ae81-c4cc-468f-b67c-b81f17cd0889",
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-5b96ae81-c4cc-468f-b67c-b81f17cd0889"
+            },
+            {
+              "name": "Checkmarx List scans",
+              "id": "f3a80269-e82a-4f5c-a027-4e3f957f6dfa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/risk-management/scans?projectId=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "risk-management",
+                    "scans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by project ID",
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of SCA scans with optional filtering by project ID."
+              },
+              "response": [
+                {
+                  "id": "6436f0c5-60cd-4317-856c-77169c1fcf5d",
+                  "name": "List of scans",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans?projectId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by project ID",
+                          "key": "projectId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"scanId\": \"<uuid>\",\n    \"projectId\": \"<uuid>\",\n    \"status\": \"Failed\",\n    \"createdOn\": \"<dateTime>\",\n    \"updatedOn\": \"<dateTime>\",\n    \"origin\": \"CLI\",\n    \"riskReportId\": \"<uuid>\"\n  },\n  {\n    \"scanId\": \"<uuid>\",\n    \"projectId\": \"<uuid>\",\n    \"status\": \"Failed\",\n    \"createdOn\": \"<dateTime>\",\n    \"updatedOn\": \"<dateTime>\",\n    \"origin\": \"API\",\n    \"riskReportId\": \"<uuid>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-6436f0c5-60cd-4317-856c-77169c1fcf5d"
+                },
+                {
+                  "id": "6170e62c-3740-4efc-89a4-2ccbf4b85db0",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans?projectId=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by project ID",
+                          "key": "projectId",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-6170e62c-3740-4efc-89a4-2ccbf4b85db0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-f3a80269-e82a-4f5c-a027-4e3f957f6dfa"
+            },
+            {
+              "name": "Checkmarx Trigger a new scan",
+              "id": "2a4721f3-576c-4bda-959b-68b7f5fdcb1a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<uuid>\",\n  \"sourceType\": \"RemoteRepository\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/risk-management/scans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "risk-management",
+                    "scans"
+                  ]
+                },
+                "description": "Initiate a new SCA scan for a project by uploading a source archive or pointing to a repository."
+              },
+              "response": [
+                {
+                  "id": "a4c87589-e0af-4773-93fe-bac9390e4092",
+                  "name": "Scan created and queued",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<uuid>\",\n  \"sourceType\": \"RemoteRepository\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"scanId\": \"<uuid>\",\n  \"projectId\": \"<uuid>\",\n  \"status\": \"Queued\",\n  \"createdOn\": \"<dateTime>\",\n  \"updatedOn\": \"<dateTime>\",\n  \"origin\": \"CLI\",\n  \"riskReportId\": \"<uuid>\"\n}",
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-a4c87589-e0af-4773-93fe-bac9390e4092"
+                },
+                {
+                  "id": "857ac9c5-9b70-4877-909e-9cc7b759546b",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<uuid>\",\n  \"sourceType\": \"RemoteRepository\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-857ac9c5-9b70-4877-909e-9cc7b759546b"
+                },
+                {
+                  "id": "83055deb-251d-41c9-8bd0-226c29dd7c85",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"projectId\": \"<uuid>\",\n  \"sourceType\": \"RemoteRepository\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/scans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "scans"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:05.000Z",
+                  "updatedAt": "2026-07-28T01:20:05.000Z",
+                  "uid": "35240-83055deb-251d-41c9-8bd0-226c29dd7c85"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:05.000Z",
+              "updatedAt": "2026-07-28T01:20:05.000Z",
+              "uid": "35240-2a4721f3-576c-4bda-959b-68b7f5fdcb1a"
+            }
+          ],
+          "id": "78e82b6f-40e8-4d6a-bf17-a4452e760564",
+          "createdAt": "2026-07-28T01:20:05.000Z",
+          "updatedAt": "2026-07-28T01:20:05.000Z",
+          "uid": "35240-78e82b6f-40e8-4d6a-bf17-a4452e760564"
+        }
+      ],
+      "id": "9b33ce50-a2bd-453e-ba1b-123f10bf55b2",
+      "createdAt": "2026-07-28T01:20:05.000Z",
+      "updatedAt": "2026-07-28T01:20:05.000Z",
+      "uid": "35240-9b33ce50-a2bd-453e-ba1b-123f10bf55b2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

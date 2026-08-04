@@ -1,0 +1,974 @@
+{
+  "info": {
+    "_postman_id": "d7b8bf8b-5940-41ef-b42a-50d882c05737",
+    "name": "Checkmarx One Applications Results API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:02.000Z",
+    "updatedAt": "2026-07-28T01:20:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d7b8bf8b-5940-41ef-b42a-50d882c05737"
+  },
+  "item": [
+    {
+      "name": "results",
+      "item": [
+        {
+          "name": "{resultId}",
+          "item": [
+            {
+              "name": "Checkmarx Get result details",
+              "id": "0f523c1f-f8d1-43b0-bb67-a80bebf8cea5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/results/:resultId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "results",
+                    ":resultId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1b5657ba-f52d-434a-99d7-636bd09b703f",
+                      "key": "resultId",
+                      "value": "<uuid>",
+                      "description": "(Required) Result unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve detailed information about a specific finding."
+              },
+              "response": [
+                {
+                  "id": "b230cc4c-c64e-41a0-b9df-fdb247567688",
+                  "name": "Result details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"similarityId\": \"<string>\",\n  \"status\": \"RECURRENT\",\n  \"state\": \"NOT_EXPLOITABLE\",\n  \"severity\": \"LOW\",\n  \"type\": \"sast\",\n  \"data\": {\n    \"queryId\": \"<string>\",\n    \"queryName\": \"<string>\",\n    \"group\": \"<string>\",\n    \"languageName\": \"<string>\",\n    \"nodes\": [\n      {\n        \"fileName\": \"<string>\",\n        \"line\": \"<integer>\",\n        \"column\": \"<integer>\",\n        \"length\": \"<integer>\",\n        \"methodLine\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\"\n      },\n      {\n        \"fileName\": \"<string>\",\n        \"line\": \"<integer>\",\n        \"column\": \"<integer>\",\n        \"length\": \"<integer>\",\n        \"methodLine\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\"\n      }\n    ],\n    \"packageIdentifier\": \"<string>\",\n    \"recommendedVersion\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"vulnerabilityDetails\": {\n    \"cweId\": \"<integer>\",\n    \"cvss\": \"<float>\",\n    \"cveName\": \"<string>\",\n    \"compliances\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"firstFoundAt\": \"<dateTime>\",\n  \"foundAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-b230cc4c-c64e-41a0-b9df-fdb247567688"
+                },
+                {
+                  "id": "66fac1d4-1db2-43a1-bfd4-dc950091e5b2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-66fac1d4-1db2-43a1-bfd4-dc950091e5b2"
+                },
+                {
+                  "id": "a6c63909-0ac9-4a90-9d71-8627bafc0aa0",
+                  "name": "Result not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-a6c63909-0ac9-4a90-9d71-8627bafc0aa0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-0f523c1f-f8d1-43b0-bb67-a80bebf8cea5"
+            },
+            {
+              "name": "Checkmarx Update result state",
+              "id": "4a6387a0-840d-44a6-91f4-e3c46c10dbaa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"NOT_EXPLOITABLE\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/results/:resultId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "results",
+                    ":resultId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3dcebd6a-9273-40f0-b1d7-ba3483c3370d",
+                      "key": "resultId",
+                      "value": "<uuid>",
+                      "description": "(Required) Result unique identifier"
+                    }
+                  ]
+                },
+                "description": "Update the triage state of a result, such as confirming, marking as not exploitable, or setting to proposed not exploitable."
+              },
+              "response": [
+                {
+                  "id": "b9053051-42da-4fe1-98b3-b6c5e3fc324a",
+                  "name": "Result updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"NOT_EXPLOITABLE\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-b9053051-42da-4fe1-98b3-b6c5e3fc324a"
+                },
+                {
+                  "id": "f4db49c5-0689-4ed8-9db8-0cd617251864",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"NOT_EXPLOITABLE\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-f4db49c5-0689-4ed8-9db8-0cd617251864"
+                },
+                {
+                  "id": "2680fdfb-afd3-4b66-b488-1073c37682f3",
+                  "name": "Result not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"NOT_EXPLOITABLE\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/results/:resultId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        ":resultId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resultId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-2680fdfb-afd3-4b66-b488-1073c37682f3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-4a6387a0-840d-44a6-91f4-e3c46c10dbaa"
+            }
+          ],
+          "id": "7a82947c-efd4-44d7-8d5a-513fc7dc9ea1",
+          "createdAt": "2026-07-28T01:20:03.000Z",
+          "updatedAt": "2026-07-28T01:20:03.000Z",
+          "uid": "35240-7a82947c-efd4-44d7-8d5a-513fc7dc9ea1"
+        },
+        {
+          "name": "summary",
+          "item": [
+            {
+              "name": "Checkmarx Get results summary",
+              "id": "f0dff1b0-e158-4b0a-b5a2-35549dedce84",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/results/summary?scan-id=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "results",
+                    "summary"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scan ID to summarize",
+                      "key": "scan-id",
+                      "value": "<uuid>"
+                    }
+                  ]
+                },
+                "description": "Retrieve an aggregated summary of scan results grouped by severity and status."
+              },
+              "response": [
+                {
+                  "id": "4238af8c-aef7-484f-9cc2-666156fb6ed1",
+                  "name": "Results summary",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/results/summary?scan-id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Scan ID to summarize",
+                          "key": "scan-id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"scanId\": \"<uuid>\",\n  \"sastCounters\": {\n    \"severityCounters\": [\n      {\n        \"severity\": \"MEDIUM\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"severity\": \"INFO\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"statusCounters\": [\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"stateCounters\": [\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"totalCounter\": \"<integer>\"\n  },\n  \"scaCounters\": {\n    \"severityCounters\": [\n      {\n        \"severity\": \"CRITICAL\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"severity\": \"INFO\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"statusCounters\": [\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"stateCounters\": [\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"totalCounter\": \"<integer>\"\n  },\n  \"kicsCounters\": {\n    \"severityCounters\": [\n      {\n        \"severity\": \"CRITICAL\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"severity\": \"INFO\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"statusCounters\": [\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"status\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"stateCounters\": [\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      },\n      {\n        \"state\": \"<string>\",\n        \"counter\": \"<integer>\"\n      }\n    ],\n    \"totalCounter\": \"<integer>\"\n  },\n  \"totalCounter\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-4238af8c-aef7-484f-9cc2-666156fb6ed1"
+                },
+                {
+                  "id": "f6e20936-0bb1-4895-b5b9-b7af8a4dad7d",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/results/summary?scan-id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "results",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Scan ID to summarize",
+                          "key": "scan-id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-f6e20936-0bb1-4895-b5b9-b7af8a4dad7d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-f0dff1b0-e158-4b0a-b5a2-35549dedce84"
+            }
+          ],
+          "id": "3390a401-a78e-44c6-9dd8-2fea3e4e741a",
+          "createdAt": "2026-07-28T01:20:03.000Z",
+          "updatedAt": "2026-07-28T01:20:03.000Z",
+          "uid": "35240-3390a401-a78e-44c6-9dd8-2fea3e4e741a"
+        },
+        {
+          "name": "Checkmarx List scan results",
+          "id": "6c6ad0d2-518c-415d-86ef-d2428b5642d8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/results?scan-id=<uuid>&offset=0&limit=20&severity=<string>&state=<string>&status=RECURRENT",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "results"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Scan ID to retrieve results for",
+                  "key": "scan-id",
+                  "value": "<uuid>"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Filter by severity (comma-separated)",
+                  "key": "severity",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by result state (comma-separated)",
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by result status",
+                  "key": "status",
+                  "value": "RECURRENT"
+                }
+              ]
+            },
+            "description": "Retrieve vulnerability results for a scan, with optional filtering by severity, state, and scan type."
+          },
+          "response": [
+            {
+              "id": "efe42b79-74b2-4deb-94c5-60075c83854a",
+              "name": "List of results",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/results?scan-id=<uuid>&offset=0&limit=20&severity=<string>&state=<string>&status=RECURRENT",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "results"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scan ID to retrieve results for",
+                      "key": "scan-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by severity (comma-separated)",
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by result state (comma-separated)",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by result status",
+                      "key": "status",
+                      "value": "RECURRENT"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<uuid>\",\n      \"similarityId\": \"<string>\",\n      \"status\": \"RECURRENT\",\n      \"state\": \"PROPOSED_NOT_EXPLOITABLE\",\n      \"severity\": \"INFO\",\n      \"type\": \"sca\",\n      \"data\": {\n        \"queryId\": \"<string>\",\n        \"queryName\": \"<string>\",\n        \"group\": \"<string>\",\n        \"languageName\": \"<string>\",\n        \"nodes\": [\n          {\n            \"fileName\": \"<string>\",\n            \"line\": \"<integer>\",\n            \"column\": \"<integer>\",\n            \"length\": \"<integer>\",\n            \"methodLine\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"fullName\": \"<string>\"\n          },\n          {\n            \"fileName\": \"<string>\",\n            \"line\": \"<integer>\",\n            \"column\": \"<integer>\",\n            \"length\": \"<integer>\",\n            \"methodLine\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"fullName\": \"<string>\"\n          }\n        ],\n        \"packageIdentifier\": \"<string>\",\n        \"recommendedVersion\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"vulnerabilityDetails\": {\n        \"cweId\": \"<integer>\",\n        \"cvss\": \"<float>\",\n        \"cveName\": \"<string>\",\n        \"compliances\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"firstFoundAt\": \"<dateTime>\",\n      \"foundAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"similarityId\": \"<string>\",\n      \"status\": \"RECURRENT\",\n      \"state\": \"URGENT\",\n      \"severity\": \"LOW\",\n      \"type\": \"kics\",\n      \"data\": {\n        \"queryId\": \"<string>\",\n        \"queryName\": \"<string>\",\n        \"group\": \"<string>\",\n        \"languageName\": \"<string>\",\n        \"nodes\": [\n          {\n            \"fileName\": \"<string>\",\n            \"line\": \"<integer>\",\n            \"column\": \"<integer>\",\n            \"length\": \"<integer>\",\n            \"methodLine\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"fullName\": \"<string>\"\n          },\n          {\n            \"fileName\": \"<string>\",\n            \"line\": \"<integer>\",\n            \"column\": \"<integer>\",\n            \"length\": \"<integer>\",\n            \"methodLine\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"fullName\": \"<string>\"\n          }\n        ],\n        \"packageIdentifier\": \"<string>\",\n        \"recommendedVersion\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"vulnerabilityDetails\": {\n        \"cweId\": \"<integer>\",\n        \"cvss\": \"<float>\",\n        \"cveName\": \"<string>\",\n        \"compliances\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"firstFoundAt\": \"<dateTime>\",\n      \"foundAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-efe42b79-74b2-4deb-94c5-60075c83854a"
+            },
+            {
+              "id": "232c8cec-2327-42be-9773-adfc8a353071",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/results?scan-id=<uuid>&offset=0&limit=20&severity=<string>&state=<string>&status=RECURRENT",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "results"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Scan ID to retrieve results for",
+                      "key": "scan-id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by severity (comma-separated)",
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by result state (comma-separated)",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by result status",
+                      "key": "status",
+                      "value": "RECURRENT"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-232c8cec-2327-42be-9773-adfc8a353071"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:03.000Z",
+          "updatedAt": "2026-07-28T01:20:03.000Z",
+          "uid": "35240-6c6ad0d2-518c-415d-86ef-d2428b5642d8"
+        }
+      ],
+      "id": "76b1c98b-8914-4531-8d1d-b286ccb31bd8",
+      "createdAt": "2026-07-28T01:20:03.000Z",
+      "updatedAt": "2026-07-28T01:20:03.000Z",
+      "uid": "35240-76b1c98b-8914-4531-8d1d-b286ccb31bd8"
+    },
+    {
+      "name": "sast",
+      "item": [
+        {
+          "name": "scans",
+          "item": [
+            {
+              "name": "{scanId}",
+              "item": [
+                {
+                  "name": "resultsStatistics",
+                  "item": [
+                    {
+                      "name": "Checkmarx Get scan results statistics",
+                      "id": "a6883fe3-82e0-4f4f-84f0-0d91b7602134",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sast/scans/:scanId/resultsStatistics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sast",
+                            "scans",
+                            ":scanId",
+                            "resultsStatistics"
+                          ],
+                          "variable": [
+                            {
+                              "id": "55e35fcd-1d40-4e82-9580-70d11c7ffdac",
+                              "key": "scanId",
+                              "value": "<integer>",
+                              "description": "(Required) Scan unique identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve summary statistics for a completed scan, including vulnerability counts by severity."
+                      },
+                      "response": [
+                        {
+                          "id": "71ffd71a-612d-477b-8072-348da3018d84",
+                          "name": "Scan results statistics",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sast/scans/:scanId/resultsStatistics",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sast",
+                                "scans",
+                                ":scanId",
+                                "resultsStatistics"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "scanId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"highSeverity\": \"<integer>\",\n  \"mediumSeverity\": \"<integer>\",\n  \"lowSeverity\": \"<integer>\",\n  \"infoSeverity\": \"<integer>\",\n  \"statisticsCalculationDate\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:20:03.000Z",
+                          "updatedAt": "2026-07-28T01:20:03.000Z",
+                          "uid": "35240-71ffd71a-612d-477b-8072-348da3018d84"
+                        },
+                        {
+                          "id": "3b15dbd8-6573-48c9-b5eb-7c071bf7788e",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sast/scans/:scanId/resultsStatistics",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sast",
+                                "scans",
+                                ":scanId",
+                                "resultsStatistics"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "scanId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:03.000Z",
+                          "updatedAt": "2026-07-28T01:20:03.000Z",
+                          "uid": "35240-3b15dbd8-6573-48c9-b5eb-7c071bf7788e"
+                        },
+                        {
+                          "id": "388943da-5a15-4c1b-8e81-116624b9a343",
+                          "name": "Scan not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sast/scans/:scanId/resultsStatistics",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sast",
+                                "scans",
+                                ":scanId",
+                                "resultsStatistics"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "scanId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:03.000Z",
+                          "updatedAt": "2026-07-28T01:20:03.000Z",
+                          "uid": "35240-388943da-5a15-4c1b-8e81-116624b9a343"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:20:03.000Z",
+                      "updatedAt": "2026-07-28T01:20:03.000Z",
+                      "uid": "35240-a6883fe3-82e0-4f4f-84f0-0d91b7602134"
+                    }
+                  ],
+                  "id": "6463326c-a87d-4ee7-b29b-2ade7e33f1bf",
+                  "createdAt": "2026-07-28T01:20:03.000Z",
+                  "updatedAt": "2026-07-28T01:20:03.000Z",
+                  "uid": "35240-6463326c-a87d-4ee7-b29b-2ade7e33f1bf"
+                }
+              ],
+              "id": "ef1b55d8-a48d-4b2b-a871-0aae921029ce",
+              "createdAt": "2026-07-28T01:20:03.000Z",
+              "updatedAt": "2026-07-28T01:20:03.000Z",
+              "uid": "35240-ef1b55d8-a48d-4b2b-a871-0aae921029ce"
+            }
+          ],
+          "id": "fe24f08e-39a9-4c25-a127-99e30ece0654",
+          "createdAt": "2026-07-28T01:20:03.000Z",
+          "updatedAt": "2026-07-28T01:20:03.000Z",
+          "uid": "35240-fe24f08e-39a9-4c25-a127-99e30ece0654"
+        }
+      ],
+      "id": "f72f441e-63c3-44ab-9a27-40462212add0",
+      "createdAt": "2026-07-28T01:20:03.000Z",
+      "updatedAt": "2026-07-28T01:20:03.000Z",
+      "uid": "35240-f72f441e-63c3-44ab-9a27-40462212add0"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "info": {
+    "_postman_id": "2815de84-812b-4be8-8d15-b4664e5c5564",
+    "name": "Checkmarx One Applications Reports API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:01.000Z",
+    "updatedAt": "2026-07-28T01:20:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2815de84-812b-4be8-8d15-b4664e5c5564"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "sastScan",
+          "item": [
+            {
+              "name": "{reportId}",
+              "item": [
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "Checkmarx Get report generation status",
+                      "id": "585d6f26-0870-4707-b50d-720139df514a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/sastScan/:reportId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "sastScan",
+                            ":reportId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7c61d751-e27a-4bd2-93f2-ecc0cf1c2e77",
+                              "key": "reportId",
+                              "value": "<integer>",
+                              "description": "(Required) Report unique identifier"
+                            }
+                          ]
+                        },
+                        "description": "Check the status of a report generation request."
+                      },
+                      "response": [
+                        {
+                          "id": "1a40d0c7-f135-4cb6-845a-e5a3ce78916d",
+                          "name": "Report status",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/sastScan/:reportId/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                "sastScan",
+                                ":reportId",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"reportId\": \"<integer>\",\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"value\": \"Failed\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:20:02.000Z",
+                          "updatedAt": "2026-07-28T01:20:02.000Z",
+                          "uid": "35240-1a40d0c7-f135-4cb6-845a-e5a3ce78916d"
+                        },
+                        {
+                          "id": "a0d521e3-7e5f-4f4c-b292-ff724baf352c",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/sastScan/:reportId/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                "sastScan",
+                                ":reportId",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:02.000Z",
+                          "updatedAt": "2026-07-28T01:20:02.000Z",
+                          "uid": "35240-a0d521e3-7e5f-4f4c-b292-ff724baf352c"
+                        },
+                        {
+                          "id": "0c04feb3-0809-4bba-a984-1b1dbeb374dc",
+                          "name": "Report not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/sastScan/:reportId/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                "sastScan",
+                                ":reportId",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:02.000Z",
+                          "updatedAt": "2026-07-28T01:20:02.000Z",
+                          "uid": "35240-0c04feb3-0809-4bba-a984-1b1dbeb374dc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:20:02.000Z",
+                      "updatedAt": "2026-07-28T01:20:02.000Z",
+                      "uid": "35240-585d6f26-0870-4707-b50d-720139df514a"
+                    }
+                  ],
+                  "id": "5b2465d1-40fd-4f03-9872-a4527a28e68b",
+                  "createdAt": "2026-07-28T01:20:02.000Z",
+                  "updatedAt": "2026-07-28T01:20:02.000Z",
+                  "uid": "35240-5b2465d1-40fd-4f03-9872-a4527a28e68b"
+                },
+                {
+                  "name": "Checkmarx Get report by ID",
+                  "id": "0cf2881a-8393-44f5-bb4d-519287dff669",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/pdf"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/sastScan/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "sastScan",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c94d968d-fda0-4de8-8eeb-34ae34cc0d3f",
+                          "key": "reportId",
+                          "value": "<integer>",
+                          "description": "(Required) Report unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Download a generated scan report by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "f9a90451-ccd0-4e42-8252-e6654d860cae",
+                      "name": "Report content",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/sastScan/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "sastScan",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "xml",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/xml"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                      "createdAt": "2026-07-28T01:20:02.000Z",
+                      "updatedAt": "2026-07-28T01:20:02.000Z",
+                      "uid": "35240-f9a90451-ccd0-4e42-8252-e6654d860cae"
+                    },
+                    {
+                      "id": "3ac24a01-9582-4646-a23a-0f6872e29521",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/sastScan/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "sastScan",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:02.000Z",
+                      "updatedAt": "2026-07-28T01:20:02.000Z",
+                      "uid": "35240-3ac24a01-9582-4646-a23a-0f6872e29521"
+                    },
+                    {
+                      "id": "9c1266a0-28b6-409f-ae6f-ab489ced1934",
+                      "name": "Report not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/sastScan/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "sastScan",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:02.000Z",
+                      "updatedAt": "2026-07-28T01:20:02.000Z",
+                      "uid": "35240-9c1266a0-28b6-409f-ae6f-ab489ced1934"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:02.000Z",
+                  "updatedAt": "2026-07-28T01:20:02.000Z",
+                  "uid": "35240-0cf2881a-8393-44f5-bb4d-519287dff669"
+                }
+              ],
+              "id": "82214421-fb47-4765-8f57-fba4dd57c06a",
+              "createdAt": "2026-07-28T01:20:02.000Z",
+              "updatedAt": "2026-07-28T01:20:02.000Z",
+              "uid": "35240-82214421-fb47-4765-8f57-fba4dd57c06a"
+            },
+            {
+              "name": "Checkmarx Register a new scan report",
+              "id": "675aa192-1ceb-419b-af53-27cd38cdedbc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportType\": \"PDF\",\n  \"scanId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports/sastScan",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    "sastScan"
+                  ]
+                },
+                "description": "Request generation of a scan report in the specified format (PDF, XML, CSV, RTF)."
+              },
+              "response": [
+                {
+                  "id": "0e3582f7-fec8-4877-96ca-9cf6d0efa1dc",
+                  "name": "Report generation accepted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportType\": \"PDF\",\n  \"scanId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/sastScan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "sastScan"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reportId\": \"<integer>\",\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"value\": \"Failed\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:20:02.000Z",
+                  "updatedAt": "2026-07-28T01:20:02.000Z",
+                  "uid": "35240-0e3582f7-fec8-4877-96ca-9cf6d0efa1dc"
+                },
+                {
+                  "id": "4e7977cf-c67e-493c-85dc-3e6a122febcc",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportType\": \"PDF\",\n  \"scanId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/sastScan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "sastScan"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:02.000Z",
+                  "updatedAt": "2026-07-28T01:20:02.000Z",
+                  "uid": "35240-4e7977cf-c67e-493c-85dc-3e6a122febcc"
+                },
+                {
+                  "id": "35daafd3-f0d6-49a2-a1b7-3b845124f4b5",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportType\": \"PDF\",\n  \"scanId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/sastScan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "sastScan"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:02.000Z",
+                  "updatedAt": "2026-07-28T01:20:02.000Z",
+                  "uid": "35240-35daafd3-f0d6-49a2-a1b7-3b845124f4b5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:02.000Z",
+              "updatedAt": "2026-07-28T01:20:02.000Z",
+              "uid": "35240-675aa192-1ceb-419b-af53-27cd38cdedbc"
+            }
+          ],
+          "id": "b00ad8d7-f1f9-4521-90ec-eb3ecf7a19c1",
+          "createdAt": "2026-07-28T01:20:02.000Z",
+          "updatedAt": "2026-07-28T01:20:02.000Z",
+          "uid": "35240-b00ad8d7-f1f9-4521-90ec-eb3ecf7a19c1"
+        }
+      ],
+      "id": "5e0c6407-6315-44b0-9b9c-42317ec63d54",
+      "createdAt": "2026-07-28T01:20:02.000Z",
+      "updatedAt": "2026-07-28T01:20:02.000Z",
+      "uid": "35240-5e0c6407-6315-44b0-9b9c-42317ec63d54"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

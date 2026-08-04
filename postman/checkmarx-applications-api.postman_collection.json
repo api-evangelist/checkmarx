@@ -1,0 +1,980 @@
+{
+  "info": {
+    "_postman_id": "bbec68fc-69b8-468b-82fb-2a28d74c091a",
+    "name": "Checkmarx One Applications API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:34.000Z",
+    "updatedAt": "2026-07-28T01:19:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bbec68fc-69b8-468b-82fb-2a28d74c091a"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationId}",
+          "item": [
+            {
+              "name": "Checkmarx Get application details",
+              "id": "84a9ca27-6a08-4e21-9beb-b4c892cde6d9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cb068eb5-e0a1-46ae-ad82-a950387281c4",
+                      "key": "applicationId",
+                      "value": "<uuid>",
+                      "description": "(Required) Application unique identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific application."
+              },
+              "response": [
+                {
+                  "id": "b4723c44-f9e2-48f0-bd3c-829a3a3535ae",
+                  "name": "Application details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"projectIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"tags\": {\n    \"ipsum__\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-b4723c44-f9e2-48f0-bd3c-829a3a3535ae"
+                },
+                {
+                  "id": "7cad333e-6298-4f97-94f1-31fd18af161a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-7cad333e-6298-4f97-94f1-31fd18af161a"
+                },
+                {
+                  "id": "2f95b207-28a7-499b-bd33-4816d9144560",
+                  "name": "Application not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-2f95b207-28a7-499b-bd33-4816d9144560"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-84a9ca27-6a08-4e21-9beb-b4c892cde6d9"
+            },
+            {
+              "name": "Checkmarx Update an application",
+              "id": "ea668bd6-8dd1-43bc-80e6-264bd1be8782",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"proident8\": \"<string>\",\n    \"exercitation_d\": \"<string>\",\n    \"consequatdd4\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "da1d936a-5ebb-48ea-a938-a01bf93cef83",
+                      "key": "applicationId",
+                      "value": "<uuid>",
+                      "description": "(Required) Application unique identifier"
+                    }
+                  ]
+                },
+                "description": "Update an existing application's properties."
+              },
+              "response": [
+                {
+                  "id": "d149eb8d-5b8d-431b-ab81-47781e47dc34",
+                  "name": "Application updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"proident8\": \"<string>\",\n    \"exercitation_d\": \"<string>\",\n    \"consequatdd4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-d149eb8d-5b8d-431b-ab81-47781e47dc34"
+                },
+                {
+                  "id": "a6c49366-4bbe-42e0-afe5-23e30d701f38",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"proident8\": \"<string>\",\n    \"exercitation_d\": \"<string>\",\n    \"consequatdd4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-a6c49366-4bbe-42e0-afe5-23e30d701f38"
+                },
+                {
+                  "id": "b487aaa9-da2d-46a6-9612-482216148375",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"proident8\": \"<string>\",\n    \"exercitation_d\": \"<string>\",\n    \"consequatdd4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-b487aaa9-da2d-46a6-9612-482216148375"
+                },
+                {
+                  "id": "b570add9-3f9d-427a-bd1b-71bfcd142cf6",
+                  "name": "Application not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"proident8\": \"<string>\",\n    \"exercitation_d\": \"<string>\",\n    \"consequatdd4\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-b570add9-3f9d-427a-bd1b-71bfcd142cf6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-ea668bd6-8dd1-43bc-80e6-264bd1be8782"
+            },
+            {
+              "name": "Checkmarx Delete an application",
+              "id": "ce38c38b-b9ea-40c5-bcd2-dfec515ab926",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c8fa52b9-d4d1-456c-bf34-eb04cb4b8b15",
+                      "key": "applicationId",
+                      "value": "<uuid>",
+                      "description": "(Required) Application unique identifier"
+                    }
+                  ]
+                },
+                "description": "Delete an application. Projects within will be unassigned."
+              },
+              "response": [
+                {
+                  "id": "f59b25ef-bee3-4554-9502-5b766217978a",
+                  "name": "Application deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-f59b25ef-bee3-4554-9502-5b766217978a"
+                },
+                {
+                  "id": "11b58c7c-d873-4301-9036-13e4f22e74ed",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-11b58c7c-d873-4301-9036-13e4f22e74ed"
+                },
+                {
+                  "id": "9ee32d5c-3bc1-4d13-b6df-60e617cc1dca",
+                  "name": "Application not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:19:35.000Z",
+                  "updatedAt": "2026-07-28T01:19:35.000Z",
+                  "uid": "35240-9ee32d5c-3bc1-4d13-b6df-60e617cc1dca"
+                }
+              ],
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-ce38c38b-b9ea-40c5-bcd2-dfec515ab926"
+            }
+          ],
+          "id": "e7df07aa-983c-4ee5-a29a-b11b5251f207",
+          "createdAt": "2026-07-28T01:19:35.000Z",
+          "updatedAt": "2026-07-28T01:19:35.000Z",
+          "uid": "35240-e7df07aa-983c-4ee5-a29a-b11b5251f207"
+        },
+        {
+          "name": "Checkmarx List applications",
+          "id": "ea456930-a50b-4390-8543-802a239784ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications?offset=0&limit=20&name=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ],
+              "query": [
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Filter by application name",
+                  "key": "name",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve all applications. Applications are logical groupings of related projects for organizational purposes."
+          },
+          "response": [
+            {
+              "id": "a7f0ec6c-8065-4902-a284-1a5c4564fd88",
+              "name": "List of applications",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?offset=0&limit=20&name=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by application name",
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"filteredTotalCount\": \"<integer>\",\n  \"applications\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"criticality\": \"<integer>\",\n      \"rules\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"projectIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"tags\": {\n        \"occaecata5_\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"criticality\": \"<integer>\",\n      \"rules\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"projectIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"tags\": {\n        \"exercitation_af\": \"<string>\",\n        \"animddd\": \"<string>\",\n        \"nulla_c\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-a7f0ec6c-8065-4902-a284-1a5c4564fd88"
+            },
+            {
+              "id": "9fc9729d-dc75-4f34-ba39-0d2afcdc18a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?offset=0&limit=20&name=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter by application name",
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-9fc9729d-dc75-4f34-ba39-0d2afcdc18a9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:19:35.000Z",
+          "updatedAt": "2026-07-28T01:19:35.000Z",
+          "uid": "35240-ea456930-a50b-4390-8543-802a239784ac"
+        },
+        {
+          "name": "Checkmarx Create an application",
+          "id": "3f32a7fa-c479-4dd1-8c24-7fd31a9d2d43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": 3,\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"ad2f4\": \"<string>\",\n    \"mollit_25\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/applications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            },
+            "description": "Create a new application to group related projects."
+          },
+          "response": [
+            {
+              "id": "90d648f2-eedd-41a2-b34d-e5d273abacb1",
+              "name": "Application created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": 3,\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"ad2f4\": \"<string>\",\n    \"mollit_25\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": \"<integer>\",\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"projectIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"tags\": {\n    \"ipsum__\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-90d648f2-eedd-41a2-b34d-e5d273abacb1"
+            },
+            {
+              "id": "03d5520b-d9bd-481c-98aa-48d9f4694c35",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": 3,\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"ad2f4\": \"<string>\",\n    \"mollit_25\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-03d5520b-d9bd-481c-98aa-48d9f4694c35"
+            },
+            {
+              "id": "1f198f6f-02c1-484c-984e-7e9c3ceddb49",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"criticality\": 3,\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"tags\": {\n    \"ad2f4\": \"<string>\",\n    \"mollit_25\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:19:35.000Z",
+              "updatedAt": "2026-07-28T01:19:35.000Z",
+              "uid": "35240-1f198f6f-02c1-484c-984e-7e9c3ceddb49"
+            }
+          ],
+          "createdAt": "2026-07-28T01:19:35.000Z",
+          "updatedAt": "2026-07-28T01:19:35.000Z",
+          "uid": "35240-3f32a7fa-c479-4dd1-8c24-7fd31a9d2d43"
+        }
+      ],
+      "id": "8c12c598-f688-4b52-b2c5-28e275fc8283",
+      "createdAt": "2026-07-28T01:19:35.000Z",
+      "updatedAt": "2026-07-28T01:19:35.000Z",
+      "uid": "35240-8c12c598-f688-4b52-b2c5-28e275fc8283"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

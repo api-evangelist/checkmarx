@@ -1,0 +1,145 @@
+{
+  "info": {
+    "_postman_id": "8bff301f-27b2-4ab8-bb9b-1622fa433882",
+    "name": "Checkmarx One Applications Groups API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:19:53.000Z",
+    "updatedAt": "2026-07-28T01:19:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8bff301f-27b2-4ab8-bb9b-1622fa433882"
+  },
+  "item": [
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "Checkmarx List groups",
+          "id": "e3cfe792-ceb8-47f8-bf96-f03d99becd77",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/groups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            },
+            "description": "Retrieve all access control groups for the tenant."
+          },
+          "response": [
+            {
+              "id": "8f5f4f83-e3f2-4886-8447-2d9bc7d5cd69",
+              "name": "List of groups",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"subGroups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<string>\",\n    \"subGroups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-07-28T01:19:54.000Z",
+              "updatedAt": "2026-07-28T01:19:54.000Z",
+              "uid": "35240-8f5f4f83-e3f2-4886-8447-2d9bc7d5cd69"
+            },
+            {
+              "id": "91148af0-d420-45c5-b48b-7a1fa9ac0bf0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:19:54.000Z",
+              "updatedAt": "2026-07-28T01:19:54.000Z",
+              "uid": "35240-91148af0-d420-45c5-b48b-7a1fa9ac0bf0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:19:54.000Z",
+          "updatedAt": "2026-07-28T01:19:54.000Z",
+          "uid": "35240-e3cfe792-ceb8-47f8-bf96-f03d99becd77"
+        }
+      ],
+      "id": "d40b87d4-8041-4606-b3c8-4e0b5839d24a",
+      "createdAt": "2026-07-28T01:19:54.000Z",
+      "updatedAt": "2026-07-28T01:19:54.000Z",
+      "uid": "35240-d40b87d4-8041-4606-b3c8-4e0b5839d24a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "info": {
+    "_postman_id": "20170e41-c8d3-4fe8-a0d0-dc0c326d3414",
+    "name": "Checkmarx One Applications Risk Reports API",
+    "description": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:03.000Z",
+    "updatedAt": "2026-07-28T01:20:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-20170e41-c8d3-4fe8-a0d0-dc0c326d3414"
+  },
+  "item": [
+    {
+      "name": "risk-management",
+      "item": [
+        {
+          "name": "risk-reports",
+          "item": [
+            {
+              "name": "{projectId}",
+              "item": [
+                {
+                  "name": "vulnerabilities",
+                  "item": [
+                    {
+                      "name": "Checkmarx List project vulnerabilities",
+                      "id": "a5a0e115-4ba6-4520-b9be-a488653353a5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/vulnerabilities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId",
+                            "vulnerabilities"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6da9f5f9-8f10-488d-a9bf-70239fac9cc2",
+                              "key": "projectId",
+                              "value": "<uuid>",
+                              "description": "(Required) Project unique identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all vulnerabilities found in a project from the most recent scan."
+                      },
+                      "response": [
+                        {
+                          "id": "a10390da-561f-45a3-b2dc-e4d275951e0e",
+                          "name": "List of vulnerabilities",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/vulnerabilities",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "vulnerabilities"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"cveName\": \"<string>\",\n    \"score\": \"<float>\",\n    \"severity\": \"Medium\",\n    \"publishDate\": \"<dateTime>\",\n    \"packageId\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendations\": \"<string>\",\n    \"cwe\": \"<string>\",\n    \"isIgnored\": \"<boolean>\",\n    \"references\": [\n      \"<uri>\",\n      \"<uri>\"\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"cveName\": \"<string>\",\n    \"score\": \"<float>\",\n    \"severity\": \"Low\",\n    \"publishDate\": \"<dateTime>\",\n    \"packageId\": \"<string>\",\n    \"description\": \"<string>\",\n    \"recommendations\": \"<string>\",\n    \"cwe\": \"<string>\",\n    \"isIgnored\": \"<boolean>\",\n    \"references\": [\n      \"<uri>\",\n      \"<uri>\"\n    ]\n  }\n]",
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-a10390da-561f-45a3-b2dc-e4d275951e0e"
+                        },
+                        {
+                          "id": "018b40b0-35cd-4752-b9da-2474afa14e02",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/vulnerabilities",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "vulnerabilities"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-018b40b0-35cd-4752-b9da-2474afa14e02"
+                        },
+                        {
+                          "id": "e63ce876-561d-4539-861d-59fa736b003a",
+                          "name": "Project not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/vulnerabilities",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "vulnerabilities"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-e63ce876-561d-4539-861d-59fa736b003a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-a5a0e115-4ba6-4520-b9be-a488653353a5"
+                    }
+                  ],
+                  "id": "ca2d95f1-7bd9-4480-95b7-296b147a76b2",
+                  "createdAt": "2026-07-28T01:20:04.000Z",
+                  "updatedAt": "2026-07-28T01:20:04.000Z",
+                  "uid": "35240-ca2d95f1-7bd9-4480-95b7-296b147a76b2"
+                },
+                {
+                  "name": "packages",
+                  "item": [
+                    {
+                      "name": "Checkmarx List project packages",
+                      "id": "dcb65fb6-d6d9-4c4d-8964-f0e04ea1ac72",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId",
+                            "packages"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8ba35979-be59-4dcd-84a2-925e21195cab",
+                              "key": "projectId",
+                              "value": "<uuid>",
+                              "description": "(Required) Project unique identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all open source packages detected in a project with their license and vulnerability information."
+                      },
+                      "response": [
+                        {
+                          "id": "b93b05e9-693c-44c6-a6b4-e4d28699fd44",
+                          "name": "List of packages",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/packages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "packages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"packageRepository\": \"<string>\",\n    \"isDirectDependency\": \"<boolean>\",\n    \"licenses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highVulnerabilityCount\": \"<integer>\",\n    \"mediumVulnerabilityCount\": \"<integer>\",\n    \"lowVulnerabilityCount\": \"<integer>\",\n    \"riskScore\": \"<float>\",\n    \"outdated\": \"<boolean>\",\n    \"newestVersion\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"packageRepository\": \"<string>\",\n    \"isDirectDependency\": \"<boolean>\",\n    \"licenses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highVulnerabilityCount\": \"<integer>\",\n    \"mediumVulnerabilityCount\": \"<integer>\",\n    \"lowVulnerabilityCount\": \"<integer>\",\n    \"riskScore\": \"<float>\",\n    \"outdated\": \"<boolean>\",\n    \"newestVersion\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-b93b05e9-693c-44c6-a6b4-e4d28699fd44"
+                        },
+                        {
+                          "id": "305397cb-13cc-4769-9340-e08d8ae1ed4e",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/packages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "packages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-305397cb-13cc-4769-9340-e08d8ae1ed4e"
+                        },
+                        {
+                          "id": "5122bf31-b65e-469e-9c3c-774d521c600e",
+                          "name": "Project not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/packages",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "packages"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-5122bf31-b65e-469e-9c3c-774d521c600e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-dcb65fb6-d6d9-4c4d-8964-f0e04ea1ac72"
+                    }
+                  ],
+                  "id": "7797f969-7d26-476f-a65e-bd6d501d1aec",
+                  "createdAt": "2026-07-28T01:20:04.000Z",
+                  "updatedAt": "2026-07-28T01:20:04.000Z",
+                  "uid": "35240-7797f969-7d26-476f-a65e-bd6d501d1aec"
+                },
+                {
+                  "name": "licenses",
+                  "item": [
+                    {
+                      "name": "Checkmarx List project licenses",
+                      "id": "80963ac0-7c32-4dc1-a042-32174ea1b084",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/licenses",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId",
+                            "licenses"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cdff21bc-34dd-4507-93f4-3a3fdd92cfd4",
+                              "key": "projectId",
+                              "value": "<uuid>",
+                              "description": "(Required) Project unique identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all licenses detected across open source packages in a project."
+                      },
+                      "response": [
+                        {
+                          "id": "f554e46d-765f-4499-8acf-8f7a24f19ef8",
+                          "name": "List of licenses",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/licenses",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "licenses"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"name\": \"<string>\",\n    \"riskLevel\": \"Unknown\",\n    \"copyleftType\": \"Unknown\",\n    \"referenceUrl\": \"<uri>\",\n    \"packageCount\": \"<integer>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"riskLevel\": \"Low\",\n    \"copyleftType\": \"true\",\n    \"referenceUrl\": \"<uri>\",\n    \"packageCount\": \"<integer>\"\n  }\n]",
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-f554e46d-765f-4499-8acf-8f7a24f19ef8"
+                        },
+                        {
+                          "id": "05549d95-7139-4823-9858-2ac2d859036f",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/licenses",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "licenses"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-05549d95-7139-4823-9858-2ac2d859036f"
+                        },
+                        {
+                          "id": "9b4c70b5-2b55-46b6-9461-8283d6ab9cd5",
+                          "name": "Project not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId/licenses",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "risk-management",
+                                "risk-reports",
+                                ":projectId",
+                                "licenses"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:20:04.000Z",
+                          "updatedAt": "2026-07-28T01:20:04.000Z",
+                          "uid": "35240-9b4c70b5-2b55-46b6-9461-8283d6ab9cd5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-80963ac0-7c32-4dc1-a042-32174ea1b084"
+                    }
+                  ],
+                  "id": "b5f4244c-664d-4e0b-a240-61b73ad1944e",
+                  "createdAt": "2026-07-28T01:20:04.000Z",
+                  "updatedAt": "2026-07-28T01:20:04.000Z",
+                  "uid": "35240-b5f4244c-664d-4e0b-a240-61b73ad1944e"
+                },
+                {
+                  "name": "Checkmarx Get project risk report",
+                  "id": "22f6562d-d942-4908-89b5-e770e10cd4c4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "risk-management",
+                        "risk-reports",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "624bd9c9-1cdb-4a32-a7e6-ea05f97be324",
+                          "key": "projectId",
+                          "value": "<uuid>",
+                          "description": "(Required) Project unique identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the risk report for a project, including vulnerability summary and risk score."
+                  },
+                  "response": [
+                    {
+                      "id": "dbc012e3-20a6-48ee-8a9c-8cf1f335cfc0",
+                      "name": "Risk report",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"projectId\": \"<uuid>\",\n  \"riskScore\": \"<float>\",\n  \"totalPackages\": \"<integer>\",\n  \"directPackages\": \"<integer>\",\n  \"totalOutdatedPackages\": \"<integer>\",\n  \"vulnerabilitySummary\": {\n    \"highVulnerabilityCount\": \"<integer>\",\n    \"mediumVulnerabilityCount\": \"<integer>\",\n    \"lowVulnerabilityCount\": \"<integer>\",\n    \"totalVulnerabilityCount\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-dbc012e3-20a6-48ee-8a9c-8cf1f335cfc0"
+                    },
+                    {
+                      "id": "f517ed6b-531b-444e-93ba-2f9df97f9f6e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-f517ed6b-531b-444e-93ba-2f9df97f9f6e"
+                    },
+                    {
+                      "id": "46403760-5e2c-4c68-9cad-07cb0bdd6376",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/risk-management/risk-reports/:projectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "risk-management",
+                            "risk-reports",
+                            ":projectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:04.000Z",
+                      "updatedAt": "2026-07-28T01:20:04.000Z",
+                      "uid": "35240-46403760-5e2c-4c68-9cad-07cb0bdd6376"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:04.000Z",
+                  "updatedAt": "2026-07-28T01:20:04.000Z",
+                  "uid": "35240-22f6562d-d942-4908-89b5-e770e10cd4c4"
+                }
+              ],
+              "id": "973cbade-bc4a-4d2c-8c68-f211b33e3de1",
+              "createdAt": "2026-07-28T01:20:04.000Z",
+              "updatedAt": "2026-07-28T01:20:04.000Z",
+              "uid": "35240-973cbade-bc4a-4d2c-8c68-f211b33e3de1"
+            }
+          ],
+          "id": "43144f0e-3651-452d-92ed-23ef8d86b1ce",
+          "createdAt": "2026-07-28T01:20:04.000Z",
+          "updatedAt": "2026-07-28T01:20:04.000Z",
+          "uid": "35240-43144f0e-3651-452d-92ed-23ef8d86b1ce"
+        }
+      ],
+      "id": "62cf2307-6baf-4fdc-8dbc-69bfbacc62ab",
+      "createdAt": "2026-07-28T01:20:04.000Z",
+      "updatedAt": "2026-07-28T01:20:04.000Z",
+      "uid": "35240-62cf2307-6baf-4fdc-8dbc-69bfbacc62ab"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ast.checkmarx.net/api"
+    }
+  ]
+}
