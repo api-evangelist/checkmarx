@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Configuration API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project scan configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/configuration/project",
+            "params": [
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the scan configuration for a project, including engine-specific settings for SAST, SCA, and KICS."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update project scan configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ast.checkmarx.net/api/configuration/project",
+            "params": [
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the scan configuration for a project, including SAST preset, exclusion filters, and engine settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

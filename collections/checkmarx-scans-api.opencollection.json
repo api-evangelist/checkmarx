@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Scans API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/scans",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan statuses (comma-separated)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction"
+              }
+            ]
+          },
+          "docs": "Retrieve scans with optional filtering by project, status, and scan type."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new security scan for a project. The scan can include SAST, SCA, KICS, and other scan types based on project configuration."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details and status of a specific scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Cancel a scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Cancel a running or queued scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List all scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/sast/scans",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter scans by project ID"
+              },
+              {
+                "name": "scanStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scan status"
+              },
+              {
+                "name": "last",
+                "value": "",
+                "type": "query",
+                "description": "Number of most recent scans to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all SAST scans, with optional filtering by project, scan status, and date range."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/sast/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new SAST scan for a project. The scan will be queued and executed based on engine availability."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/sast/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan by ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update scan status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ast.checkmarx.net/api/sast/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of a scan, such as canceling a running scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/scans",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of SCA scans with optional filtering by project ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Trigger a new scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/risk-management/scans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new SCA scan for a project by uploading a source archive or pointing to a repository."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/scans/:scanId",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details and status of a specific SCA scan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

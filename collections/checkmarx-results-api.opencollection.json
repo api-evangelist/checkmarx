@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Results API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scan results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results",
+            "params": [
+              {
+                "name": "scan-id",
+                "value": "",
+                "type": "query",
+                "description": "Scan ID to retrieve results for"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity (comma-separated)"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by result state (comma-separated)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by result status"
+              }
+            ]
+          },
+          "docs": "Retrieve vulnerability results for a scan, with optional filtering by severity, state, and scan type."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get result details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results/:resultId",
+            "params": [
+              {
+                "name": "resultId",
+                "value": "",
+                "type": "path",
+                "description": "Result unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific finding."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update result state",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ast.checkmarx.net/api/results/:resultId",
+            "params": [
+              {
+                "name": "resultId",
+                "value": "",
+                "type": "path",
+                "description": "Result unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the triage state of a result, such as confirming, marking as not exploitable, or setting to proposed not exploitable."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get results summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/results/summary",
+            "params": [
+              {
+                "name": "scan-id",
+                "value": "",
+                "type": "query",
+                "description": "Scan ID to summarize"
+              }
+            ]
+          },
+          "docs": "Retrieve an aggregated summary of scan results grouped by severity and status."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get scan results statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/sast/scans/:scanId/resultsStatistics",
+            "params": [
+              {
+                "name": "scanId",
+                "value": "",
+                "type": "path",
+                "description": "Scan unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve summary statistics for a completed scan, including vulnerability counts by severity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

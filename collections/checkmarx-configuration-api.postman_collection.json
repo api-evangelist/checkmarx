@@ -1,0 +1,389 @@
+{
+  "item": [
+    {
+      "id": "2cf0e97d-f256-4f90-b09b-f6dd87dc67e8",
+      "name": "Configuration",
+      "description": {
+        "content": "Manage project and tenant-level scan configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "346219fc-a52a-4dd6-8787-2a3faf5d8c66",
+          "name": "Checkmarx Get project scan configuration",
+          "request": {
+            "name": "Checkmarx Get project scan configuration",
+            "description": {
+              "content": "Retrieve the scan configuration for a project, including engine-specific settings for SAST, SCA, and KICS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration",
+                "project"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project-id",
+                  "value": "<uuid>",
+                  "description": "(Required) Project ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "428593f8-ac23-4603-981e-36559d41da39",
+              "name": "Project configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    "project"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": true\n  },\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bd347a9-0353-4122-a5cd-6fd716473af4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    "project"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce9f02c5-6265-498d-af18-87b1df66d63e",
+          "name": "Checkmarx Update project scan configuration",
+          "request": {
+            "name": "Checkmarx Update project scan configuration",
+            "description": {
+              "content": "Update the scan configuration for a project, including SAST preset, exclusion filters, and engine settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "configuration",
+                "project"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project-id",
+                  "value": "<uuid>",
+                  "description": "(Required) Project ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"category\": \"<string>\",\n    \"originLevel\": \"<string>\",\n    \"value\": \"<string>\",\n    \"valuetype\": \"<string>\",\n    \"allowOverride\": \"<boolean>\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"category\": \"<string>\",\n    \"originLevel\": \"<string>\",\n    \"value\": \"<string>\",\n    \"valuetype\": \"<string>\",\n    \"allowOverride\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5055e6e3-dd5c-468d-993e-2cfef36c712b",
+              "name": "Configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    "project"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  },\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c795474-6b37-42a5-9211-a23e1f54ad34",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    "project"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  },\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62c0ae4a-2acf-4b59-82b5-3bc08ff9d4d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "configuration",
+                    "project"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project-id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  },\n  {\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"category\": \"string\",\n    \"originLevel\": \"string\",\n    \"value\": \"string\",\n    \"valuetype\": \"string\",\n    \"allowOverride\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ast.checkmarx.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d94023e8-8908-4f27-8939-c267ffe36494",
+    "name": "Checkmarx One Applications Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+      "type": "text/plain"
+    }
+  }
+}

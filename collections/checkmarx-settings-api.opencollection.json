@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Settings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/settings/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve scan and policy settings for a project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update project settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ast.checkmarx.net/api/settings/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update scan and policy settings for a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

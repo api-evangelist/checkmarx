@@ -1,0 +1,161 @@
+{
+  "item": [
+    {
+      "id": "5136f37c-f510-4232-a4d2-2236843ebad5",
+      "name": "Engines",
+      "description": {
+        "content": "Manage scan engines and engine servers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0312b8a7-79da-4576-8f98-e43f0a62ff13",
+          "name": "Checkmarx List engine servers",
+          "request": {
+            "name": "Checkmarx List engine servers",
+            "description": {
+              "content": "Retrieve a list of all configured SAST engine servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sast",
+                "engineServers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d401e8a0-6475-42d9-9052-8f30add411ef",
+              "name": "List of engine servers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "engineServers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2583,\n    \"name\": \"string\",\n    \"uri\": \"http://VvXkazve.fnD+ymTcntgXa\",\n    \"minLoc\": 3965,\n    \"maxLoc\": 6108,\n    \"isAlive\": false,\n    \"maxScans\": 4253\n  },\n  {\n    \"id\": 8707,\n    \"name\": \"string\",\n    \"uri\": \"http://TxMFiyFfKJxIDRIh.rjvgSmDOG9lzWiN5FZnHm\",\n    \"minLoc\": 676,\n    \"maxLoc\": 850,\n    \"isAlive\": true,\n    \"maxScans\": 6335\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0acca14-cc1d-4acc-b03a-bc3565545f79",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sast",
+                    "engineServers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ast.checkmarx.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "076da64b-3262-4926-82ee-6712991a743e",
+    "name": "Checkmarx One Applications Engines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+      "type": "text/plain"
+    }
+  }
+}

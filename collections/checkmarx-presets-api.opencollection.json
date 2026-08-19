@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Presets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Presets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List scan presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/presets"
+          },
+          "docs": "Retrieve all available scan presets that define which queries and rules to apply during scans."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get preset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/presets/:presetId",
+            "params": [
+              {
+                "name": "presetId",
+                "value": "",
+                "type": "path",
+                "description": "Preset unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan preset."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List all scan presets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/sast/presets"
+          },
+          "docs": "Retrieve a list of all available scan presets."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get preset details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/sast/presets/:presetId",
+            "params": [
+              {
+                "name": "presetId",
+                "value": "",
+                "type": "path",
+                "description": "Preset unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific scan preset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

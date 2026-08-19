@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Risk Reports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get project risk report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/risk-reports/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the risk report for a project, including vulnerability summary and risk score."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/risk-reports/:projectId/vulnerabilities",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all vulnerabilities found in a project from the most recent scan."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/risk-reports/:projectId/packages",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all open source packages detected in a project with their license and vulnerability information."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List project licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/risk-reports/:projectId/licenses",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all licenses detected across open source packages in a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

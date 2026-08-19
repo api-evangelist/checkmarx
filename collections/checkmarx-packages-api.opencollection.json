@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Packages API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx Get package details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/packages/:packageType/:packageName/:version",
+            "params": [
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "path",
+                "description": "Package ecosystem type"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific open source package version, including known vulnerabilities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

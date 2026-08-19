@@ -1,0 +1,837 @@
+{
+  "item": [
+    {
+      "id": "92bb1806-2949-4b9a-9369-bb8e3ffb24ee",
+      "name": "Risk Reports",
+      "description": {
+        "content": "Retrieve vulnerability and risk analysis results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9027fdcf-db83-4fa0-9ecf-1960b67c7281",
+          "name": "Checkmarx Get project risk report",
+          "request": {
+            "name": "Checkmarx Get project risk report",
+            "description": {
+              "content": "Retrieve the risk report for a project, including vulnerability summary and risk score.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-management",
+                "risk-reports",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "370fdc51-5eb9-46d4-98c8-cd5407e66f19",
+              "name": "Risk report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": \"b3544969-7689-8c15-4d24-8e10fc90e97c\",\n  \"riskScore\": 6692.891347978377,\n  \"totalPackages\": 131,\n  \"directPackages\": 9239,\n  \"totalOutdatedPackages\": 4131,\n  \"vulnerabilitySummary\": {\n    \"highVulnerabilityCount\": 1334,\n    \"mediumVulnerabilityCount\": 61,\n    \"lowVulnerabilityCount\": 4194,\n    \"totalVulnerabilityCount\": 5824\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b0e62e8-f44d-4b12-abbb-538ca90dcc8a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d12559b-c0f6-456c-b6ec-c439b8f00394",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8592119b-2b98-4c10-a6b1-69e586b10f2d",
+          "name": "Checkmarx List project vulnerabilities",
+          "request": {
+            "name": "Checkmarx List project vulnerabilities",
+            "description": {
+              "content": "Retrieve all vulnerabilities found in a project from the most recent scan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-management",
+                "risk-reports",
+                ":projectId",
+                "vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0f7f32f-82b0-48fc-9356-c86ae73929ea",
+              "name": "List of vulnerabilities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"cveName\": \"string\",\n    \"score\": 3539.4278708416437,\n    \"severity\": \"Medium\",\n    \"publishDate\": \"2008-09-19T23:16:23.063Z\",\n    \"packageId\": \"string\",\n    \"description\": \"string\",\n    \"recommendations\": \"string\",\n    \"cwe\": \"string\",\n    \"isIgnored\": false,\n    \"references\": [\n      \"https://HNWkhoDqacYLkEXCDwtfUV.sdrd6rKH4Ubms2YLczcERgYZLHO-bHMYSfoS4A5sxlHfwlxMBp9j\",\n      \"https://vQXlSndDRzIe.telkuBjBobgDq8pBQ5lNAMDIUTAdy8wjNngk5eO3O2ufn7MXrFcGd\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"cveName\": \"string\",\n    \"score\": 2135.8620396295005,\n    \"severity\": \"High\",\n    \"publishDate\": \"1991-12-26T14:21:30.052Z\",\n    \"packageId\": \"string\",\n    \"description\": \"string\",\n    \"recommendations\": \"string\",\n    \"cwe\": \"string\",\n    \"isIgnored\": true,\n    \"references\": [\n      \"http://ZJ.eetnzdTUuES\",\n      \"https://xQPtndZFuENPgjjlK.bdsh14UiPNua5wGH2H7v+6wEQYo8+L.lUh9lPemLB\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d1e338a-8533-4c27-8927-60478ed555fe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f452f75-7779-4bc9-a2a1-e374ead57cf9",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f92eb90-d044-4c34-beb2-004f441d2a42",
+          "name": "Checkmarx List project packages",
+          "request": {
+            "name": "Checkmarx List project packages",
+            "description": {
+              "content": "Retrieve all open source packages detected in a project with their license and vulnerability information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-management",
+                "risk-reports",
+                ":projectId",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02ac520f-e3f9-44e8-9293-154f61b223cd",
+              "name": "List of packages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"packageRepository\": \"string\",\n    \"isDirectDependency\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"highVulnerabilityCount\": 420,\n    \"mediumVulnerabilityCount\": 1154,\n    \"lowVulnerabilityCount\": 2330,\n    \"riskScore\": 2509.0854115612483,\n    \"outdated\": false,\n    \"newestVersion\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"packageRepository\": \"string\",\n    \"isDirectDependency\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"highVulnerabilityCount\": 8613,\n    \"mediumVulnerabilityCount\": 1788,\n    \"lowVulnerabilityCount\": 353,\n    \"riskScore\": 6567.061835229016,\n    \"outdated\": true,\n    \"newestVersion\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "176e0c8e-5a79-4706-ba51-09223ddf2d36",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a490b55-4406-41b3-aa7c-74150325d827",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a8d102c-2255-456d-8ae7-62a4fc6c9fd4",
+          "name": "Checkmarx List project licenses",
+          "request": {
+            "name": "Checkmarx List project licenses",
+            "description": {
+              "content": "Retrieve all licenses detected across open source packages in a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk-management",
+                "risk-reports",
+                ":projectId",
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aec46fc-68aa-4fe1-bcb9-26dd56a1f39b",
+              "name": "List of licenses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"riskLevel\": \"High\",\n    \"copyleftType\": \"Partial\",\n    \"referenceUrl\": \"https://IzNyoQIaIBhffjDfdZJFdfVOhAMco.lgoyInqjER0zQwJ\",\n    \"packageCount\": 7473\n  },\n  {\n    \"name\": \"string\",\n    \"riskLevel\": \"High\",\n    \"copyleftType\": \"false\",\n    \"referenceUrl\": \"http://sDrpblXzplRsIeFGVzzeKsEZWz.yvyN76wiHMVRhVIb-eIL7Wq\",\n    \"packageCount\": 9791\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1a06641-03b7-413b-be88-1086d24344a7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61f6cb5d-cd0b-4ea4-8c63-d5d2827dd394",
+              "name": "Project not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-management",
+                    "risk-reports",
+                    ":projectId",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ast.checkmarx.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "454e490a-0020-47ce-b3bf-b4ee9471ba23",
+    "name": "Checkmarx One Applications Risk Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+      "type": "text/plain"
+    }
+  }
+}

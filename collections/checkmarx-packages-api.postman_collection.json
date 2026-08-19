@@ -1,0 +1,297 @@
+{
+  "item": [
+    {
+      "id": "b5c3b03d-e5bd-4eba-ae0b-5e88a6276f96",
+      "name": "Packages",
+      "description": {
+        "content": "Query open source package information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12cc216b-192e-40bd-8e16-002740e53f84",
+          "name": "Checkmarx Get package details",
+          "request": {
+            "name": "Checkmarx Get package details",
+            "description": {
+              "content": "Retrieve detailed information about a specific open source package version, including known vulnerabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":packageType",
+                ":packageName",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageType",
+                  "description": "(Required) Package ecosystem type"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageName",
+                  "description": "(Required) Package name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Package version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3943117f-9a30-4ec7-bfc6-af6b7cc0a114",
+              "name": "Package details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Package version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"description\": \"string\",\n  \"licenses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vulnerabilities\": [\n    {\n      \"id\": \"string\",\n      \"cveName\": \"string\",\n      \"score\": 6041.142250050923,\n      \"severity\": \"High\",\n      \"publishDate\": \"2025-09-27T02:34:23.737Z\",\n      \"packageId\": \"string\",\n      \"description\": \"string\",\n      \"recommendations\": \"string\",\n      \"cwe\": \"string\",\n      \"isIgnored\": true,\n      \"references\": [\n        \"http://RhRubrpbSTfIIGTvm.xsbe\",\n        \"http://uToPuYqV.pvrt-2yH8YTiwVSBqy5AMQW2mS,idJ\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"cveName\": \"string\",\n      \"score\": 1228.9961535103766,\n      \"severity\": \"High\",\n      \"publishDate\": \"1987-02-25T05:09:57.135Z\",\n      \"packageId\": \"string\",\n      \"description\": \"string\",\n      \"recommendations\": \"string\",\n      \"cwe\": \"string\",\n      \"isIgnored\": false,\n      \"references\": [\n        \"http://DWLVsGKLnRQxJe.acmYadHfJzo505PcCqFJaL9R0ycGqlXWG2zhJfQ.n,BWjrBBxmZ0KAoN8Qr8uYRW9JJ\",\n        \"https://cFaoVSOrZSQoTW.ufiYkVnRTOacVtSV0k\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d31b6d1-3442-4857-8bb7-6c9c3a0ba76a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Package version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09b5c36f-3a14-4ab9-bbab-e1a64960adf0",
+              "name": "Package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Package version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ast.checkmarx.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3a7b9ef7-95b5-4fad-8351-b12751ea6b03",
+    "name": "Checkmarx One Applications Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.\n\nContact Support:\n Name: Checkmarx Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Checkmarx One Applications Projects API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Checkmarx List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/projects",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project name"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group IDs (comma-separated)"
+              },
+              {
+                "name": "tags-keys",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag keys"
+              },
+              {
+                "name": "tags-values",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag values"
+              }
+            ]
+          },
+          "docs": "Retrieve all projects with optional filtering by name, group, or tag."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project for security scanning. A project represents a code repository or application component to be scanned."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific project by ID."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing project's configuration."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete a project and all its associated scans and results."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get Git remote source settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId/sourceCode/remoteSettings/git",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the Git repository settings for a project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Set Git remote source settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/projects/:projectId/sourceCode/remoteSettings/git",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure the Git repository source settings for a project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx List all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/projects"
+          },
+          "docs": "Retrieve a list of all SCA projects for the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ast.checkmarx.net/api/risk-management/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SCA project for scanning open source dependencies."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ast.checkmarx.net/api/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific SCA project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ast.checkmarx.net/api/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing SCA project."
+        },
+        {
+          "info": {
+            "name": "Checkmarx Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ast.checkmarx.net/api/risk-management/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project unique identifier"
+              }
+            ]
+          },
+          "docs": "Delete an SCA project and all associated scan data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
