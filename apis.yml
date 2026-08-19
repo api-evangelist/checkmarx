@@ -27,7 +27,7 @@ tags:
 created: '2024'
 modified: '2026-05-19'
 url: https://www.checkmarx.com
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: checkmarx:checkmarx-applications-api
   name: Checkmarx Applications API
