@@ -35,6 +35,8 @@ apis:
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -131,6 +133,8 @@ apis:
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -203,6 +207,8 @@ apis:
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -227,6 +233,8 @@ apis:
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -371,6 +379,8 @@ apis:
   humanURL: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   baseURL: https://your-checkmarx-instance.com/cxrestapi
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
