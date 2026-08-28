@@ -3,6 +3,18 @@ description: Checkmarx is a leading application security testing solution provid
   offering static application security testing (SAST), software composition analysis
   (SCA), and other security tools to help organizations identify and remediate vulnerabilities
   in their code.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
