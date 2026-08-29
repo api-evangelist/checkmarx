@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Checkmarx One Applications Configuration API
+  title: Checkmarx One Configuration API
   description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
   version: '1.0'
   contact:

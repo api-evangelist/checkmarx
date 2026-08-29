@@ -1,17 +1,25 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Checkmarx One Applications Projects API
-  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  title: Checkmarx Projects API
   version: '1.0'
   contact:
     name: Checkmarx Support
     url: https://support.checkmarx.com/
   termsOfService: https://checkmarx.com/terms-of-use/
+  description: 'Operations tagged Projects across 3 of this provider''s published API definitions: checkmarx-one-openapi.yml, checkmarx-sast-openapi.yml, checkmarx-sca-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://ast.checkmarx.net/api
   description: Checkmarx One (US)
 - url: https://eu.ast.checkmarx.net/api
   description: Checkmarx One (EU)
+- url: https://{checkmarx-server}/cxrestapi
+  description: Checkmarx SAST Server
+  variables:
+    checkmarx-server:
+      default: your-checkmarx-instance.com
+      description: Hostname of the Checkmarx SAST server
+- url: https://api-sca.checkmarx.net
+  description: Checkmarx SCA Cloud (Production)
 security:
 - bearerAuth: []
 tags:
@@ -90,6 +98,11 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+    servers:
+    - url: https://ast.checkmarx.net/api
+      description: Checkmarx One (US)
+    - url: https://eu.ast.checkmarx.net/api
+      description: Checkmarx One (EU)
   /projects/{projectId}:
     get:
       operationId: getProject
@@ -148,6 +161,11 @@ paths:
           description: Unauthorized
         '404':
           description: Project not found
+    servers:
+    - url: https://ast.checkmarx.net/api
+      description: Checkmarx One (US)
+    - url: https://eu.ast.checkmarx.net/api
+      description: Checkmarx One (EU)
   /projects/{projectId}/sourceCode/remoteSettings/git:
     get:
       operationId: getProjectGitSettings
@@ -189,6 +207,13 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+    servers:
+    - url: https://{checkmarx-server}/cxrestapi
+      description: Checkmarx SAST Server
+      variables:
+        checkmarx-server:
+          default: your-checkmarx-instance.com
+          description: Hostname of the Checkmarx SAST server
   /risk-management/projects:
     get:
       operationId: listProjects
@@ -230,6 +255,9 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+    servers:
+    - url: https://api-sca.checkmarx.net
+      description: Checkmarx SCA Cloud (Production)
   /risk-management/projects/{projectId}:
     get:
       operationId: getProject
@@ -288,7 +316,26 @@ paths:
           description: Unauthorized
         '404':
           description: Project not found
+    servers:
+    - url: https://api-sca.checkmarx.net
+      description: Checkmarx SCA Cloud (Production)
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
+    projectId_2:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: integer
   schemas:
     ProjectListResponse:
       type: object
@@ -303,34 +350,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Project'
-    GitSettings:
+    UpdateProjectRequest:
       type: object
-      required:
-      - url
-      - branch
-      properties:
-        url:
-          type: string
-          description: Git repository URL
-        branch:
-          type: string
-          description: Branch to scan
-        privateKey:
-          type: string
-          description: SSH private key for authentication
-    CreateProjectRequest_3:
-      type: object
-      required:
-      - name
       properties:
         name:
           type: string
           description: Project name
-        assignedTeams:
+        groups:
           type: array
           items:
             type: string
-          description: Team IDs to assign to the project
+        repoUrl:
+          type: string
+        mainBranch:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        criticality:
+          type: integer
     Project:
       type: object
       properties:
@@ -402,37 +441,97 @@ components:
           type: integer
           description: Project criticality (1-5)
           default: 3
-    UpdateProjectRequest:
+    UpdateProjectRequest_2:
       type: object
       properties:
         name:
           type: string
           description: Project name
-        groups:
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        customFields:
           type: array
           items:
-            type: string
-        repoUrl:
-          type: string
-        mainBranch:
-          type: string
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        criticality:
-          type: integer
-    UpdateProjectRequest_3:
+            $ref: '#/components/schemas/CustomField'
+    Project_2:
       type: object
+      properties:
+        id:
+          type: integer
+          description: Project unique identifier
+        teamId:
+          type: string
+          description: Team ID the project belongs to
+        name:
+          type: string
+          description: Project name
+        isPublic:
+          type: boolean
+          description: Whether the project is public
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+          description: Custom fields attached to the project
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+          description: HATEOAS links
+    CreateProjectRequest_2:
+      type: object
+      required:
+      - name
+      - owningTeam
       properties:
         name:
           type: string
-          description: Updated project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Updated team assignments
+          description: Project name
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        isPublic:
+          type: boolean
+          description: Whether the project is publicly accessible
+          default: true
+    GitSettings:
+      type: object
+      required:
+      - url
+      - branch
+      properties:
+        url:
+          type: string
+          description: Git repository URL
+        branch:
+          type: string
+          description: Branch to scan
+        privateKey:
+          type: string
+          description: SSH private key for authentication
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Custom field ID
+        value:
+          type: string
+          description: Custom field value
+        name:
+          type: string
+          description: Custom field name
     Project_3:
       type: object
       properties:
@@ -475,28 +574,37 @@ components:
         lowVulnerabilityCount:
           type: integer
           description: Number of low severity vulnerabilities
-  parameters:
-    projectId_2:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: integer
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
+    UpdateProjectRequest_3:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Updated team assignments
+    CreateProjectRequest_3:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Team IDs to assign to the project
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
-externalDocs:
-  description: Checkmarx One API Documentation
-  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+x-refined-from:
+- checkmarx-one-openapi.yml
+- checkmarx-sast-openapi.yml
+- checkmarx-sca-openapi.yml

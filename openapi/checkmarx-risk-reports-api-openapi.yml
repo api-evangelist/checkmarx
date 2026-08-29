@@ -1,17 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Checkmarx One Applications Risk Reports API
-  description: Unified REST API for the Checkmarx One cloud-native application security platform, providing consolidated access to SAST, SCA, KICS, and other security scanning capabilities through a single API with project management, scan orchestration, and results retrieval.
+  title: Checkmarx SCA Risk Reports API
+  description: REST API for Checkmarx Software Composition Analysis (SCA), enabling programmatic management of open source security scanning, vulnerability detection, license compliance analysis, and dependency inventory for software projects.
   version: '1.0'
   contact:
     name: Checkmarx Support
     url: https://support.checkmarx.com/
   termsOfService: https://checkmarx.com/terms-of-use/
 servers:
-- url: https://ast.checkmarx.net/api
-  description: Checkmarx One (US)
-- url: https://eu.ast.checkmarx.net/api
-  description: Checkmarx One (EU)
+- url: https://api-sca.checkmarx.net
+  description: Checkmarx SCA Cloud (Production)
 security:
 - bearerAuth: []
 tags:
@@ -105,22 +103,16 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
   schemas:
-    VulnerabilitySummary:
-      type: object
-      properties:
-        highVulnerabilityCount:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumVulnerabilityCount:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowVulnerabilityCount:
-          type: integer
-          description: Number of low severity vulnerabilities
-        totalVulnerabilityCount:
-          type: integer
-          description: Total number of vulnerabilities
     License:
       type: object
       properties:
@@ -150,48 +142,6 @@ components:
         packageCount:
           type: integer
           description: Number of packages using this license
-    Package:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Package identifier
-        name:
-          type: string
-          description: Package name
-        version:
-          type: string
-          description: Package version
-        packageRepository:
-          type: string
-          description: Package ecosystem (npm, maven, etc.)
-        isDirectDependency:
-          type: boolean
-          description: Whether this is a direct dependency
-        licenses:
-          type: array
-          items:
-            type: string
-          description: License names
-        highVulnerabilityCount:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumVulnerabilityCount:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowVulnerabilityCount:
-          type: integer
-          description: Number of low severity vulnerabilities
-        riskScore:
-          type: number
-          format: float
-          description: Package risk score
-        outdated:
-          type: boolean
-          description: Whether the package is outdated
-        newestVersion:
-          type: string
-          description: Newest available version
     Vulnerability:
       type: object
       properties:
@@ -237,6 +187,21 @@ components:
             type: string
             format: uri
           description: External reference URLs
+    VulnerabilitySummary:
+      type: object
+      properties:
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        totalVulnerabilityCount:
+          type: integer
+          description: Total number of vulnerabilities
     RiskReport:
       type: object
       properties:
@@ -259,21 +224,54 @@ components:
           description: Number of outdated packages
         vulnerabilitySummary:
           $ref: '#/components/schemas/VulnerabilitySummary'
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
+    Package:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Package identifier
+        name:
+          type: string
+          description: Package name
+        version:
+          type: string
+          description: Package version
+        packageRepository:
+          type: string
+          description: Package ecosystem (npm, maven, etc.)
+        isDirectDependency:
+          type: boolean
+          description: Whether this is a direct dependency
+        licenses:
+          type: array
+          items:
+            type: string
+          description: License names
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        riskScore:
+          type: number
+          format: float
+          description: Package risk score
+        outdated:
+          type: boolean
+          description: Whether the package is outdated
+        newestVersion:
+          type: string
+          description: Newest available version
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 bearer token obtained via client credentials from the Checkmarx One IAM service
+      description: OAuth 2.0 bearer token obtained from the authentication endpoint
 externalDocs:
-  description: Checkmarx One API Documentation
-  url: https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html
+  description: Checkmarx SCA API Documentation
+  url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
