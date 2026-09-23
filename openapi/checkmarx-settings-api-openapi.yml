@@ -60,6 +60,15 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
   schemas:
     ProjectSettings:
       type: object
@@ -78,15 +87,6 @@ components:
           - Low
           - None
           description: Minimum severity to enforce policies
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

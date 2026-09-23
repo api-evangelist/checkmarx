@@ -357,72 +357,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scan'
-    CreateScanRequest:
-      type: object
-      required:
-      - project
-      - type
-      - handler
-      properties:
-        project:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: Project ID to scan
-        type:
-          type: string
-          enum:
-          - git
-          - upload
-          description: Source type
-        handler:
-          type: object
-          properties:
-            repoUrl:
-              type: string
-              description: Git repository URL (for git type)
-            branch:
-              type: string
-              description: Branch to scan (for git type)
-            uploadUrl:
-              type: string
-              description: Pre-signed upload URL (for upload type)
-        config:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - sast
-                - sca
-                - kics
-                - apisec
-              value:
-                type: object
-                additionalProperties: true
-          description: Per-engine scan configuration
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    ScanStatusDetail:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Engine name
-        status:
-          type: string
-          description: Engine-specific scan status
-        details:
-          type: string
-          description: Status details message
     Scan:
       type: object
       properties:
@@ -486,6 +420,91 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
+    ScanStatusDetail:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Engine name
+        status:
+          type: string
+          description: Engine-specific scan status
+        details:
+          type: string
+          description: Status details message
+    CreateScanRequest:
+      type: object
+      required:
+      - project
+      - type
+      - handler
+      properties:
+        project:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: Project ID to scan
+        type:
+          type: string
+          enum:
+          - git
+          - upload
+          description: Source type
+        handler:
+          type: object
+          properties:
+            repoUrl:
+              type: string
+              description: Git repository URL (for git type)
+            branch:
+              type: string
+              description: Branch to scan (for git type)
+            uploadUrl:
+              type: string
+              description: Pre-signed upload URL (for upload type)
+        config:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - sast
+                - sca
+                - kics
+                - apisec
+              value:
+                type: object
+                additionalProperties: true
+          description: Per-engine scan configuration
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ScanResultsStatistics:
+      type: object
+      properties:
+        highSeverity:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumSeverity:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowSeverity:
+          type: integer
+          description: Number of low severity vulnerabilities
+        infoSeverity:
+          type: integer
+          description: Number of informational findings
+        statisticsCalculationDate:
+          type: string
+          format: date-time
+          description: When the statistics were calculated
     CreateScanRequest_2:
       type: object
       required:
@@ -509,25 +528,6 @@ components:
         comment:
           type: string
           description: Comment for the scan
-    ScanResultsStatistics:
-      type: object
-      properties:
-        highSeverity:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumSeverity:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowSeverity:
-          type: integer
-          description: Number of low severity vulnerabilities
-        infoSeverity:
-          type: integer
-          description: Number of informational findings
-        statisticsCalculationDate:
-          type: string
-          format: date-time
-          description: When the statistics were calculated
     Scan_2:
       type: object
       properties:

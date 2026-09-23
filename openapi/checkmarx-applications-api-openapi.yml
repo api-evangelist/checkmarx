@@ -144,6 +144,35 @@ components:
         type: string
         format: uuid
   schemas:
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ApplicationRule:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type
+        value:
+          type: string
+          description: Rule value pattern
     ApplicationListResponse:
       type: object
       properties:
@@ -222,35 +251,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    UpdateApplicationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
-        criticality:
-          type: integer
-          description: Application criticality (1-5)
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationRule'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    ApplicationRule:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Rule type
-        value:
-          type: string
-          description: Rule value pattern
   securitySchemes:
     bearerAuth:
       type: http

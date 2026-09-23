@@ -156,6 +156,16 @@ components:
           items:
             type: string
           description: Query IDs included in this preset
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
     Preset_2:
       type: object
       properties:
@@ -170,16 +180,6 @@ components:
           description: Preset owner name
         link:
           $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        uri:
-          type: string
-          format: uri
-          description: Link URI
   securitySchemes:
     bearerAuth:
       type: http

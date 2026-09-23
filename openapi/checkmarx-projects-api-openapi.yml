@@ -337,19 +337,6 @@ components:
       schema:
         type: integer
   schemas:
-    ProjectListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of projects
-        filteredTotalCount:
-          type: integer
-          description: Total count after filtering
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
     UpdateProjectRequest:
       type: object
       properties:
@@ -410,6 +397,19 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
+    ProjectListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of projects
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     CreateProjectRequest:
       type: object
       required:
@@ -441,6 +441,16 @@ components:
           type: integer
           description: Project criticality (1-5)
           default: 3
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
     UpdateProjectRequest_2:
       type: object
       properties:
@@ -479,6 +489,33 @@ components:
           items:
             $ref: '#/components/schemas/Link'
           description: HATEOAS links
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Custom field ID
+        value:
+          type: string
+          description: Custom field value
+        name:
+          type: string
+          description: Custom field name
+    GitSettings:
+      type: object
+      required:
+      - url
+      - branch
+      properties:
+        url:
+          type: string
+          description: Git repository URL
+        branch:
+          type: string
+          description: Branch to scan
+        privateKey:
+          type: string
+          description: SSH private key for authentication
     CreateProjectRequest_2:
       type: object
       required:
@@ -495,43 +532,30 @@ components:
           type: boolean
           description: Whether the project is publicly accessible
           default: true
-    GitSettings:
-      type: object
-      required:
-      - url
-      - branch
-      properties:
-        url:
-          type: string
-          description: Git repository URL
-        branch:
-          type: string
-          description: Branch to scan
-        privateKey:
-          type: string
-          description: SSH private key for authentication
-    Link:
+    UpdateProjectRequest_3:
       type: object
       properties:
-        rel:
-          type: string
-          description: Link relation type
-        uri:
-          type: string
-          format: uri
-          description: Link URI
-    CustomField:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Custom field ID
-        value:
-          type: string
-          description: Custom field value
         name:
           type: string
-          description: Custom field name
+          description: Updated project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Updated team assignments
+    CreateProjectRequest_3:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Team IDs to assign to the project
     Project_3:
       type: object
       properties:
@@ -574,30 +598,6 @@ components:
         lowVulnerabilityCount:
           type: integer
           description: Number of low severity vulnerabilities
-    UpdateProjectRequest_3:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Updated team assignments
-    CreateProjectRequest_3:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Team IDs to assign to the project
   securitySchemes:
     bearerAuth:
       type: http

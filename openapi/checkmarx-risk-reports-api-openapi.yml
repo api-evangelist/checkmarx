@@ -113,6 +113,28 @@ components:
         type: string
         format: uuid
   schemas:
+    RiskReport:
+      type: object
+      properties:
+        projectId:
+          type: string
+          format: uuid
+          description: Project identifier
+        riskScore:
+          type: number
+          format: float
+          description: Overall risk score (0-10)
+        totalPackages:
+          type: integer
+          description: Total number of open source packages
+        directPackages:
+          type: integer
+          description: Number of direct dependency packages
+        totalOutdatedPackages:
+          type: integer
+          description: Number of outdated packages
+        vulnerabilitySummary:
+          $ref: '#/components/schemas/VulnerabilitySummary'
     License:
       type: object
       properties:
@@ -142,6 +164,63 @@ components:
         packageCount:
           type: integer
           description: Number of packages using this license
+    Package:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Package identifier
+        name:
+          type: string
+          description: Package name
+        version:
+          type: string
+          description: Package version
+        packageRepository:
+          type: string
+          description: Package ecosystem (npm, maven, etc.)
+        isDirectDependency:
+          type: boolean
+          description: Whether this is a direct dependency
+        licenses:
+          type: array
+          items:
+            type: string
+          description: License names
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        riskScore:
+          type: number
+          format: float
+          description: Package risk score
+        outdated:
+          type: boolean
+          description: Whether the package is outdated
+        newestVersion:
+          type: string
+          description: Newest available version
+    VulnerabilitySummary:
+      type: object
+      properties:
+        highVulnerabilityCount:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        totalVulnerabilityCount:
+          type: integer
+          description: Total number of vulnerabilities
     Vulnerability:
       type: object
       properties:
@@ -187,85 +266,6 @@ components:
             type: string
             format: uri
           description: External reference URLs
-    VulnerabilitySummary:
-      type: object
-      properties:
-        highVulnerabilityCount:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumVulnerabilityCount:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowVulnerabilityCount:
-          type: integer
-          description: Number of low severity vulnerabilities
-        totalVulnerabilityCount:
-          type: integer
-          description: Total number of vulnerabilities
-    RiskReport:
-      type: object
-      properties:
-        projectId:
-          type: string
-          format: uuid
-          description: Project identifier
-        riskScore:
-          type: number
-          format: float
-          description: Overall risk score (0-10)
-        totalPackages:
-          type: integer
-          description: Total number of open source packages
-        directPackages:
-          type: integer
-          description: Number of direct dependency packages
-        totalOutdatedPackages:
-          type: integer
-          description: Number of outdated packages
-        vulnerabilitySummary:
-          $ref: '#/components/schemas/VulnerabilitySummary'
-    Package:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Package identifier
-        name:
-          type: string
-          description: Package name
-        version:
-          type: string
-          description: Package version
-        packageRepository:
-          type: string
-          description: Package ecosystem (npm, maven, etc.)
-        isDirectDependency:
-          type: boolean
-          description: Whether this is a direct dependency
-        licenses:
-          type: array
-          items:
-            type: string
-          description: License names
-        highVulnerabilityCount:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumVulnerabilityCount:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowVulnerabilityCount:
-          type: integer
-          description: Number of low severity vulnerabilities
-        riskScore:
-          type: number
-          format: float
-          description: Package risk score
-        outdated:
-          type: boolean
-          description: Whether the package is outdated
-        newestVersion:
-          type: string
-          description: Newest available version
   securitySchemes:
     bearerAuth:
       type: http

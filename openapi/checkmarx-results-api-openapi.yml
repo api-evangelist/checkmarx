@@ -199,6 +199,110 @@ paths:
           description: Hostname of the Checkmarx SAST server
 components:
   schemas:
+    UpdateResultRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - TO_VERIFY
+          - NOT_EXPLOITABLE
+          - PROPOSED_NOT_EXPLOITABLE
+          - CONFIRMED
+          - URGENT
+          description: New triage state
+        comment:
+          type: string
+          description: Triage comment
+    ResultsSummary:
+      type: object
+      properties:
+        scanId:
+          type: string
+          format: uuid
+          description: Scan identifier
+        sastCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        scaCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        kicsCounters:
+          $ref: '#/components/schemas/EngineCounters'
+        totalCounter:
+          type: integer
+          description: Total result count
+    ResultNode:
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: Source file name
+        line:
+          type: integer
+          description: Line number
+        column:
+          type: integer
+          description: Column number
+        length:
+          type: integer
+          description: Code length
+        methodLine:
+          type: integer
+          description: Method start line
+        name:
+          type: string
+          description: Node name
+        fullName:
+          type: string
+          description: Fully qualified name
+    EngineCounters:
+      type: object
+      properties:
+        severityCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+                enum:
+                - CRITICAL
+                - HIGH
+                - MEDIUM
+                - LOW
+                - INFO
+              counter:
+                type: integer
+        statusCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              counter:
+                type: integer
+        stateCounters:
+          type: array
+          items:
+            type: object
+            properties:
+              state:
+                type: string
+              counter:
+                type: integer
+        totalCounter:
+          type: integer
+          description: Total count for this engine
+    ResultListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of results
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
     Result:
       type: object
       properties:
@@ -297,110 +401,6 @@ components:
           type: string
           format: date-time
           description: When the result was found in this scan
-    ResultNode:
-      type: object
-      properties:
-        fileName:
-          type: string
-          description: Source file name
-        line:
-          type: integer
-          description: Line number
-        column:
-          type: integer
-          description: Column number
-        length:
-          type: integer
-          description: Code length
-        methodLine:
-          type: integer
-          description: Method start line
-        name:
-          type: string
-          description: Node name
-        fullName:
-          type: string
-          description: Fully qualified name
-    ResultListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of results
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Result'
-    ResultsSummary:
-      type: object
-      properties:
-        scanId:
-          type: string
-          format: uuid
-          description: Scan identifier
-        sastCounters:
-          $ref: '#/components/schemas/EngineCounters'
-        scaCounters:
-          $ref: '#/components/schemas/EngineCounters'
-        kicsCounters:
-          $ref: '#/components/schemas/EngineCounters'
-        totalCounter:
-          type: integer
-          description: Total result count
-    EngineCounters:
-      type: object
-      properties:
-        severityCounters:
-          type: array
-          items:
-            type: object
-            properties:
-              severity:
-                type: string
-                enum:
-                - CRITICAL
-                - HIGH
-                - MEDIUM
-                - LOW
-                - INFO
-              counter:
-                type: integer
-        statusCounters:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-              counter:
-                type: integer
-        stateCounters:
-          type: array
-          items:
-            type: object
-            properties:
-              state:
-                type: string
-              counter:
-                type: integer
-        totalCounter:
-          type: integer
-          description: Total count for this engine
-    UpdateResultRequest:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - TO_VERIFY
-          - NOT_EXPLOITABLE
-          - PROPOSED_NOT_EXPLOITABLE
-          - CONFIRMED
-          - URGENT
-          description: New triage state
-        comment:
-          type: string
-          description: Triage comment
     ScanResultsStatistics:
       type: object
       properties:
