@@ -58,8 +58,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -82,8 +80,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -106,8 +102,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -130,8 +124,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -156,8 +148,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -180,8 +170,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -204,8 +192,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -230,8 +216,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -256,8 +240,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -280,8 +262,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -304,8 +284,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -328,8 +306,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -352,8 +328,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -376,8 +350,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
@@ -402,8 +374,6 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html
   - type: Authentication
     url: https://checkmarx.com/resource/documents/en/34965-8158-authentication.html
-  - type: GraphQL
-    url: graphql/checkmarx-graphql.md
   - type: Documentation
     url: https://checkmarx.com/resource/documents/en/34965-68617-api.html
   - type: Authentication
