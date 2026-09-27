@@ -84,7 +84,7 @@ paths:
       description: Checkmarx One (EU)
   /auth/identity/connect/token:
     post:
-      operationId: authenticate
+      operationId: postAuthIdentityConnectToken
       summary: Checkmarx Obtain access token
       description: Authenticate using OAuth 2.0 to obtain a bearer token for accessing the Checkmarx SAST REST API. Supports both password and refresh token grant types.
       tags:
@@ -136,6 +136,8 @@ paths:
         '400':
           description: Invalid credentials or request
       security: []
+      x-operation-id-source: normalized
+      x-operation-id-original: authenticate
     servers:
     - url: https://{checkmarx-server}/cxrestapi
       description: Checkmarx SAST Server
@@ -145,7 +147,7 @@ paths:
           description: Hostname of the Checkmarx SAST server
   /identity/connect/token:
     post:
-      operationId: authenticate
+      operationId: postIdentityConnectToken
       summary: Checkmarx Obtain access token
       description: Authenticate using OAuth 2.0 client credentials to obtain a bearer token for accessing the Checkmarx SCA API.
       tags:
@@ -196,6 +198,8 @@ paths:
         '400':
           description: Invalid credentials
       security: []
+      x-operation-id-source: normalized
+      x-operation-id-original: authenticate
     servers:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)

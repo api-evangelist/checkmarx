@@ -142,7 +142,7 @@ paths:
       description: Checkmarx One (EU)
   /sast/scans:
     get:
-      operationId: listScans
+      operationId: getSastScans
       summary: Checkmarx List all scans
       description: Retrieve a list of all SAST scans, with optional filtering by project, scan status, and date range.
       tags:
@@ -185,8 +185,10 @@ paths:
                   $ref: '#/components/schemas/Scan_2'
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: listScans
     post:
-      operationId: createScan
+      operationId: postSastScans
       summary: Checkmarx Create a new scan
       description: Initiate a new SAST scan for a project. The scan will be queued and executed based on engine availability.
       tags:
@@ -208,6 +210,8 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: createScan
     servers:
     - url: https://{checkmarx-server}/cxrestapi
       description: Checkmarx SAST Server
@@ -217,7 +221,7 @@ paths:
           description: Hostname of the Checkmarx SAST server
   /sast/scans/{scanId}:
     get:
-      operationId: getScan
+      operationId: getSastScansByScanId
       summary: Checkmarx Get scan details
       description: Retrieve details of a specific scan by ID.
       tags:
@@ -235,6 +239,8 @@ paths:
           description: Unauthorized
         '404':
           description: Scan not found
+      x-operation-id-source: normalized
+      x-operation-id-original: getScan
     patch:
       operationId: updateScanStatus
       summary: Checkmarx Update scan status
@@ -270,7 +276,7 @@ paths:
           description: Hostname of the Checkmarx SAST server
   /risk-management/scans:
     get:
-      operationId: listScans
+      operationId: getRiskManagementScans
       summary: Checkmarx List scans
       description: Retrieve a list of SCA scans with optional filtering by project ID.
       tags:
@@ -293,8 +299,10 @@ paths:
                   $ref: '#/components/schemas/Scan_3'
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: listScans
     post:
-      operationId: createScan
+      operationId: postRiskManagementScans
       summary: Checkmarx Trigger a new scan
       description: Initiate a new SCA scan for a project by uploading a source archive or pointing to a repository.
       tags:
@@ -316,12 +324,14 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: createScan
     servers:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)
   /risk-management/scans/{scanId}:
     get:
-      operationId: getScan
+      operationId: getRiskManagementScansByScanId
       summary: Checkmarx Get scan details
       description: Retrieve details and status of a specific SCA scan.
       tags:
@@ -339,6 +349,8 @@ paths:
           description: Unauthorized
         '404':
           description: Scan not found
+      x-operation-id-source: normalized
+      x-operation-id-original: getScan
     servers:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)
@@ -357,6 +369,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scan'
+    CreateScanRequest:
+      type: object
+      required:
+      - project
+      - type
+      - handler
+      properties:
+        project:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: Project ID to scan
+        type:
+          type: string
+          enum:
+          - git
+          - upload
+          description: Source type
+        handler:
+          type: object
+          properties:
+            repoUrl:
+              type: string
+              description: Git repository URL (for git type)
+            branch:
+              type: string
+              description: Branch to scan (for git type)
+            uploadUrl:
+              type: string
+              description: Pre-signed upload URL (for upload type)
+        config:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - sast
+                - sca
+                - kics
+                - apisec
+              value:
+                type: object
+                additionalProperties: true
+          description: Per-engine scan configuration
+        tags:
+          type: object
+          additionalProperties:
+            type: string
     Scan:
       type: object
       properties:
@@ -432,79 +498,6 @@ components:
         details:
           type: string
           description: Status details message
-    CreateScanRequest:
-      type: object
-      required:
-      - project
-      - type
-      - handler
-      properties:
-        project:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: Project ID to scan
-        type:
-          type: string
-          enum:
-          - git
-          - upload
-          description: Source type
-        handler:
-          type: object
-          properties:
-            repoUrl:
-              type: string
-              description: Git repository URL (for git type)
-            branch:
-              type: string
-              description: Branch to scan (for git type)
-            uploadUrl:
-              type: string
-              description: Pre-signed upload URL (for upload type)
-        config:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - sast
-                - sca
-                - kics
-                - apisec
-              value:
-                type: object
-                additionalProperties: true
-          description: Per-engine scan configuration
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    ScanResultsStatistics:
-      type: object
-      properties:
-        highSeverity:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumSeverity:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowSeverity:
-          type: integer
-          description: Number of low severity vulnerabilities
-        infoSeverity:
-          type: integer
-          description: Number of informational findings
-        statisticsCalculationDate:
-          type: string
-          format: date-time
-          description: When the statistics were calculated
     CreateScanRequest_2:
       type: object
       required:
@@ -593,6 +586,25 @@ components:
               description: Engine processing finish time
         resultsStatistics:
           $ref: '#/components/schemas/ScanResultsStatistics'
+    ScanResultsStatistics:
+      type: object
+      properties:
+        highSeverity:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumSeverity:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowSeverity:
+          type: integer
+          description: Number of low severity vulnerabilities
+        infoSeverity:
+          type: integer
+          description: Number of informational findings
+        statisticsCalculationDate:
+          type: string
+          format: date-time
+          description: When the statistics were calculated
     CreateScanRequest_3:
       type: object
       required:

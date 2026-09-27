@@ -79,7 +79,7 @@ paths:
       description: Checkmarx One (EU)
   /sast/presets:
     get:
-      operationId: listPresets
+      operationId: getSastPresets
       summary: Checkmarx List all scan presets
       description: Retrieve a list of all available scan presets.
       tags:
@@ -95,6 +95,8 @@ paths:
                   $ref: '#/components/schemas/Preset_2'
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: listPresets
     servers:
     - url: https://{checkmarx-server}/cxrestapi
       description: Checkmarx SAST Server
@@ -104,7 +106,7 @@ paths:
           description: Hostname of the Checkmarx SAST server
   /sast/presets/{presetId}:
     get:
-      operationId: getPreset
+      operationId: getSastPresetsByPresetId
       summary: Checkmarx Get preset details
       description: Retrieve details of a specific scan preset.
       tags:
@@ -127,6 +129,8 @@ paths:
           description: Unauthorized
         '404':
           description: Preset not found
+      x-operation-id-source: normalized
+      x-operation-id-original: getPreset
     servers:
     - url: https://{checkmarx-server}/cxrestapi
       description: Checkmarx SAST Server
@@ -156,16 +160,6 @@ components:
           items:
             type: string
           description: Query IDs included in this preset
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        uri:
-          type: string
-          format: uri
-          description: Link URI
     Preset_2:
       type: object
       properties:
@@ -180,6 +174,16 @@ components:
           description: Preset owner name
         link:
           $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
   securitySchemes:
     bearerAuth:
       type: http

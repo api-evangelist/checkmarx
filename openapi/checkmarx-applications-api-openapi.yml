@@ -134,16 +134,20 @@ paths:
         '404':
           description: Application not found
 components:
-  parameters:
-    applicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Application unique identifier
-      schema:
-        type: string
-        format: uuid
   schemas:
+    ApplicationListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of applications
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
     UpdateApplicationRequest:
       type: object
       properties:
@@ -164,6 +168,29 @@ components:
           type: object
           additionalProperties:
             type: string
+    CreateApplicationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+          default: 3
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
     ApplicationRule:
       type: object
       properties:
@@ -173,19 +200,6 @@ components:
         value:
           type: string
           description: Rule value pattern
-    ApplicationListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of applications
-        filteredTotalCount:
-          type: integer
-          description: Total count after filtering
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
     Application:
       type: object
       properties:
@@ -228,29 +242,15 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    CreateApplicationRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
-        criticality:
-          type: integer
-          description: Application criticality (1-5)
-          default: 3
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationRule'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
+  parameters:
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application unique identifier
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

@@ -216,7 +216,7 @@ paths:
           description: Hostname of the Checkmarx SAST server
   /risk-management/projects:
     get:
-      operationId: listProjects
+      operationId: getRiskManagementProjects
       summary: Checkmarx List all projects
       description: Retrieve a list of all SCA projects for the authenticated tenant.
       tags:
@@ -232,8 +232,10 @@ paths:
                   $ref: '#/components/schemas/Project_3'
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: listProjects
     post:
-      operationId: createProject
+      operationId: postRiskManagementProjects
       summary: Checkmarx Create a new project
       description: Create a new SCA project for scanning open source dependencies.
       tags:
@@ -255,12 +257,14 @@ paths:
           description: Invalid request
         '401':
           description: Unauthorized
+      x-operation-id-source: normalized
+      x-operation-id-original: createProject
     servers:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)
   /risk-management/projects/{projectId}:
     get:
-      operationId: getProject
+      operationId: getRiskManagementProjectsByProjectId
       summary: Checkmarx Get project details
       description: Retrieve details of a specific SCA project.
       tags:
@@ -278,8 +282,10 @@ paths:
           description: Unauthorized
         '404':
           description: Project not found
+      x-operation-id-source: normalized
+      x-operation-id-original: getProject
     put:
-      operationId: updateProject
+      operationId: putRiskManagementProjectsByProjectId
       summary: Checkmarx Update a project
       description: Update the configuration of an existing SCA project.
       tags:
@@ -301,8 +307,10 @@ paths:
           description: Unauthorized
         '404':
           description: Project not found
+      x-operation-id-source: normalized
+      x-operation-id-original: updateProject
     delete:
-      operationId: deleteProject
+      operationId: deleteRiskManagementProjectsByProjectId
       summary: Checkmarx Delete a project
       description: Delete an SCA project and all associated scan data.
       tags:
@@ -316,27 +324,44 @@ paths:
           description: Unauthorized
         '404':
           description: Project not found
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteProject
     servers:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
-    projectId_2:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: integer
   schemas:
+    CreateProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        groups:
+          type: array
+          items:
+            type: string
+          description: Group IDs to assign
+        repoUrl:
+          type: string
+          description: Source repository URL
+        mainBranch:
+          type: string
+          description: Main branch name
+          default: main
+        origin:
+          type: string
+          description: Project origin
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        criticality:
+          type: integer
+          description: Project criticality (1-5)
+          default: 3
     UpdateProjectRequest:
       type: object
       properties:
@@ -410,47 +435,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Project'
-    CreateProjectRequest:
+    CreateProjectRequest_2:
       type: object
       required:
       - name
+      - owningTeam
       properties:
         name:
           type: string
           description: Project name
-        groups:
-          type: array
-          items:
-            type: string
-          description: Group IDs to assign
-        repoUrl:
+        owningTeam:
           type: string
-          description: Source repository URL
-        mainBranch:
-          type: string
-          description: Main branch name
-          default: main
-        origin:
-          type: string
-          description: Project origin
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        criticality:
-          type: integer
-          description: Project criticality (1-5)
-          default: 3
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        uri:
-          type: string
-          format: uri
-          description: Link URI
+          description: ID of the team that owns the project
+        isPublic:
+          type: boolean
+          description: Whether the project is publicly accessible
+          default: true
     UpdateProjectRequest_2:
       type: object
       properties:
@@ -464,6 +464,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomField'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
+    GitSettings:
+      type: object
+      required:
+      - url
+      - branch
+      properties:
+        url:
+          type: string
+          description: Git repository URL
+        branch:
+          type: string
+          description: Branch to scan
+        privateKey:
+          type: string
+          description: SSH private key for authentication
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Custom field ID
+        value:
+          type: string
+          description: Custom field value
+        name:
+          type: string
+          description: Custom field name
     Project_2:
       type: object
       properties:
@@ -489,73 +526,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
           description: HATEOAS links
-    CustomField:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Custom field ID
-        value:
-          type: string
-          description: Custom field value
-        name:
-          type: string
-          description: Custom field name
-    GitSettings:
-      type: object
-      required:
-      - url
-      - branch
-      properties:
-        url:
-          type: string
-          description: Git repository URL
-        branch:
-          type: string
-          description: Branch to scan
-        privateKey:
-          type: string
-          description: SSH private key for authentication
-    CreateProjectRequest_2:
-      type: object
-      required:
-      - name
-      - owningTeam
-      properties:
-        name:
-          type: string
-          description: Project name
-        owningTeam:
-          type: string
-          description: ID of the team that owns the project
-        isPublic:
-          type: boolean
-          description: Whether the project is publicly accessible
-          default: true
-    UpdateProjectRequest_3:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Updated team assignments
-    CreateProjectRequest_3:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Team IDs to assign to the project
     Project_3:
       type: object
       properties:
@@ -598,6 +568,46 @@ components:
         lowVulnerabilityCount:
           type: integer
           description: Number of low severity vulnerabilities
+    CreateProjectRequest_3:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Team IDs to assign to the project
+    UpdateProjectRequest_3:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Updated team assignments
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
+    projectId_2:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       type: http

@@ -103,15 +103,6 @@ paths:
         '404':
           description: Project not found
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
   schemas:
     RiskReport:
       type: object
@@ -135,6 +126,51 @@ components:
           description: Number of outdated packages
         vulnerabilitySummary:
           $ref: '#/components/schemas/VulnerabilitySummary'
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Vulnerability identifier (CVE ID)
+        cveName:
+          type: string
+          description: CVE name
+        score:
+          type: number
+          format: float
+          description: CVSS score
+        severity:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          description: Vulnerability severity
+        publishDate:
+          type: string
+          format: date-time
+          description: Vulnerability publish date
+        packageId:
+          type: string
+          description: Affected package identifier
+        description:
+          type: string
+          description: Vulnerability description
+        recommendations:
+          type: string
+          description: Recommended remediation
+        cwe:
+          type: string
+          description: CWE identifier
+        isIgnored:
+          type: boolean
+          description: Whether the vulnerability has been marked as ignored
+        references:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: External reference URLs
     License:
       type: object
       properties:
@@ -221,51 +257,15 @@ components:
         totalVulnerabilityCount:
           type: integer
           description: Total number of vulnerabilities
-    Vulnerability:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Vulnerability identifier (CVE ID)
-        cveName:
-          type: string
-          description: CVE name
-        score:
-          type: number
-          format: float
-          description: CVSS score
-        severity:
-          type: string
-          enum:
-          - High
-          - Medium
-          - Low
-          description: Vulnerability severity
-        publishDate:
-          type: string
-          format: date-time
-          description: Vulnerability publish date
-        packageId:
-          type: string
-          description: Affected package identifier
-        description:
-          type: string
-          description: Vulnerability description
-        recommendations:
-          type: string
-          description: Recommended remediation
-        cwe:
-          type: string
-          description: CWE identifier
-        isIgnored:
-          type: boolean
-          description: Whether the vulnerability has been marked as ignored
-        references:
-          type: array
-          items:
-            type: string
-            format: uri
-          description: External reference URLs
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http
