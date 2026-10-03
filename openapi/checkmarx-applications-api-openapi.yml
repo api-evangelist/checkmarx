@@ -135,71 +135,6 @@ paths:
           description: Application not found
 components:
   schemas:
-    ApplicationListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of applications
-        filteredTotalCount:
-          type: integer
-          description: Total count after filtering
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-    UpdateApplicationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
-        criticality:
-          type: integer
-          description: Application criticality (1-5)
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationRule'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    CreateApplicationRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
-        criticality:
-          type: integer
-          description: Application criticality (1-5)
-          default: 3
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationRule'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    ApplicationRule:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Rule type
-        value:
-          type: string
-          description: Rule value pattern
     Application:
       type: object
       properties:
@@ -242,6 +177,71 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
+    CreateApplicationRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+          default: 3
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ApplicationListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of applications
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        criticality:
+          type: integer
+          description: Application criticality (1-5)
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRule'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ApplicationRule:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type
+        value:
+          type: string
+          description: Rule value pattern
   parameters:
     applicationId:
       name: applicationId

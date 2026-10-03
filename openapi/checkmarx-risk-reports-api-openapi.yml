@@ -103,29 +103,60 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Project unique identifier
+      schema:
+        type: string
+        format: uuid
   schemas:
-    RiskReport:
+    License:
       type: object
       properties:
-        projectId:
+        name:
           type: string
-          format: uuid
-          description: Project identifier
-        riskScore:
-          type: number
-          format: float
-          description: Overall risk score (0-10)
-        totalPackages:
+          description: License name
+        riskLevel:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+          - Unknown
+          description: License risk level
+        copyleftType:
+          type: string
+          enum:
+          - 'Yes'
+          - Partial
+          - 'No'
+          - Unknown
+          description: Whether the license has copyleft requirements
+        referenceUrl:
+          type: string
+          format: uri
+          description: License reference URL
+        packageCount:
           type: integer
-          description: Total number of open source packages
-        directPackages:
+          description: Number of packages using this license
+    VulnerabilitySummary:
+      type: object
+      properties:
+        highVulnerabilityCount:
           type: integer
-          description: Number of direct dependency packages
-        totalOutdatedPackages:
+          description: Number of high severity vulnerabilities
+        mediumVulnerabilityCount:
           type: integer
-          description: Number of outdated packages
-        vulnerabilitySummary:
-          $ref: '#/components/schemas/VulnerabilitySummary'
+          description: Number of medium severity vulnerabilities
+        lowVulnerabilityCount:
+          type: integer
+          description: Number of low severity vulnerabilities
+        totalVulnerabilityCount:
+          type: integer
+          description: Total number of vulnerabilities
     Vulnerability:
       type: object
       properties:
@@ -171,35 +202,28 @@ components:
             type: string
             format: uri
           description: External reference URLs
-    License:
+    RiskReport:
       type: object
       properties:
-        name:
+        projectId:
           type: string
-          description: License name
-        riskLevel:
-          type: string
-          enum:
-          - High
-          - Medium
-          - Low
-          - Unknown
-          description: License risk level
-        copyleftType:
-          type: string
-          enum:
-          - true
-          - Partial
-          - false
-          - Unknown
-          description: Whether the license has copyleft requirements
-        referenceUrl:
-          type: string
-          format: uri
-          description: License reference URL
-        packageCount:
+          format: uuid
+          description: Project identifier
+        riskScore:
+          type: number
+          format: float
+          description: Overall risk score (0-10)
+        totalPackages:
           type: integer
-          description: Number of packages using this license
+          description: Total number of open source packages
+        directPackages:
+          type: integer
+          description: Number of direct dependency packages
+        totalOutdatedPackages:
+          type: integer
+          description: Number of outdated packages
+        vulnerabilitySummary:
+          $ref: '#/components/schemas/VulnerabilitySummary'
     Package:
       type: object
       properties:
@@ -242,30 +266,6 @@ components:
         newestVersion:
           type: string
           description: Newest available version
-    VulnerabilitySummary:
-      type: object
-      properties:
-        highVulnerabilityCount:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumVulnerabilityCount:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowVulnerabilityCount:
-          type: integer
-          description: Number of low severity vulnerabilities
-        totalVulnerabilityCount:
-          type: integer
-          description: Total number of vulnerabilities
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Project unique identifier
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

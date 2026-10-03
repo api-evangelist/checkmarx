@@ -95,6 +95,23 @@ paths:
           description: Report not found
 components:
   schemas:
+    CreateReportRequest:
+      type: object
+      required:
+      - reportType
+      - scanId
+      properties:
+        reportType:
+          type: string
+          enum:
+          - PDF
+          - RTF
+          - CSV
+          - XML
+          description: Report output format
+        scanId:
+          type: integer
+          description: Scan ID to generate report for
     ReportStatus:
       type: object
       properties:
@@ -114,23 +131,6 @@ components:
               - Created
               - Failed
               description: Report generation status
-    CreateReportRequest:
-      type: object
-      required:
-      - reportType
-      - scanId
-      properties:
-        reportType:
-          type: string
-          enum:
-          - PDF
-          - RTF
-          - CSV
-          - XML
-          description: Report output format
-        scanId:
-          type: integer
-          description: Scan ID to generate report for
   parameters:
     reportId:
       name: reportId

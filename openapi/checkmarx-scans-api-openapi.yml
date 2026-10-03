@@ -355,74 +355,23 @@ paths:
     - url: https://api-sca.checkmarx.net
       description: Checkmarx SCA Cloud (Production)
 components:
+  parameters:
+    scanId:
+      name: scanId
+      in: path
+      required: true
+      description: Scan unique identifier
+      schema:
+        type: string
+        format: uuid
+    scanId_2:
+      name: scanId
+      in: path
+      required: true
+      description: Scan unique identifier
+      schema:
+        type: integer
   schemas:
-    ScanListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of scans
-        filteredTotalCount:
-          type: integer
-          description: Total count after filtering
-        scans:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-    CreateScanRequest:
-      type: object
-      required:
-      - project
-      - type
-      - handler
-      properties:
-        project:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: Project ID to scan
-        type:
-          type: string
-          enum:
-          - git
-          - upload
-          description: Source type
-        handler:
-          type: object
-          properties:
-            repoUrl:
-              type: string
-              description: Git repository URL (for git type)
-            branch:
-              type: string
-              description: Branch to scan (for git type)
-            uploadUrl:
-              type: string
-              description: Pre-signed upload URL (for upload type)
-        config:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - sast
-                - sca
-                - kics
-                - apisec
-              value:
-                type: object
-                additionalProperties: true
-          description: Per-engine scan configuration
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     Scan:
       type: object
       properties:
@@ -486,6 +435,19 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
+    ScanListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of scans
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        scans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
     ScanStatusDetail:
       type: object
       properties:
@@ -498,29 +460,79 @@ components:
         details:
           type: string
           description: Status details message
-    CreateScanRequest_2:
+    CreateScanRequest:
       type: object
       required:
-      - projectId
+      - project
+      - type
+      - handler
       properties:
-        projectId:
-          type: integer
-          description: Project to scan
-        isIncremental:
-          type: boolean
-          description: Whether to run an incremental scan
-          default: false
-        isPublic:
-          type: boolean
-          description: Whether the scan results are public
-          default: true
-        forceScan:
-          type: boolean
-          description: Force scan even if no code changes
-          default: false
-        comment:
+        project:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: Project ID to scan
+        type:
           type: string
-          description: Comment for the scan
+          enum:
+          - git
+          - upload
+          description: Source type
+        handler:
+          type: object
+          properties:
+            repoUrl:
+              type: string
+              description: Git repository URL (for git type)
+            branch:
+              type: string
+              description: Branch to scan (for git type)
+            uploadUrl:
+              type: string
+              description: Pre-signed upload URL (for upload type)
+        config:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - sast
+                - sca
+                - kics
+                - apisec
+              value:
+                type: object
+                additionalProperties: true
+          description: Per-engine scan configuration
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ScanResultsStatistics:
+      type: object
+      properties:
+        highSeverity:
+          type: integer
+          description: Number of high severity vulnerabilities
+        mediumSeverity:
+          type: integer
+          description: Number of medium severity vulnerabilities
+        lowSeverity:
+          type: integer
+          description: Number of low severity vulnerabilities
+        infoSeverity:
+          type: integer
+          description: Number of informational findings
+        statisticsCalculationDate:
+          type: string
+          format: date-time
+          description: When the statistics were calculated
     Scan_2:
       type: object
       properties:
@@ -586,40 +598,29 @@ components:
               description: Engine processing finish time
         resultsStatistics:
           $ref: '#/components/schemas/ScanResultsStatistics'
-    ScanResultsStatistics:
-      type: object
-      properties:
-        highSeverity:
-          type: integer
-          description: Number of high severity vulnerabilities
-        mediumSeverity:
-          type: integer
-          description: Number of medium severity vulnerabilities
-        lowSeverity:
-          type: integer
-          description: Number of low severity vulnerabilities
-        infoSeverity:
-          type: integer
-          description: Number of informational findings
-        statisticsCalculationDate:
-          type: string
-          format: date-time
-          description: When the statistics were calculated
-    CreateScanRequest_3:
+    CreateScanRequest_2:
       type: object
       required:
       - projectId
       properties:
         projectId:
-          type: string
-          format: uuid
+          type: integer
           description: Project to scan
-        sourceType:
+        isIncremental:
+          type: boolean
+          description: Whether to run an incremental scan
+          default: false
+        isPublic:
+          type: boolean
+          description: Whether the scan results are public
+          default: true
+        forceScan:
+          type: boolean
+          description: Force scan even if no code changes
+          default: false
+        comment:
           type: string
-          enum:
-          - Upload
-          - RemoteRepository
-          description: Source code input method
+          description: Comment for the scan
     Scan_3:
       type: object
       properties:
@@ -660,22 +661,21 @@ components:
           type: string
           format: uuid
           description: Associated risk report ID
-  parameters:
-    scanId:
-      name: scanId
-      in: path
-      required: true
-      description: Scan unique identifier
-      schema:
-        type: string
-        format: uuid
-    scanId_2:
-      name: scanId
-      in: path
-      required: true
-      description: Scan unique identifier
-      schema:
-        type: integer
+    CreateScanRequest_3:
+      type: object
+      required:
+      - projectId
+      properties:
+        projectId:
+          type: string
+          format: uuid
+          description: Project to scan
+        sourceType:
+          type: string
+          enum:
+          - Upload
+          - RemoteRepository
+          description: Source code input method
   securitySchemes:
     bearerAuth:
       type: http

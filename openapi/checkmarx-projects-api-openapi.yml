@@ -331,6 +331,19 @@ paths:
       description: Checkmarx SCA Cloud (Production)
 components:
   schemas:
+    ProjectListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of projects
+        filteredTotalCount:
+          type: integer
+          description: Total count after filtering
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     CreateProjectRequest:
       type: object
       required:
@@ -422,85 +435,6 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    ProjectListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of projects
-        filteredTotalCount:
-          type: integer
-          description: Total count after filtering
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-    CreateProjectRequest_2:
-      type: object
-      required:
-      - name
-      - owningTeam
-      properties:
-        name:
-          type: string
-          description: Project name
-        owningTeam:
-          type: string
-          description: ID of the team that owns the project
-        isPublic:
-          type: boolean
-          description: Whether the project is publicly accessible
-          default: true
-    UpdateProjectRequest_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Project name
-        owningTeam:
-          type: string
-          description: ID of the team that owns the project
-        customFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomField'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        uri:
-          type: string
-          format: uri
-          description: Link URI
-    GitSettings:
-      type: object
-      required:
-      - url
-      - branch
-      properties:
-        url:
-          type: string
-          description: Git repository URL
-        branch:
-          type: string
-          description: Branch to scan
-        privateKey:
-          type: string
-          description: SSH private key for authentication
-    CustomField:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Custom field ID
-        value:
-          type: string
-          description: Custom field value
-        name:
-          type: string
-          description: Custom field name
     Project_2:
       type: object
       properties:
@@ -526,6 +460,96 @@ components:
           items:
             $ref: '#/components/schemas/Link'
           description: HATEOAS links
+    CreateProjectRequest_2:
+      type: object
+      required:
+      - name
+      - owningTeam
+      properties:
+        name:
+          type: string
+          description: Project name
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        isPublic:
+          type: boolean
+          description: Whether the project is publicly accessible
+          default: true
+    GitSettings:
+      type: object
+      required:
+      - url
+      - branch
+      properties:
+        url:
+          type: string
+          description: Git repository URL
+        branch:
+          type: string
+          description: Branch to scan
+        privateKey:
+          type: string
+          description: SSH private key for authentication
+    UpdateProjectRequest_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Project name
+        owningTeam:
+          type: string
+          description: ID of the team that owns the project
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Custom field ID
+        value:
+          type: string
+          description: Custom field value
+        name:
+          type: string
+          description: Custom field name
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        uri:
+          type: string
+          format: uri
+          description: Link URI
+    CreateProjectRequest_3:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Team IDs to assign to the project
+    UpdateProjectRequest_3:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        assignedTeams:
+          type: array
+          items:
+            type: string
+          description: Updated team assignments
     Project_3:
       type: object
       properties:
@@ -568,30 +592,6 @@ components:
         lowVulnerabilityCount:
           type: integer
           description: Number of low severity vulnerabilities
-    CreateProjectRequest_3:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Team IDs to assign to the project
-    UpdateProjectRequest_3:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated project name
-        assignedTeams:
-          type: array
-          items:
-            type: string
-          description: Updated team assignments
   parameters:
     projectId:
       name: projectId
