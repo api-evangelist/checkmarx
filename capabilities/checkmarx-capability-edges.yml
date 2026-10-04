@@ -1,0 +1,45 @@
+slug: checkmarx
+provider: Checkmarx
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Scans
+  spec_file: checkmarx-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: POST /scans 'Create a new scan'; POST /risk-management/scans 'Trigger a new scan'; GET /sast/scans
+    'List all scans'
+  reason: Orchestration of SAST/SCA security scans over source code is directly vulnerability scanning
+    within cybersecurity management.
+- tag: Results
+  spec_file: checkmarx-results-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: GET /results 'List scan results'; PATCH /results/{resultId} 'Update result state'; schemas
+    Result, ResultsSummary, ScanResultsStatistics
+  reason: Retrieval and triage/state management of security scan findings is squarely vulnerability identification
+    and remediation tracking.
+- tag: Risk Reports
+  spec_file: checkmarx-risk-reports-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: GET /risk-management/risk-reports/{projectId}/vulnerabilities 'List project vulnerabilities';
+    schemas Vulnerability, VulnerabilitySummary, License
+  reason: SCA risk reporting on project vulnerabilities and packages is vulnerability management; the
+    license-compliance slice is a secondary concern not captured here.

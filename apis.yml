@@ -1,7 +1,7 @@
 name: Checkmarx
 
-description: Checkmarx is a leading application security testing solution provider, offering static application security testing (SAST), software
-  composition analysis (SCA), and other security tools to help organizations identify and remediate vulnerabilities in their code.
+description: Checkmarx is a leading application security testing solution provider, offering static application security testing (SAST), software composition
+  analysis (SCA), and other security tools to help organizations identify and remediate vulnerabilities in their code.
 
 deliveryModel:
   model: saas
@@ -136,6 +136,9 @@ common:
   url: spectral/checkmarx-spectral.yml
 - type: LlmsText
   url: https://checkmarx.com/llms.txt
+- type: CapabilityMap
+  url: capabilities/checkmarx-capability-edges.yml
+  name: Checkmarx Business Capability Map
 
 apis:
 - aid: checkmarx:checkmarx-applications-api
@@ -556,6 +559,7 @@ apis:
     url: https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html
   - type: JSONSchema
     url: json-schema/checkmarx-team-schema.json
+
 x-enrichment:
   date: '2026-10-04'
   status: enriched
