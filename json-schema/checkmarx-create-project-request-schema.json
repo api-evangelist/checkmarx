@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-create-project-request-schema.json",
+  "title": "CreateProjectRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-projects-api-openapi.yml#/components/schemas/CreateProjectRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Group IDs to assign"
+    },
+    "repoUrl": {
+      "type": "string",
+      "description": "Source repository URL"
+    },
+    "mainBranch": {
+      "type": "string",
+      "description": "Main branch name",
+      "default": "main"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Project origin"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "criticality": {
+      "type": "integer",
+      "description": "Project criticality (1-5)",
+      "default": 3
+    }
+  }
+}

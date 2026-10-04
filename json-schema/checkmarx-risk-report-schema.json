@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-risk-report-schema.json",
+  "title": "RiskReport",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-risk-reports-api-openapi.yml#/components/schemas/RiskReport",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Project identifier"
+    },
+    "riskScore": {
+      "type": "number",
+      "format": "float",
+      "description": "Overall risk score (0-10)"
+    },
+    "totalPackages": {
+      "type": "integer",
+      "description": "Total number of open source packages"
+    },
+    "directPackages": {
+      "type": "integer",
+      "description": "Number of direct dependency packages"
+    },
+    "totalOutdatedPackages": {
+      "type": "integer",
+      "description": "Number of outdated packages"
+    },
+    "vulnerabilitySummary": {
+      "$ref": "#/$defs/VulnerabilitySummary"
+    }
+  },
+  "$defs": {
+    "VulnerabilitySummary": {
+      "type": "object",
+      "properties": {
+        "highVulnerabilityCount": {
+          "type": "integer",
+          "description": "Number of high severity vulnerabilities"
+        },
+        "mediumVulnerabilityCount": {
+          "type": "integer",
+          "description": "Number of medium severity vulnerabilities"
+        },
+        "lowVulnerabilityCount": {
+          "type": "integer",
+          "description": "Number of low severity vulnerabilities"
+        },
+        "totalVulnerabilityCount": {
+          "type": "integer",
+          "description": "Total number of vulnerabilities"
+        }
+      }
+    }
+  }
+}

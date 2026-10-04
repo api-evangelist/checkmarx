@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-scan-3-schema.json",
+  "title": "Scan_3",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan_3",
+  "type": "object",
+  "properties": {
+    "scanId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Scan unique identifier"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated project ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Queued",
+        "Scanning",
+        "Done",
+        "Failed",
+        "Canceled"
+      ],
+      "description": "Current scan status"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scan creation timestamp"
+    },
+    "updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Scan trigger origin",
+      "enum": [
+        "API",
+        "CLI",
+        "Plugin",
+        "Upload"
+      ]
+    },
+    "riskReportId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated risk report ID"
+    }
+  }
+}

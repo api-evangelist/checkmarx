@@ -1,0 +1,33 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/checkmarx-scans-api-openapi.yml
+skills:
+- file: skills/checkmarx-create-and-fetch-scan.md
+  name: checkmarx-create-and-fetch-scan
+  api: openapi/checkmarx-scans-api-openapi.yml
+  operations:
+  - createScan
+  - getScan
+- file: skills/checkmarx-project-setup.md
+  name: checkmarx-project-setup
+  api: openapi/checkmarx-projects-api-openapi.yml
+  operations:
+  - createProject
+  - setProjectGitSettings
+- file: skills/checkmarx-manage-applications.md
+  name: checkmarx-manage-applications
+  api: openapi/checkmarx-applications-api-openapi.yml
+  operations:
+  - createApplication
+  - listApplications
+  - getApplication
+  - updateApplication
+  - deleteApplication
+- file: skills/checkmarx-reports-create-and-fetch.md
+  name: checkmarx-reports-create-and-fetch
+  api: openapi/checkmarx-reports-api-openapi.yml
+  operations:
+  - createReport
+  - getReportStatus
+  - getReportById

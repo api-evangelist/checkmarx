@@ -1,0 +1,355 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/checkmarx-applications-api-openapi.yml
+- openapi/checkmarx-authentication-api-openapi.yml
+- openapi/checkmarx-configuration-api-openapi.yml
+- openapi/checkmarx-engines-api-openapi.yml
+- openapi/checkmarx-groups-api-openapi.yml
+vocabulary:
+  name: Checkmarx Domain Vocabulary
+  description: 'Terms declared by Checkmarx''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-04'
+  terms:
+  - term: Applications
+    definition: Manage applications that group related projects
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-applications-api-openapi.yml
+  - term: Authentication
+    definition: Obtain and manage authentication tokens via OAuth 2.0
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-authentication-api-openapi.yml
+  - term: Configuration
+    definition: Manage project and tenant-level scan configuration
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-configuration-api-openapi.yml
+  - term: Engines
+    definition: Manage scan engines and engine servers
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-engines-api-openapi.yml
+  - term: Groups
+    definition: Manage access control groups
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-groups-api-openapi.yml
+  - term: Packages
+    definition: Query open source package information
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-packages-api-openapi.yml
+  - term: Presets
+    definition: Manage scan configuration presets
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-presets-api-openapi.yml
+  - term: Projects
+    definition: Manage scanning projects and their configuration
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-projects-api-openapi.yml
+  - term: Queries
+    definition: Manage custom SAST queries and presets
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-queries-api-openapi.yml
+  - term: Reports
+    definition: Generate and download scan reports
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-reports-api-openapi.yml
+  - term: Results
+    definition: Retrieve and manage scan results and findings
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-results-api-openapi.yml
+  - term: Risk Reports
+    definition: Retrieve vulnerability and risk analysis results
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-risk-reports-api-openapi.yml
+  - term: Scans
+    definition: Trigger, monitor, and manage security scans
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-scans-api-openapi.yml
+  - term: Settings
+    definition: Manage project and organization settings
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-settings-api-openapi.yml
+  - term: Teams
+    definition: Manage teams and access control
+    tags:
+    - Resource Group
+    source: openapi/checkmarx-teams-api-openapi.yml
+  - term: Application
+    definition: 'Object declared by the contract with fields: id, name, description, criticality, rules, projectIds, tags, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/checkmarx-applications-api-openapi.yml#/components/schemas/Application
+  - term: CreateApplicationRequest
+    definition: 'Object declared by the contract with fields: name, description, criticality, rules, tags.'
+    tags:
+    - Object
+    source: openapi/checkmarx-applications-api-openapi.yml#/components/schemas/CreateApplicationRequest
+  - term: ApplicationListResponse
+    definition: 'Object declared by the contract with fields: totalCount, filteredTotalCount, applications.'
+    tags:
+    - Object
+    source: openapi/checkmarx-applications-api-openapi.yml#/components/schemas/ApplicationListResponse
+  - term: UpdateApplicationRequest
+    definition: 'Object declared by the contract with fields: name, description, criticality, rules, tags.'
+    tags:
+    - Object
+    source: openapi/checkmarx-applications-api-openapi.yml#/components/schemas/UpdateApplicationRequest
+  - term: ApplicationRule
+    definition: 'Object declared by the contract with fields: type, value.'
+    tags:
+    - Object
+    source: openapi/checkmarx-applications-api-openapi.yml#/components/schemas/ApplicationRule
+  - term: TokenResponse
+    definition: 'Object declared by the contract with fields: access_token, token_type, expires_in, refresh_token.'
+    tags:
+    - Object
+    source: openapi/checkmarx-authentication-api-openapi.yml#/components/schemas/TokenResponse
+  - term: TokenResponse_2
+    definition: 'Object declared by the contract with fields: access_token, token_type, expires_in, refresh_token.'
+    tags:
+    - Object
+    source: openapi/checkmarx-authentication-api-openapi.yml#/components/schemas/TokenResponse_2
+  - term: TokenResponse_3
+    definition: 'Object declared by the contract with fields: access_token, token_type, expires_in.'
+    tags:
+    - Object
+    source: openapi/checkmarx-authentication-api-openapi.yml#/components/schemas/TokenResponse_3
+  - term: ProjectConfiguration
+    definition: 'Object declared by the contract with fields: key, name, category, originLevel, value, valuetype, allowOverride.'
+    tags:
+    - Object
+    source: openapi/checkmarx-configuration-api-openapi.yml#/components/schemas/ProjectConfiguration
+  - term: EngineServer
+    definition: 'Object declared by the contract with fields: id, name, uri, minLoc, maxLoc, isAlive, maxScans.'
+    tags:
+    - Object
+    source: openapi/checkmarx-engines-api-openapi.yml#/components/schemas/EngineServer
+  - term: Group
+    definition: 'Object declared by the contract with fields: id, name, parentId, subGroups.'
+    tags:
+    - Object
+    source: openapi/checkmarx-groups-api-openapi.yml#/components/schemas/Group
+  - term: Vulnerability
+    definition: 'Object declared by the contract with fields: id, cveName, score, severity, publishDate, packageId, description, recommendations,
+      cwe, isIgnored, references.'
+    tags:
+    - Object
+    source: openapi/checkmarx-packages-api-openapi.yml#/components/schemas/Vulnerability
+  - term: PackageDetails
+    definition: 'Object declared by the contract with fields: type, name, version, description, licenses, vulnerabilities.'
+    tags:
+    - Object
+    source: openapi/checkmarx-packages-api-openapi.yml#/components/schemas/PackageDetails
+  - term: Preset
+    definition: 'Object declared by the contract with fields: id, name, description, custom, queryIds.'
+    tags:
+    - Object
+    source: openapi/checkmarx-presets-api-openapi.yml#/components/schemas/Preset
+  - term: Link
+    definition: 'Object declared by the contract with fields: rel, uri.'
+    tags:
+    - Object
+    source: openapi/checkmarx-presets-api-openapi.yml#/components/schemas/Link
+  - term: Preset_2
+    definition: 'Object declared by the contract with fields: id, name, ownerName, link.'
+    tags:
+    - Object
+    source: openapi/checkmarx-presets-api-openapi.yml#/components/schemas/Preset_2
+  - term: ProjectListResponse
+    definition: 'Object declared by the contract with fields: totalCount, filteredTotalCount, projects.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/ProjectListResponse
+  - term: CreateProjectRequest
+    definition: 'Object declared by the contract with fields: name, groups, repoUrl, mainBranch, origin, tags, criticality.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/CreateProjectRequest
+  - term: UpdateProjectRequest
+    definition: 'Object declared by the contract with fields: name, groups, repoUrl, mainBranch, tags, criticality.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/UpdateProjectRequest
+  - term: Project
+    definition: 'Object declared by the contract with fields: id, name, groups, repoUrl, mainBranch, origin, tags, criticality, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/Project
+  - term: Project_2
+    definition: 'Object declared by the contract with fields: id, teamId, name, isPublic, customFields, links.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/Project_2
+  - term: CreateProjectRequest_2
+    definition: 'Object declared by the contract with fields: name, owningTeam, isPublic.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/CreateProjectRequest_2
+  - term: GitSettings
+    definition: 'Object declared by the contract with fields: url, branch, privateKey.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/GitSettings
+  - term: UpdateProjectRequest_2
+    definition: 'Object declared by the contract with fields: name, owningTeam, customFields.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/UpdateProjectRequest_2
+  - term: CustomField
+    definition: 'Object declared by the contract with fields: id, value, name.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/CustomField
+  - term: CreateProjectRequest_3
+    definition: 'Object declared by the contract with fields: name, assignedTeams.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/CreateProjectRequest_3
+  - term: UpdateProjectRequest_3
+    definition: 'Object declared by the contract with fields: name, assignedTeams.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/UpdateProjectRequest_3
+  - term: Project_3
+    definition: 'Object declared by the contract with fields: id, name, createdOn, tenantId, assignedTeams, lastScanDate, riskScore, totalPackages,
+      highVulnerabilityCount, mediumVulnerabilityCount, lowVulnerabilityCount.'
+    tags:
+    - Object
+    source: openapi/checkmarx-projects-api-openapi.yml#/components/schemas/Project_3
+  - term: Query
+    definition: 'Object declared by the contract with fields: id, name, group, language, severity, cweId, isCustom.'
+    tags:
+    - Object
+    source: openapi/checkmarx-queries-api-openapi.yml#/components/schemas/Query
+  - term: CreateReportRequest
+    definition: 'Object declared by the contract with fields: reportType, scanId.'
+    tags:
+    - Object
+    source: openapi/checkmarx-reports-api-openapi.yml#/components/schemas/CreateReportRequest
+  - term: ReportStatus
+    definition: 'Object declared by the contract with fields: reportId, status.'
+    tags:
+    - Object
+    source: openapi/checkmarx-reports-api-openapi.yml#/components/schemas/ReportStatus
+  - term: Result
+    definition: 'Object declared by the contract with fields: id, similarityId, status, state, severity, type, data, description, vulnerabilityDetails,
+      firstFoundAt, foundAt.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/Result
+  - term: EngineCounters
+    definition: 'Object declared by the contract with fields: severityCounters, statusCounters, stateCounters, totalCounter.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/EngineCounters
+  - term: ResultListResponse
+    definition: 'Object declared by the contract with fields: totalCount, results.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/ResultListResponse
+  - term: ResultNode
+    definition: 'Object declared by the contract with fields: fileName, line, column, length, methodLine, name, fullName.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/ResultNode
+  - term: UpdateResultRequest
+    definition: 'Object declared by the contract with fields: state, comment.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/UpdateResultRequest
+  - term: ResultsSummary
+    definition: 'Object declared by the contract with fields: scanId, sastCounters, scaCounters, kicsCounters, totalCounter.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/ResultsSummary
+  - term: ScanResultsStatistics
+    definition: 'Object declared by the contract with fields: highSeverity, mediumSeverity, lowSeverity, infoSeverity, statisticsCalculationDate.'
+    tags:
+    - Object
+    source: openapi/checkmarx-results-api-openapi.yml#/components/schemas/ScanResultsStatistics
+  - term: License
+    definition: 'Object declared by the contract with fields: name, riskLevel, copyleftType, referenceUrl, packageCount.'
+    tags:
+    - Object
+    source: openapi/checkmarx-risk-reports-api-openapi.yml#/components/schemas/License
+  - term: VulnerabilitySummary
+    definition: 'Object declared by the contract with fields: highVulnerabilityCount, mediumVulnerabilityCount, lowVulnerabilityCount, totalVulnerabilityCount.'
+    tags:
+    - Object
+    source: openapi/checkmarx-risk-reports-api-openapi.yml#/components/schemas/VulnerabilitySummary
+  - term: RiskReport
+    definition: 'Object declared by the contract with fields: projectId, riskScore, totalPackages, directPackages, totalOutdatedPackages, vulnerabilitySummary.'
+    tags:
+    - Object
+    source: openapi/checkmarx-risk-reports-api-openapi.yml#/components/schemas/RiskReport
+  - term: Package
+    definition: 'Object declared by the contract with fields: id, name, version, packageRepository, isDirectDependency, licenses, highVulnerabilityCount,
+      mediumVulnerabilityCount, lowVulnerabilityCount, riskScore, outdated, newestVersion.'
+    tags:
+    - Object
+    source: openapi/checkmarx-risk-reports-api-openapi.yml#/components/schemas/Package
+  - term: Scan
+    definition: 'Object declared by the contract with fields: id, status, statusDetails, projectId, projectName, branch, engines, sourceType,
+      sourceOrigin, initiator, tags, createdAt. (1 more)'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan
+  - term: ScanListResponse
+    definition: 'Object declared by the contract with fields: totalCount, filteredTotalCount, scans.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/ScanListResponse
+  - term: ScanStatusDetail
+    definition: 'Object declared by the contract with fields: name, status, details.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/ScanStatusDetail
+  - term: CreateScanRequest
+    definition: 'Object declared by the contract with fields: project, type, handler, config, tags.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/CreateScanRequest
+  - term: Scan_2
+    definition: 'Object declared by the contract with fields: id, project, status, scanType, comment, dateAndTime, resultsStatistics.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan_2
+  - term: CreateScanRequest_2
+    definition: 'Object declared by the contract with fields: projectId, isIncremental, isPublic, forceScan, comment.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/CreateScanRequest_2
+  - term: Scan_3
+    definition: 'Object declared by the contract with fields: scanId, projectId, status, createdOn, updatedOn, origin, riskReportId.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan_3
+  - term: CreateScanRequest_3
+    definition: 'Object declared by the contract with fields: projectId, sourceType.'
+    tags:
+    - Object
+    source: openapi/checkmarx-scans-api-openapi.yml#/components/schemas/CreateScanRequest_3
+  - term: ProjectSettings
+    definition: 'Object declared by the contract with fields: enableExploitablePath, enableSastIntegration, policySeverity.'
+    tags:
+    - Object
+    source: openapi/checkmarx-settings-api-openapi.yml#/components/schemas/ProjectSettings
+  - term: Team
+    definition: 'Object declared by the contract with fields: id, name, fullName, parentId.'
+    tags:
+    - Object
+    source: openapi/checkmarx-teams-api-openapi.yml#/components/schemas/Team

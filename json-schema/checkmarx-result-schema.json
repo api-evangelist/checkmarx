@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-result-schema.json",
+  "title": "Result",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-results-api-openapi.yml#/components/schemas/Result",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Result unique identifier"
+    },
+    "similarityId": {
+      "type": "string",
+      "description": "Similarity ID for tracking across scans"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "RECURRENT"
+      ],
+      "description": "Result status"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "TO_VERIFY",
+        "NOT_EXPLOITABLE",
+        "PROPOSED_NOT_EXPLOITABLE",
+        "CONFIRMED",
+        "URGENT"
+      ],
+      "description": "Triage state"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "INFO"
+      ],
+      "description": "Severity level"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sast",
+        "sca",
+        "kics",
+        "apisec"
+      ],
+      "description": "Engine type that found this result"
+    },
+    "data": {
+      "type": "object",
+      "description": "Engine-specific result data",
+      "properties": {
+        "queryId": {
+          "type": "string",
+          "description": "SAST query identifier"
+        },
+        "queryName": {
+          "type": "string",
+          "description": "SAST query name"
+        },
+        "group": {
+          "type": "string",
+          "description": "Query group name"
+        },
+        "languageName": {
+          "type": "string",
+          "description": "Programming language"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ResultNode"
+          },
+          "description": "Code flow nodes (SAST)"
+        },
+        "packageIdentifier": {
+          "type": "string",
+          "description": "Package identifier (SCA)"
+        },
+        "recommendedVersion": {
+          "type": "string",
+          "description": "Recommended package version (SCA)"
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "Finding description"
+    },
+    "vulnerabilityDetails": {
+      "type": "object",
+      "properties": {
+        "cweId": {
+          "type": "integer",
+          "description": "CWE identifier"
+        },
+        "cvss": {
+          "type": "number",
+          "format": "float",
+          "description": "CVSS score"
+        },
+        "cveName": {
+          "type": "string",
+          "description": "CVE identifier"
+        },
+        "compliances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Compliance standards references"
+        }
+      }
+    },
+    "firstFoundAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the result was first found"
+    },
+    "foundAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the result was found in this scan"
+    }
+  },
+  "$defs": {
+    "ResultNode": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "Source file name"
+        },
+        "line": {
+          "type": "integer",
+          "description": "Line number"
+        },
+        "column": {
+          "type": "integer",
+          "description": "Column number"
+        },
+        "length": {
+          "type": "integer",
+          "description": "Code length"
+        },
+        "methodLine": {
+          "type": "integer",
+          "description": "Method start line"
+        },
+        "name": {
+          "type": "string",
+          "description": "Node name"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Fully qualified name"
+        }
+      }
+    }
+  }
+}

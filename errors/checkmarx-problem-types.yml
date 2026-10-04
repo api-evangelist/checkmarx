@@ -1,0 +1,42 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/checkmarx-applications-api-openapi.yml
+- openapi/checkmarx-authentication-api-openapi.yml
+- openapi/checkmarx-configuration-api-openapi.yml
+- openapi/checkmarx-engines-api-openapi.yml
+- openapi/checkmarx-groups-api-openapi.yml
+- openapi/checkmarx-packages-api-openapi.yml
+- openapi/checkmarx-presets-api-openapi.yml
+- openapi/checkmarx-projects-api-openapi.yml
+- openapi/checkmarx-queries-api-openapi.yml
+- openapi/checkmarx-reports-api-openapi.yml
+- openapi/checkmarx-results-api-openapi.yml
+- openapi/checkmarx-risk-reports-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 56
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request
+  operations: 15
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 54
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Project not found
+  operations: 29
+  media_types: []
+  schema: null

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-application-schema.json",
+  "title": "Application",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-applications-api-openapi.yml#/components/schemas/Application",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Application unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Application name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Application description"
+    },
+    "criticality": {
+      "type": "integer",
+      "description": "Application criticality level (1-5)",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationRule"
+      },
+      "description": "Rules for auto-assigning projects"
+    },
+    "projectIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "IDs of projects in this application"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value tags"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "$defs": {
+    "ApplicationRule": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Rule type"
+        },
+        "value": {
+          "type": "string",
+          "description": "Rule value pattern"
+        }
+      }
+    }
+  }
+}

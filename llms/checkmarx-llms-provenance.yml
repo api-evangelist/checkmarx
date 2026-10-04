@@ -1,0 +1,6 @@
+generated: '2026-10-04'
+method: probed
+generator: harvest-llms.py
+source: https://checkmarx.com/llms.txt
+bytes: 218564
+note: saved verbatim; the provider's own document

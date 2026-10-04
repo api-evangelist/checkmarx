@@ -1,0 +1,22 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://checkmarx.com/player-migration-easier-than-think.md
+sources:
+- https://checkmarx.com/player-migration-easier-than-think.md
+- https://checkmarx.com/blog/whats-new-in-checkmarx-one-3-0.md
+- https://checkmarx.com/blog/whats-new-in-checkmarx-april-2023-platform-launch.md
+entries:
+- breaking: false
+  highlights:
+  - Today, we announced our Checkmarx One 3.0 release.
+  - With version 3.0, you’ll see new innovations across all our solutions and technologies that both leverage AI and help you better respond to
+    the coming AI tsunami in your own organizations.
+  date: '2023-10-11'
+- breaking: false
+  highlights:
+  - Checkmarx published our annual ‘Global Pulse on Application Security’ report yesterday, and there’s a lot to talk about.
+  - With this release, Checkmarx SAST introduces the industry’s first support for Dart and Flutter.
+  date: '2023-04-26'
+current_version: '3.0'
+docs: https://checkmarx.com/player-migration-easier-than-think.md

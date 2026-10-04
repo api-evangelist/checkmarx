@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-report-status-schema.json",
+  "title": "ReportStatus",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-reports-api-openapi.yml#/components/schemas/ReportStatus",
+  "type": "object",
+  "properties": {
+    "reportId": {
+      "type": "integer",
+      "description": "Report unique identifier"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Status ID"
+        },
+        "value": {
+          "type": "string",
+          "enum": [
+            "InProcess",
+            "Created",
+            "Failed"
+          ],
+          "description": "Report generation status"
+        }
+      }
+    }
+  }
+}

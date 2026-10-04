@@ -64,6 +64,31 @@ paths:
           description: Package not found
 components:
   schemas:
+    PackageDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Package ecosystem type
+        name:
+          type: string
+          description: Package name
+        version:
+          type: string
+          description: Package version
+        description:
+          type: string
+          description: Package description
+        licenses:
+          type: array
+          items:
+            type: string
+          description: Package licenses
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+          description: Known vulnerabilities for this package
     Vulnerability:
       type: object
       properties:
@@ -109,31 +134,6 @@ components:
             type: string
             format: uri
           description: External reference URLs
-    PackageDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Package ecosystem type
-        name:
-          type: string
-          description: Package name
-        version:
-          type: string
-          description: Package version
-        description:
-          type: string
-          description: Package description
-        licenses:
-          type: array
-          items:
-            type: string
-          description: Package licenses
-        vulnerabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Vulnerability'
-          description: Known vulnerabilities for this package
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-results-summary-schema.json",
+  "title": "ResultsSummary",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-results-api-openapi.yml#/components/schemas/ResultsSummary",
+  "type": "object",
+  "properties": {
+    "scanId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Scan identifier"
+    },
+    "sastCounters": {
+      "$ref": "#/$defs/EngineCounters"
+    },
+    "scaCounters": {
+      "$ref": "#/$defs/EngineCounters"
+    },
+    "kicsCounters": {
+      "$ref": "#/$defs/EngineCounters"
+    },
+    "totalCounter": {
+      "type": "integer",
+      "description": "Total result count"
+    }
+  },
+  "$defs": {
+    "EngineCounters": {
+      "type": "object",
+      "properties": {
+        "severityCounters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "CRITICAL",
+                  "HIGH",
+                  "MEDIUM",
+                  "LOW",
+                  "INFO"
+                ]
+              },
+              "counter": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "statusCounters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "counter": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "stateCounters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string"
+              },
+              "counter": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "totalCounter": {
+          "type": "integer",
+          "description": "Total count for this engine"
+        }
+      }
+    }
+  }
+}

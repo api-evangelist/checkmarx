@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-scan-2-schema.json",
+  "title": "Scan_2",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan_2",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Scan unique identifier"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Project ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Project name"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Status ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Status name",
+          "enum": [
+            "New",
+            "PreScan",
+            "Queued",
+            "Scanning",
+            "PostScan",
+            "Finished",
+            "Canceled",
+            "Failed",
+            "SourcePullingAndDeployment",
+            "None"
+          ]
+        }
+      }
+    },
+    "scanType": {
+      "type": "string",
+      "description": "Type of scan",
+      "enum": [
+        "Incremental",
+        "Full"
+      ]
+    },
+    "comment": {
+      "type": "string",
+      "description": "Scan comment"
+    },
+    "dateAndTime": {
+      "type": "object",
+      "properties": {
+        "startedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Scan start time"
+        },
+        "finishedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Scan finish time"
+        },
+        "engineStartedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Engine processing start time"
+        },
+        "engineFinishedOn": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Engine processing finish time"
+        }
+      }
+    },
+    "resultsStatistics": {
+      "$ref": "#/$defs/ScanResultsStatistics"
+    }
+  },
+  "$defs": {
+    "ScanResultsStatistics": {
+      "type": "object",
+      "properties": {
+        "highSeverity": {
+          "type": "integer",
+          "description": "Number of high severity vulnerabilities"
+        },
+        "mediumSeverity": {
+          "type": "integer",
+          "description": "Number of medium severity vulnerabilities"
+        },
+        "lowSeverity": {
+          "type": "integer",
+          "description": "Number of low severity vulnerabilities"
+        },
+        "infoSeverity": {
+          "type": "integer",
+          "description": "Number of informational findings"
+        },
+        "statisticsCalculationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the statistics were calculated"
+        }
+      }
+    }
+  }
+}

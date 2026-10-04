@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-project-schema.json",
+  "title": "Project",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-projects-api-openapi.yml#/components/schemas/Project",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Project unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Group IDs the project belongs to"
+    },
+    "repoUrl": {
+      "type": "string",
+      "description": "Repository URL"
+    },
+    "mainBranch": {
+      "type": "string",
+      "description": "Main branch name"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Project creation origin"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value tags"
+    },
+    "criticality": {
+      "type": "integer",
+      "description": "Project criticality level (1-5)"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  }
+}

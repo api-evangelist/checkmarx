@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-scan-schema.json",
+  "title": "Scan",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-scans-api-openapi.yml#/components/schemas/Scan",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Scan unique identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Queued",
+        "Running",
+        "Completed",
+        "Partial",
+        "Failed",
+        "Canceled"
+      ],
+      "description": "Overall scan status"
+    },
+    "statusDetails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScanStatusDetail"
+      },
+      "description": "Per-engine scan status"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated project ID"
+    },
+    "projectName": {
+      "type": "string",
+      "description": "Associated project name"
+    },
+    "branch": {
+      "type": "string",
+      "description": "Source branch scanned"
+    },
+    "engines": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "sast",
+          "sca",
+          "kics",
+          "apisec"
+        ]
+      },
+      "description": "Scan engines used"
+    },
+    "sourceType": {
+      "type": "string",
+      "description": "Source origin type"
+    },
+    "sourceOrigin": {
+      "type": "string",
+      "description": "Source origin detail"
+    },
+    "initiator": {
+      "type": "string",
+      "description": "User or system that initiated the scan"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scan creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "$defs": {
+    "ScanStatusDetail": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Engine name"
+        },
+        "status": {
+          "type": "string",
+          "description": "Engine-specific scan status"
+        },
+        "details": {
+          "type": "string",
+          "description": "Status details message"
+        }
+      }
+    }
+  }
+}

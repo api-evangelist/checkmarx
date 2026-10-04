@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/checkmarx/main/json-schema/checkmarx-create-report-request-schema.json",
+  "title": "CreateReportRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/checkmarx-reports-api-openapi.yml#/components/schemas/CreateReportRequest",
+  "type": "object",
+  "required": [
+    "reportType",
+    "scanId"
+  ],
+  "properties": {
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "PDF",
+        "RTF",
+        "CSV",
+        "XML"
+      ],
+      "description": "Report output format"
+    },
+    "scanId": {
+      "type": "integer",
+      "description": "Scan ID to generate report for"
+    }
+  }
+}

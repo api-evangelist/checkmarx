@@ -1,0 +1,44 @@
+generated: '2026-10-04'
+method: probed
+source: "https://checkmarx.com/legal/privacy-policy/"
+signals:
+  data_subject_request:
+    - source:
+        url: https://checkmarx.com/legal/privacy-policy/
+        http_status: 200
+        fetched: /tmp/privacy2.html
+        quote: "6. Your rights and how to exercise them"
+        section: "Your rights and how to exercise them"
+        note: Provides rights to access, delete, correct personal data.
+  subprocessors:
+    - source:
+        url: https://checkmarx.com/legal/privacy-policy/
+        http_status: 200
+        fetched: /tmp/privacy2.html
+        quote: "We also process personal data on behalf of our respective customers, and while our role is dependent upon relevant circumstances, we generally process the personal data of our customers as a processor on their behalf."
+        section: "Processor role"
+        note: Indicates Checkmarx acts as a data processor for customers.
+  incident_notification:
+    - source:
+        url: https://checkmarx.com/legal/privacy-policy/
+        http_status: 200
+        fetched: /tmp/privacy2.html
+        quote: "To detect security incidents, protect against malicious, deceptive, fraudulent, or illegal activity, and prosecute those responsible for that activity."
+        section: "Security incident detection"
+        note: Describes detection and response to security incidents.
+  data_retention:
+    - source:
+        url: https://checkmarx.com/legal/privacy-policy/
+        http_status: 200
+        fetched: /tmp/privacy2.html
+        quote: "We maintain a data retention policy which we apply to records in our care. Where your personal data is no longer required we will ensure it is either securely deleted or stored in a way which means it will no longer be used by the business."
+        section: "Retention of your Personal Data"
+        note: Outlines data retention and deletion policy.
+  age_assurance:
+    - source:
+        url: https://checkmarx.com/legal/privacy-policy/
+        http_status: 200
+        fetched: /tmp/privacy2.html
+        quote: "Our Services are not intended for, and we will not knowingly collect personal data from, minors below the age of sixteen (16) years, or otherwise below the legal age for providing consent..."
+        section: "Age of Majority"
+        note: States age restriction and verification.
