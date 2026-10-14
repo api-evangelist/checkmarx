@@ -63,3 +63,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: checkmarx-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/checkmarx-one/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
