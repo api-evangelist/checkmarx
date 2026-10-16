@@ -63,6 +63,18 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: checkmarx-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/checkmarx-one/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: checkmarx-mcp-registry
   label: MCP Registry
   partner: mcp
@@ -79,18 +91,6 @@
     registered_name: com.checkmarx/checkmarx
     register_id: com.checkmarx/checkmarx
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
-  status: not-a-workflow
-  arazzo: null
-- slug: checkmarx-crowdstrike-own
-  label: CrowdStrike (own)
-  partner: crowdstrike
-  partner_name: CrowdStrike (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.crowdstrike.com/listings/checkmarx-one/
-  source: edge
-  relationship: platform-app
+    detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
