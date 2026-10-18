@@ -3,11 +3,15 @@ method: searched
 checked:
 - crowdstrike/integrations/crowdstrike-integration-edges.yml
 - https://aws.amazon.com/marketplace/
+- https://cyclonedx.org/tool-center/
 - https://github.com/marketplace?type=actions
 - https://marketplace.atlassian.com/
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
+- https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://spdx.dev/use/spdx-tools/
+- https://www.openchainproject.org/community-of-conformance
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -206,6 +210,35 @@ edges:
   - namespace-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: CycloneDX (OWASP)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  category: SBOM standard (CycloneDX)
+  evidence: https://cyclonedx.org/tool-center/#toolCard-cxsca
+  contract_reference:
+    register: CycloneDX Tool Center (cyclonedx.org/tool-center)
+    standard: CycloneDX (ECMA-424)
+    spec_file: null
+    role: cyclonedx-tool
+    registered_name: Checkmarx
+    tools:
+    - CxSCA
+    website: https://checkmarx.com/cxsca-open-source-scanning/
+    matched_domain: checkmarx.com
+    matched_by: domain
+    availability:
+    - COMMERCIAL_LICENSE
+    - FREEMIUM
+    signal_note: 'participation only: a Tool Center listing means the publisher ships CycloneDX support; tools,
+      capabilities and their count are context, never read (breadth is not credit)'
+    detected_by: sweep-software-supply-chain.py
+    detected: '2026-10-18'
+  detected_by: sweep-software-supply-chain.py
+  first_seen: '2026-10-18'
 source:
 - https://github.com/marketplace?type=actions
 - https://marketplace.atlassian.com/
