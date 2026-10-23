@@ -9,6 +9,12 @@ artifacts:
   authentication/checkmarx-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  capabilities/checkmarx-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  changelog/checkmarx-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/checkmarx-applications-api.opencollection.json:
     method: derived
     evidence: openapi/checkmarx-applications-api
@@ -117,142 +123,154 @@ artifacts:
   collections/checkmarx-teams-api.postman_collection.json:
     method: derived
     evidence: openapi/checkmarx-teams-api
+  conformance/checkmarx-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/checkmarx-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/checkmarx-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/checkmarx-finops.yml:
     method: generated
     evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/checkmarx-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/checkmarx-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/checkmarx-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-application-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-application-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-create-application-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-create-project-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-create-report-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-create-scan-request-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-create-scan-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-engine-server-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-git-settings-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-group-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-license-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-package-details-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-package-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-preset-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-preset-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-project-3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-project-configuration-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-project-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-project-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-project-settings-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-query-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-report-status-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-result-list-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-results-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-risk-report-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-scan-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-scan-3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-scan-list-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/checkmarx-scan-result-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/checkmarx-scan-results-statistics-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-scan-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-team-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-token-response-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-token-response-3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-token-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-update-application-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-update-project-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/checkmarx-update-result-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/checkmarx-vulnerability-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -336,9 +354,30 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/checkmarx-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/checkmarx-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
+  mcp/checkmarx-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/checkmarx-one-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -396,6 +435,51 @@ artifacts:
   openapi/checkmarx-teams-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/checkmarx-checkmarx-applications-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-authentication-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-configuration-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-engines-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-groups-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-packages-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-presets-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-projects-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-queries-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-reports-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-results-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-risk-reports-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-scans-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-settings-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/checkmarx-checkmarx-teams-api-openapi-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
   plans/checkmarx-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
@@ -447,7 +531,13 @@ artifacts:
   rate-limits/checkmarx-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
+  regulatory/checkmarx-regulatory-posture.yml:
+    method: unknown
+    evidence: no authorship recorded
   rules/checkmarx-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/checkmarx-rules.yml:
     method: generated
     evidence: declared in the artifact
   security/checkmarx-domain-security.yml:
@@ -456,6 +546,48 @@ artifacts:
   security/checkmarx-trust-center.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/checkmarx-applications-skill.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/checkmarx-create-and-fetch-scan.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/checkmarx-manage-applications.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/checkmarx-project-setup.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/checkmarx-reports-create-and-fetch.md:
+    method: generated
+    evidence: declared in the artifact
   spectral/checkmarx-spectral.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vendors/checkmarx-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/checkmarx-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/checkmarx-oauth-authorization-server.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/checkmarx-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/checkmarx-support-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/checkmarx-well-known.yml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/checkmarx-www-oauth-authorization-server.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/checkmarx-www-oauth-protected-resource.json:
     method: unknown
     evidence: no authorship recorded
