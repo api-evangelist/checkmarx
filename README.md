@@ -1,4 +1,4 @@
-# Checkmarx (checkmarx)
+# Checkmarx
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,111 +66,233 @@
 
 Checkmarx is a leading application security testing solution provider, offering static application security testing (SAST), software composition analysis (SCA), and other security tools to help organizations identify and remediate vulnerabilities in their code.
 
-**APIs.json:** [https://www.checkmarx.com](https://www.checkmarx.com)
+**Areas:** Application Security · Code Analysis · DevSecOps · SAST · Security Testing · Vulnerability Scanning
 
-## Tags
+## Checkmarx on APIs.io
 
-- Application Security
-- Code Analysis
-- DevSecOps
-- SAST
-- Security Testing
-- Vulnerability Scanning
+Everything profiled for Checkmarx is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/checkmarx/](https://apis.io/providers/checkmarx/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (15)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [Checkmarx Applications API](https://apis.io/apis/checkmarx/checkmarx-applications-api/) — Manage applications that group related projects
+- [Checkmarx Authentication API](https://apis.io/apis/checkmarx/checkmarx-authentication-api/) — Obtain and manage authentication tokens via OAuth 2.0
+- [Checkmarx Configuration API](https://apis.io/apis/checkmarx/checkmarx-configuration-api/) — Manage project and tenant-level scan configuration
+- [Checkmarx Engines API](https://apis.io/apis/checkmarx/checkmarx-engines-api/) — Manage scan engines and engine servers
+- [Checkmarx Groups API](https://apis.io/apis/checkmarx/checkmarx-groups-api/) — Manage access control groups
+- [Checkmarx Packages API](https://apis.io/apis/checkmarx/checkmarx-packages-api/) — Query open source package information
+- [Checkmarx Presets API](https://apis.io/apis/checkmarx/checkmarx-presets-api/) — Manage scan configuration presets
+- [Checkmarx Projects API](https://apis.io/apis/checkmarx/checkmarx-projects-api/) — Manage scanning projects and their configuration
+- [Checkmarx Queries API](https://apis.io/apis/checkmarx/checkmarx-queries-api/) — Manage custom SAST queries and presets
+- [Checkmarx Reports API](https://apis.io/apis/checkmarx/checkmarx-reports-api/) — Generate and download scan reports
+- [Checkmarx Results API](https://apis.io/apis/checkmarx/checkmarx-results-api/) — Retrieve and manage scan results and findings
+- [Checkmarx Risk Reports API](https://apis.io/apis/checkmarx/checkmarx-risk-reports-api/) — Retrieve vulnerability and risk analysis results
+- [Checkmarx Scans API](https://apis.io/apis/checkmarx/checkmarx-scans-api/) — Trigger, monitor, and manage security scans
+- [Checkmarx Settings API](https://apis.io/apis/checkmarx/checkmarx-settings-api/) — Manage project and organization settings
+- [Checkmarx Teams API](https://apis.io/apis/checkmarx/checkmarx-teams-api/) — Manage teams and access control
 
-## APIs
+### Published properties
 
-### Checkmarx SAST API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-API for Checkmarx Static Application Security Testing (SAST) to scan source code for security vulnerabilities.
+#### GraphQL (1)
 
-- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
-- **Base URL:** `https://your-checkmarx-instance.com/cxrestapi`
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/checkmarx/](https://apis.io/graphqls/checkmarx/checkmarx-graphql/)
 
-- SAST
-- Security Scanning
-- Static Analysis
-- Vulnerability Detection
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html)
-- [OpenAPI](https://checkmarx.com/resource/documents/en/34965-8158-rest-api.html) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://checkmarx.com/resource/documents/en/34965-8158-authentication.html)
-- [OpenAPI](openapi/checkmarx-sast-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/checkmarx-sast.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/checkmarx-sast.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Checkmarx Agentic Access](https://apis.io/agentic-access/checkmarx/checkmarx-agentic-access/)
 
-### Checkmarx SCA API
+#### JSON Schema (40)
 
-API for Software Composition Analysis to identify open source vulnerabilities and license compliance issues.
+The data models the API reads and writes.
 
-- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-68617-api.html](https://checkmarx.com/resource/documents/en/34965-68617-api.html)
-- **Base URL:** `https://api-sca.checkmarx.net`
+- [Application](https://apis.io/schemas/checkmarx/checkmarx-application/)
+- [ApplicationListResponse](https://apis.io/schemas/checkmarx/checkmarx-application-list-response/)
+- [CreateApplicationRequest](https://apis.io/schemas/checkmarx/checkmarx-create-application-request/)
+- [CreateProjectRequest](https://apis.io/schemas/checkmarx/checkmarx-create-project-request/)
+- [CreateReportRequest](https://apis.io/schemas/checkmarx/checkmarx-create-report-request/)
+- [CreateScanRequest](https://apis.io/schemas/checkmarx/checkmarx-create-scan-request/)
+- [CreateScanRequest_2](https://apis.io/schemas/checkmarx/checkmarx-create-scan-request-2/)
+- [EngineServer](https://apis.io/schemas/checkmarx/checkmarx-engine-server/)
+- [GitSettings](https://apis.io/schemas/checkmarx/checkmarx-git-settings/)
+- [Group](https://apis.io/schemas/checkmarx/checkmarx-group/)
+- [License](https://apis.io/schemas/checkmarx/checkmarx-license/)
+- [Package](https://apis.io/schemas/checkmarx/checkmarx-package/)
+- [PackageDetails](https://apis.io/schemas/checkmarx/checkmarx-package-details/)
+- [Preset](https://apis.io/schemas/checkmarx/checkmarx-preset/)
+- [Preset_2](https://apis.io/schemas/checkmarx/checkmarx-preset-2/)
+- [Project](https://apis.io/schemas/checkmarx/checkmarx-project/)
+- [Project_3](https://apis.io/schemas/checkmarx/checkmarx-project-3/)
+- [ProjectConfiguration](https://apis.io/schemas/checkmarx/checkmarx-project-configuration/)
+- [ProjectListResponse](https://apis.io/schemas/checkmarx/checkmarx-project-list-response/)
+- [ProjectSettings](https://apis.io/schemas/checkmarx/checkmarx-project-settings/)
+- [Query](https://apis.io/schemas/checkmarx/checkmarx-query/)
+- [ReportStatus](https://apis.io/schemas/checkmarx/checkmarx-report-status/)
+- [Result](https://apis.io/schemas/checkmarx/checkmarx-result/)
+- [ResultListResponse](https://apis.io/schemas/checkmarx/checkmarx-result-list-response/)
+- [ResultsSummary](https://apis.io/schemas/checkmarx/checkmarx-results-summary/)
+- …and 15 more published on APIs.io
 
-#### Tags
+#### JSON-LD (1)
 
-- Dependency Scanning
-- License Compliance
-- Open Source Security
-- SCA
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Checkmarx Context](https://apis.io/jsonld/checkmarx/checkmarx-context/)
 
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-68617-api.html)
-- [Authentication](https://checkmarx.com/resource/documents/en/34965-68617-authentication.html)
-- [OpenAPI](openapi/checkmarx-sca-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/checkmarx-sca.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/checkmarx-sca.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (33)
 
-### Checkmarx One API
+Postman and Open Collection request collections.
 
-Unified API for Checkmarx One cloud-native application security platform.
+- [Checkmarx One Applications API](https://apis.io/collections/checkmarx/open-checkmarx-applications-api/)
+- [Checkmarx One Applications Authentication API](https://apis.io/collections/checkmarx/open-checkmarx-authentication-api/)
+- [Checkmarx One Applications Configuration API](https://apis.io/collections/checkmarx/open-checkmarx-configuration-api/)
+- [Checkmarx One Applications Engines API](https://apis.io/collections/checkmarx/open-checkmarx-engines-api/)
+- [Checkmarx One Applications Groups API](https://apis.io/collections/checkmarx/open-checkmarx-groups-api/)
+- [Checkmarx One API](https://apis.io/collections/checkmarx/open-checkmarx-one/)
+- [Checkmarx One Applications Packages API](https://apis.io/collections/checkmarx/open-checkmarx-packages-api/)
+- [Checkmarx One Applications Presets API](https://apis.io/collections/checkmarx/open-checkmarx-presets-api/)
+- [Checkmarx One Applications Projects API](https://apis.io/collections/checkmarx/open-checkmarx-projects-api/)
+- [Checkmarx One Applications Queries API](https://apis.io/collections/checkmarx/open-checkmarx-queries-api/)
+- [Checkmarx One Applications Reports API](https://apis.io/collections/checkmarx/open-checkmarx-reports-api/)
+- [Checkmarx One Applications Results API](https://apis.io/collections/checkmarx/open-checkmarx-results-api/)
+- [Checkmarx One Applications Risk Reports API](https://apis.io/collections/checkmarx/open-checkmarx-risk-reports-api/)
+- [Checkmarx SAST API](https://apis.io/collections/checkmarx/open-checkmarx-sast/)
+- [Checkmarx SCA API](https://apis.io/collections/checkmarx/open-checkmarx-sca/)
+- [Checkmarx One Applications Scans API](https://apis.io/collections/checkmarx/open-checkmarx-scans-api/)
+- [Checkmarx One Applications Settings API](https://apis.io/collections/checkmarx/open-checkmarx-settings-api/)
+- [Checkmarx One Applications Teams API](https://apis.io/collections/checkmarx/open-checkmarx-teams-api/)
+- [Checkmarx One Applications API](https://apis.io/collections/checkmarx/postman-checkmarx-applications-api/)
+- [Checkmarx One Applications Authentication API](https://apis.io/collections/checkmarx/postman-checkmarx-authentication-api/)
+- [Checkmarx One Applications Configuration API](https://apis.io/collections/checkmarx/postman-checkmarx-configuration-api/)
+- [Checkmarx One Applications Engines API](https://apis.io/collections/checkmarx/postman-checkmarx-engines-api/)
+- [Checkmarx One Applications Groups API](https://apis.io/collections/checkmarx/postman-checkmarx-groups-api/)
+- [Checkmarx One Applications Packages API](https://apis.io/collections/checkmarx/postman-checkmarx-packages-api/)
+- [Checkmarx One Applications Presets API](https://apis.io/collections/checkmarx/postman-checkmarx-presets-api/)
+- …and 8 more published on APIs.io
 
-- **Human URL:** [https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html](https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html)
-- **Base URL:** `https://ast.checkmarx.net/api`
+#### Overlays (15)
 
-#### Tags
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- Application Security
-- Cloud Security
-- DevSecOps
-- Unified Platform
+- [Checkmarx Checkmarx Applications Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-applications-api-openapi-overlay/)
+- [Checkmarx Checkmarx Authentication Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-authentication-api-openapi-overlay/)
+- [Checkmarx Checkmarx Configuration Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-configuration-api-openapi-overlay/)
+- [Checkmarx Checkmarx Engines Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-engines-api-openapi-overlay/)
+- [Checkmarx Checkmarx Groups Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-groups-api-openapi-overlay/)
+- [Checkmarx Checkmarx Packages Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-packages-api-openapi-overlay/)
+- [Checkmarx Checkmarx Presets Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-presets-api-openapi-overlay/)
+- [Checkmarx Checkmarx Projects Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-projects-api-openapi-overlay/)
+- [Checkmarx Checkmarx Queries Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-queries-api-openapi-overlay/)
+- [Checkmarx Checkmarx Reports Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-reports-api-openapi-overlay/)
+- [Checkmarx Checkmarx Results Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-results-api-openapi-overlay/)
+- [Checkmarx Checkmarx Risk Reports Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-risk-reports-api-openapi-overlay/)
+- [Checkmarx Checkmarx Scans Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-scans-api-openapi-overlay/)
+- [Checkmarx Checkmarx Settings Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-settings-api-openapi-overlay/)
+- [Checkmarx Checkmarx Teams Api Openapi Overlay](https://apis.io/overlays/checkmarx/checkmarx-checkmarx-teams-api-openapi-overlay/)
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://checkmarx.com/resource/documents/en/34965-128036-checkmarx-one-api.html)
-- [API Reference](https://checkmarx.com/resource/documents/en/34965-128036-api-reference.html)
-- [OpenAPI](openapi/checkmarx-one-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/checkmarx-one.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/checkmarx-one.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-## Common Properties
+- [Checkmarx — jsonschema rules](https://apis.io/rules/checkmarx/checkmarx-jsonschema-spectral-rules/)
+- [Checkmarx API Rules](https://apis.io/rules/checkmarx/checkmarx-rules/)
 
-- [LinkedIn](https://www.linkedin.com/company/checkmarx)
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Checkmarx Authentication](https://apis.io/security/checkmarx/checkmarx-authentication/)
+- [Checkmarx Domain Security](https://apis.io/security/checkmarx/checkmarx-domain-security/)
+- [Checkmarx Trust Center](https://apis.io/security/checkmarx/checkmarx-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Checkmarx Plans Pricing](https://apis.io/plans/checkmarx/checkmarx-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Checkmarx Rate Limits](https://apis.io/rate-limits/checkmarx/checkmarx-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Checkmarx Finops](https://apis.io/finops/checkmarx/checkmarx-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.checkmarx.com)
 - [Documentation](https://checkmarx.com/resource/documents/)
+- [Getting started](https://checkmarx.com/learn/iac-security/quick-start-guide-to-iac-security)
+- [Pricing](https://checkmarx.com/pricing/)
 - [Support](https://support.checkmarx.com/)
-- [Login](https://checkmarx.com/login/)
 - [Blog](https://checkmarx.com/blog/)
-- [News](https://checkmarx.com/news/)
-- [Git Hub](https://github.com/checkmarx)
-- [Status Page](https://status.checkmarx.com/)
-- [Privacy Policy](https://checkmarx.com/privacy-policy/)
-- [Terms of Service](https://checkmarx.com/terms-of-use/)
-- [JSON-LD](json-ld/checkmarx-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/checkmarx-scan-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/checkmarx-vulnerability-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](spectral/checkmarx-spectral.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [L L Ms Txt](https://checkmarx.com/llms.txt)
+- [Compliance](https://checkmarx.com/trust/)
+- [Terms of service](https://checkmarx.com/terms-of-use/)
+- [Privacy policy](https://checkmarx.com/privacy-policy/)
+- [Status](https://status.checkmarx.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 57.0** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 88.4 |
+| Contract quality | 67.1 |
+| Contract governance | 22.0 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 50.6 |
+| Access clarity | 61.8 |
+
+**Agent readiness 33.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/checkmarx/](https://apis.io/providers/checkmarx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Checkmarx: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/checkmarx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
